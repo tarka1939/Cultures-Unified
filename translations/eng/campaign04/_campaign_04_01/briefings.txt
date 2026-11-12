@@ -1,0 +1,329 @@
+[blockstart:header]
+ADVENTURE IN DRAGON LAND
+[blockend:header]
+
+[blockstart:00_start]
+The land lay barren and its meagre resources could not secure our survival. So we decided to rebuild our village somewhere else. The way to our new settlement led through a dried-up river bed.
+[blockend:00_start]
+
+[blockstart:00_start1]
+We had no idea what the youngest of our tribe were up to...
+Mani - son of chieftain Bjarni and Cyra
+and Norbert - the dragon
+had other plans...
+[blockend:00_start1]
+
+
+[blockstart:50_endheader]
+MISSION COMPLETED!
+[blockend:50_endheader]
+
+[blockstart:50_end]
+Mani and Norbert have made peace between the dragons and people of this region. From the wise stone dragons they learned more about Norbert's origins and now knew where to look for his kin... They had to go south!
+Mani and Norbert had found none of Norbert's relatives yet, and they had not made it safely back to their parents either, but they had come a long way in their search.
+
+But what was that? Suddenly they were ambushed, locked in big cages and carried off!
+[blockend:50_end]
+
+[blockstart:50_end1]
+They were homesick, very afraid and regretted their daring adventure. Would they ever get out of here in one piece?
+[blockend:50_end1]
+
+
+[blockstart:01]
+THE RUNAWAYS
+
+Norbert the dragon was sad. He often lay awake at night, for as the only dragon among humans he missed his own kind.
+Together with Mani, our son and his best friend among the humans, he decided to set out and look for Norbert's kin.
+
+<usericon:2,5>
+
+And so the two of them set off all alone and without our knowledge into the wide, unknown world...
+
+Find the native dragons.
+[blockend:01]
+
+[blockstart:02]
+THE OLD MAN
+
+"Oh, these wolves! They won't let me get to the old ruin. And I urgently need what is in the big chest. But I can hardly send children to do it...
+
+<usericon:1,95,189>
+
+... though my information could be useful to you. But first I must think about how to get rid of the wolves...
+How can a frail old man like me lure them into a trap? Once they are in the upper castle ruin, they will be as tame as lambs!"
+
+Lure at least three wolves into the upper castle ruin if you want to hear the old man's information.
+[blockend:02]
+
+
+[blockstart:03]
+THE OLD MAN
+
+"You did it! Those wild beasts are no longer a threat. Now hear my advice:"
+
+<usericon:1,103,211>
+
+"There are many dragons in this region, but I cannot say which kind your friend belongs to.
+
+There are the GEROLS - the old, wise STONE DRAGONS.
+
+<usericon:1,258,255>
+
+They are very good-natured and are probably the oldest people. If anyone can help you in your search, it is them. But they will surely only share their knowledge if you do them a favour that benefits everyone."
+
+The fire dragons in the east are said to be very dangerous, but they are extremely sweet once their hunger is stilled.
+
+<usericon:1,467,270>
+
+What nobody knows: they love baked goods!
+
+Then there are the AQUAS - the swimming water dragons in the south-east.
+
+<usericon:1,570,597>
+
+They are very peaceful and live solely on fish and algae.
+
+In fact there are no dragons that would harm humans, but there are plenty of prejudices!"
+[blockend:03]
+
+[blockstart:04]
+GEROLS - THE STONE DRAGONS
+
+In the stony mountains Mani and Norbert met old, wise stone dragons.
+
+<usericon:1,259,260>
+
+We could certainly help you. But GRAUHOLM, the wisest of all stone dragons, will only receive you once you fulfil his wish to make peace between the dragons of this region.
+
+Find all the dragons AND humans in this area and make sure they understand each other.
+
+A Viking village south of here may be able to support you.
+[blockend:04]
+
+
+[blockstart:05]
+STONE DRAGONS
+
+If you wish to enter our sacred halls and see GRAUHOLM, the wisest of all stone dragons, you must make peace between all the dragons AND humans of this region.
+
+<usericon:1,261,241>
+[blockend:05]
+
+
+[blockstart:06]
+VIKING VILLAGE
+
+"A child and a dragon... What a funny pair you are!
+
+<usericon:2,5>
+
+There are many prejudices against dragons, but our village is extremely tolerant.
+Where do you come from? Perhaps you can help us set up a cake bakery and a cattle farm?"
+
+Set up a working cake bakery and a cattle farm!
+[blockend:06]
+
+[blockstart:07]
+CATTLE FARM BUILT!
+
+"At last we can breed our own cattle and let the forest animals live in peace. Our thanks are with you forever," said the people.
+
+<usericon:1,238,421>
+
+And our village grew by a few new villagers, for thanks to the cattle farm many more people had enough to eat!
+[blockend:07]
+
+
+[blockstart:08]
+WORKING CAKE BAKERY BUILT!
+
+"Now our people can finally soothe the fire dragons!" said the villagers.
+
+<usericon:1,238,373>
+
+"Young Mani, why don't you and your friend the dragon lead the convoy with the cakes to the fire dragons. Perhaps they can tell you more about your origins..."
+
+Escort the convoy to the fire dragons and unload the goods in their stone circle!
+[blockend:08]
+
+[blockstart:09]
+FIRE DRAGONS
+
+"We are not on good terms with other creatures. Hunger constantly plagues us and makes us grumpy. We don't want to harm anyone, but the hunger..."
+
+<usericon:1,467,270>
+
+and the Napalians east of here make life hard for us. They steal our little food at night and ruin the land.
+
+Bring cakes to the fire dragons, perhaps that will ease their appetite!
+
+Go to the Napalians and try to mediate!
+[blockend:09]
+
+[blockstart:10]
+FIRE DRAGONS
+
+"You are true master bakers! You can count on our support!"
+said the fire dragons.
+
+<usericon:1,467,270>
+
+Five of us will be at your service from now on! If you need more of us, pay the tribute!
+[blockend:10]
+
+[blockstart:11]
+GIRL WHO IS AFRAID OF DRAGONS
+
+<usericon:2,8>
+
+"My big brother told me the fire dragons like best to eat girls who have reached a certain age. That is why I ran away from home.
+I am so scared!"
+[blockend:11]
+
+[blockstart:12]
+RASCAL
+
+"I told my sister the fire dragons like best to eat girls who have reached a certain age. Now she has run away from home! It's all my fault! I have to find her, because she will only believe me..."
+
+<usericon:2,9>
+
+Can you help me find her?
+[blockend:12]
+
+[blockstart:13]
+GIRL, no longer afraid
+
+<usericon:2,8>
+
+"It wasn't very nice of my brother to tell me such fibs just to scare me. But now I know it isn't true and I don't need to be afraid of fire dragons any more."
+[blockend:13]
+
+[blockstart:14]
+THE VILLAGERS
+
+"Our carpenter can learn to build boats, but he would need a carpenter's shop on the southern waters to launch the boat where the water is deep enough to sail to the water dragons. There is a ferryman in the south who knows the way to the island and can take you across. You should find him."
+
+<usericon:2,10>
+
+Find the ferryman who will take Mani and Norbert across to the island of the water dragons.
+[blockend:14]
+
+[blockstart:15]
+FERRYMAN
+
+"I haven't seen strangers in these parts for a long time! Come closer!" the ferryman called to us.
+
+<usericon:2,10>
+
+"I know the way to the Aquas - the water dragons - and my boat is seaworthy. But a small fee is only fair!"
+
+Pay the tribute to the ferryman!
+[blockend:15]
+
+[blockstart:16]
+FERRYMAN
+
+"Now I am happy to take you across to the island. Nobody knows these waters as well as I do!
+
+<usericon:2,10>
+
+You have made a wise decision!"
+[blockend:16]
+
+[blockstart:17]
+In the middle of the unremarkable lake was a mighty whirlpool! We could not say where the ferryman was taking us, for we lost all sense of direction in the misty waters...
+[blockend:17]
+
+[blockstart:18]
+AQUAS - THE WATER DRAGONS
+
+<usericon:1,571,600>
+
+We are peace-loving dragons. Come in if you are friends and visit the mighty Aquarius!
+[blockend:18]
+
+[blockstart:19]
+THE SACRED HALLS OF THE STONE DRAGONS
+
+Now Mani and Norbert were allowed to enter the halls of the stone dragons and stand before GRAUHOLM, the oldest and wisest of the stone dragons.
+
+<usericon:1,261,241>
+
+Surely he could help them and point their search in the right direction.
+[blockend:19]
+
+[blockstart:20]
+NAPALIANS
+
+"Our village is infested! If you don't want to catch it, stay away! Otherwise we will use our weapons!"
+
+<usericon:1,581,291>
+
+We had never been received so unfriendly. Had the disease befallen their minds as well?
+
+Pay the Napalians a tribute of 25 big healing potions.
+[blockend:20]
+
+[blockstart:21]
+NAPALIANS DEFEATED!
+
+The Napalians were beaten and the fire dragons freed from their threat, but a peaceful agreement might have been possible after all. They were sick and only wanted help, if in a peculiar way...
+
+<usericon:1,578,299>
+[blockend:21]
+
+[blockstart:22]
+PEOPLES AT PEACE!
+
+The stone dragons would be glad of this news! Now they would have to let Mani and Norbert in. All the dragons of this region were friends with the humans and with each other.
+
+<usericon:2,6>
+
+Take Mani and Norbert to the SACRED HALLS OF THE STONE DRAGONS!
+[blockend:22]
+
+[blockstart:23]
+OUTPOST
+
+<usericon:1,496,224>
+
+This outpost was eerie! All the people who once lived here must have left it for some reason...
+[blockend:23]
+
+[blockstart:24]
+HEALING POTIONS DELIVERED!
+
+"Thank you for saving us with your healing potions!" the Napalians called to us
+and immediately changed their diplomatic status towards us.
+
+<usericon:1,581,291>
+[blockend:24]
+
+
+[blockstart:25]
+MERCHANT
+
+"My brother and I settled here some time ago. I used to sail the seas in my ship. Today these waters are no longer deep enough and my ship would run aground."
+
+<usericon:1,360,452>
+
+"That is why I settled here and offer my goods for sale. Take a look, perhaps you can use something! My terms are favourable!"
+[blockend:25]
+
+[blockstart:100]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! MANI, son of Bjarni and Cyra, died due to your negligence! Without him, the outcome of this mission will remain hidden to you!
+[blockend:100]
+
+[blockstart:200]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! Your friend and hero NORBERT, the dragon, died due to your negligence! Without this hero, the outcome of this mission will remain hidden to you!
+[blockend:200]
+

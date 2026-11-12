@@ -1,0 +1,110 @@
+german	english	source/note
+Bjarni	Bjarni	hero, official
+Cyra	Cyra	hero, official
+Hatschi	Hatchie	official English spelling (jobs/tribes tables: Hatchie)
+Sigurd	Sigurd	official
+Mani	Mani	son of Bjarni and Cyra, official
+Norbert	Norbert	little dragon, official
+Sostratos	Sostratos	official (campaign_03_01)
+Wikinger	Vikings / Viking	tribes.ini
+Franken	Franks / Frank	tribes.ini
+Byzantiner	Byzantines	tribes.ini
+Sarazenen	Saracens	tribes.ini
+Ägypter	Egyptians (tribes.ini says 'Egypt')	use Egyptians in prose
+Schlangenmenschen	Weresnakes	tribes.ini
+Werwölfe	Werewolves	tribes.ini
+Drache / Drachen	dragon / dragons	tribes.ini
+Wasserdrachen	water dragons	task instruction
+Feuerdrachen	fire dragons	task instruction
+Steindrachen	stone dragons	descriptive, same pattern
+Erdrachen	earth dragons	descriptive
+Wachdrache	guard dragon	descriptive
+Nomaden	Nomads	campaign_03_01
+Vagabunden	Vagabonds	campaign_03_01
+Bergvolk	Mountain Tribe	campaign_03_01
+Architekt	architect	campaign_03_01
+Leuchtturm	Lighthouse	campaign_03_01
+Weltwunder	Wonder of the World	official
+Das achte Weltwunder	8th Wonder of the World	official title
+Nordland	Northland	official title
+Kunden Kampagnen	Custom Campaigns	task instruction
+Heiltrank	healing potion (big = large: 'big healing potions')	campaign_03_01 uses 'big healing potions'
+Nahrungstrank	nourishing potion	goods.ini
+Wachtrank	stamina potion	goods.ini
+Verteidigungsamulett	amulet of defence	goods.ini / campaign_03_01
+Tribut	tribute	campaign_03_01: 'Pay X a tribute of ...'
+Bruchstein	quarrystone	goods.ini
+Marmor	marble	goods.ini
+Münze(n)	coin(s)	goods.ini
+Met	mead	goods.ini
+Kuchen	cake(s)	goods.ini
+Eisen	iron	goods.ini
+Lehm	clay	goods.ini
+Holz	wood	goods.ini
+Weizen	wheat	goods.ini
+Kräuter	herbs	goods.ini
+Leder	leather	goods.ini
+Wolle	wool	goods.ini
+Mehl	flour	goods.ini
+Honig	honey	goods.ini
+Fisch	fish	goods.ini
+Ochse	ox / oxen (cow/cows in tribes.ini for animal)	goods.ini / singleplayer_03_02
+Rind(er)	cattle	descriptive
+Schaf	sheep	goods.ini
+Wolf / Wölfe	wolf / wolves	tribes.ini
+Hauptquartier	headquarters	houses.ini
+Wohnhaus	dwelling	houses.ini
+Lagerhaus	warehouse	houses.ini
+Brunnen	well	houses.ini
+Bäckerei	bakery	houses.ini
+Viehzüchterei	cattle farm	houses.ini
+Schreinerei	carpenter's shop	houses.ini
+Schmiede	smithy	houses.ini
+Münzpräge	coin mint	houses.ini
+Tempel	temple	houses.ini
+Schule	school	houses.ini
+Kaserne	barracks	houses.ini
+Wachturm	defence tower	houses.ini
+Steinmetzhütte	mason's shop	houses.ini
+Alchemistenhütte	alchemist's hut	houses.ini
+Bauarbeiter	builder	jobs.ini
+Schreiner	carpenter	jobs.ini
+Bäcker	baker	jobs.ini
+Viehzüchter	stock farmer (cattle farmer in prose)	jobs.ini
+Fährmann	ferryman	campaign_03_x ('ferryman')
+Händler	merchant	jobs.ini
+Kundschafter	scout	jobs.ini; singleplayer_03_02 Erkundungstrupp=Scouts
+Zivilisten	civilians	jobs.ini
+Held / Helden	hero / heroes	official
+Wikingerdorf	Viking village	descriptive
+MISSION GEWONNEN!	MISSION COMPLETED!	official briefings
+MISSION VERLOREN!	MISSION FAILED!	official briefings
+Ein kleiner Moment des Leichtsinns...	A short moment of negligence, that's all it takes to lose your life! ... died due to your negligence! Without this hero, the outcome of this mission will remain hidden to you!	official standard death message; reused verbatim for hero deaths
+Optional:	Optional:	prefix on side objectives, kept
+@ main-goal lines	@ prefix kept; ALL CAPS where German is ALL CAPS	style
+Finde ...	Find ...	official objective phrasing
+Gehe zu ...	Go to ...	official
+Sprich mit ...	Talk to ...	official ('Talk to the ferryman')
+Bringe ... zu ...	Take ... to ...	official ('Take Sostratos to the Lighthouse.')
+Gelange zu ...	Reach ...	official ('Reach Heimdall.')
+Zahle ... Tribut	Pay ... a tribute of ...	official
+Reiche ... zum Tribut	Pay ... a tribute of ...	official ('Pay the Vikings a tribute of 10 amulets of defence.')
+Baue ...	Build ...	official
+Errichte ...	Build ...	official ('Build a warehouse near...')
+Gerols	Gerols	invented name, kept (stone dragons)
+Lumis	Lumis	invented name, kept (fire dragons)
+Aquas	Aquas	invented name, kept (water dragons)
+Aquarius	Aquarius	invented name, kept
+Grauholm	Grauholm	invented name, kept (task instruction)
+Rothild	Rothild	invented name, kept
+Blaustrump	Blaustrump	invented name, kept (blue stocking, pun on 'Blaustrumpf'); see PROGRESS
+Napalianer / Nabalianer	Napalians	German source inconsistent (Napalianer / Nabalianer); unify to Napalians
+Torumannen	Torumen	invented tribe; see per-file note
+Kabalianer	Napalians	unified with Napalianer/Nabalianer
+S-KI-MOS	S-KI-MOS	invented tribe of Felix, kept
+Sallamaleikas	Sallamaleikas	invented tribe, kept
+Merlin der Rote Korsar	Merlin the Red Corsair	Campaign01 villain
+Silbermond	Silvermoon	Campaign00 20/21 character
+Wigrid Wall	Wigrid Wall	homeland, kept
+Lavainsel	Lava Island	descriptive, translated
+Pirateninsel	Pirate Island	descriptive, translated

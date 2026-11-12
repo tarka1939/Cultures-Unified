@@ -1,0 +1,302 @@
+[blockstart:header]
+HOMECOMING
+[blockend:header]
+
+[blockstart:00_start]
+We decided to return to the settlement site, the real goal of our journey, and pick up our lives again as before. Some things would surely have changed in the time we had been away.
+[blockend:00_start]
+
+[blockstart:00_start1]
+But what was that? Our village was destroyed. We were bound to our tribe and had to see to rebuilding the village. At the same time we decided to send out a messenger to warn other Vikings of such attacks.
+
+Build up your village and send a messenger to the other peoples.
+[blockend:00_start1]
+
+
+[blockstart:50_endheader]
+CAMPAIGN COMPLETED!
+[blockend:50_endheader]
+
+[blockstart:50_end]
+Thanks to our friends we had managed to drive the Napalians out of these lands for good and cure them of their wickedness. Never again would they cause harm to other humans or dragons. That was the promise we made to each other.
+[blockend:50_end]
+
+[blockstart:50_end1]
+The greatest joy, however, was to throw our arms around Norbert again. The little dragon had grown and had already learned much from the other earth dragons and gained experiences of his own. Even so, it was as if he had never left us. He and the other dragons were so familiar to us, and from now on humans and dragons would live in peace everywhere...
+[blockend:50_end1]
+
+
+[blockstart:01]
+FOREST OUTPOST 1 - THE TEMPLE GUARDIANS
+
+"Good to see you again!" said the Temple Guardians.
+
+<usericon:1,201,69>
+
+"You stood by us back then. Now our help is yours, use our herbs and potions from the warehouse!
+For a tribute we will gladly make even more for you!"
+...
+"You are looking for the orange dragons? They are in the palm grove, protecting the children."
+
+<usericon:2,13>
+[blockend:01]
+
+[blockstart:02]
+TRIBUTE PAID TO THE TEMPLE GUARDIANS!
+
+"These fresh mushrooms make fantastic potions. Hopefully you will like them! We are happy to produce more, in return for a tribute, of course..."
+
+<usericon:1,201,69>
+[blockend:02]
+
+
+[blockstart:03]
+OUTPOST 2 - HERB GATHERERS
+
+"Back then you delivered new tools to us when our old ones were eaten away by rust. By now we have our own toolsmith's. We had to defend ourselves against the Napalians, so we also make weapons and armour."
+
+<usericon:1,358,90>
+
+"Make use of us if you like!"
+...
+"You are looking for the orange dragons? They are in the palm grove, protecting the children."
+
+<usericon:2,13>
+[blockend:03]
+
+[blockstart:04]
+TRIBUTE PAID TO THE HERB GATHERERS!
+
+"The outpost that originally consisted of herb gatherers now made fantastic weapons and armour, which we could use for our purposes thanks to the tributes. As a bonus they even threw in a catapult."
+
+<usericon:1,350,120>
+[blockend:04]
+
+
+[blockstart:05]
+MOUNTAINS OF THE GEROLS - THE STONE DRAGONS
+
+Once there were old, wise stone dragons in these stony mountains, but now they had all disappeared...
+
+<usericon:1,312,65>
+[blockend:05]
+
+
+[blockstart:06]
+VIKING VILLAGE
+
+"It has got worse since you left. The Napalians have spread further again. Even their smaller base in the west is now surrounded by this poison cloud."
+
+<usericon:1,365,345>
+
+"We stand by you with everything we have!"
+[blockend:06]
+
+[blockstart:07]
+MERCHANTS' OUTPOST
+
+"You're back! Now everything will surely be all right again!"
+
+<usericon:1,246,361>
+
+"Because of the Napalians' attacks I am sadly stuck in a trade slump again, but if you trade with me, my friend will help you again to remove the poison clouds around the Napalian camp."
+[blockend:07]
+
+[blockstart:08]
+GOODS TRADED WITH THE MERCHANT
+
+"My business is booming, thanks to your help! I too will help you with my house dragon when the time comes."
+
+<usericon:1,246,361>
+[blockend:08]
+
+[blockstart:09]
+PLACE OF THE FIRE DRAGONS
+
+Once this was the place where many fire dragons lived. But now they had all disappeared...
+
+<usericon:1,152,345>
+[blockend:09]
+
+[blockstart:10]
+PROF. WAMUGO
+
+"Be patient, my friends, my pigeons are on their way! It is good that you chose the peaceful solution."
+[blockend:10]
+
+[blockstart:11]
+PROF. WAMUGO
+
+"I have moved my lessons to the palm grove, because the long way is unreasonable for the children in these dangerous times! I suspected that the Napalians would not give up. I have written letters to all the dragons proposing a peaceful solution, only my carrier pigeons are a little poorly. So I would rather not send them on the journey, for we do want to be sure they arrive, don't we? You understand?"
+
+<usericon:2,7>
+
+Pay Prof. WAMUGO a tribute of 15 small healing potions for his carrier pigeons if you wish for a peaceful solution!
+[blockend:11]
+
+[blockstart:12]
+FOREST VILLAGE SCHOOL OF THE WATER DRAGONS
+
+<usericon:1,78,530>
+
+"Because of the circumstances, Prof. Wamugo's school was closed!"
+[blockend:12]
+
+[blockstart:13]
+SCHOOL AT THE PALM GROVE
+
+"You're back! Our children have learned a lot, for Prof. Wamugo now teaches here too."
+
+<usericon:1,376,559>
+
+Go to Professor WAMUGO.
+[blockend:13]
+
+[blockstart:14]
+THE OLD MAN
+
+<usericon:1,98,211>
+
+"It has got worse with the Napalians...
+Now this poison cloud surrounds both bases, and the house dragons of the forest outposts are protecting the children in the palm grove, except for a single one at the merchant's."
+
+<usericon:2,13>
+[blockend:14]
+
+[blockstart:15]
+ALL THE ORANGE DRAGONS!
+
+Now we had visited the Forest Keepers' outposts and gathered the orange dragons against the poison cloud.
+
+<usericon:2,13>
+
+We could now take the warlike path against the Napalians or accept Prof. Wamugo's proposal of a peaceful agreement! The choice was ours...
+[blockend:15]
+
+[blockstart:16]
+POISON CLOUD REMOVED
+
+In no time the house dragons of the forest outposts gathered round the poison cloud to neutralise it around the Napalians' bases!
+
+<usericon:1,372,261>
+
+Now the way was open and the decision was ours...
+[blockend:16]
+
+[blockstart:17]
+THE OLD MAN
+
+<usericon:1,252,502>
+
+"The water dragons are arming for the worst in the water temple. If you are serious, old AQUAROM will surely give you an army of water dragons as an escort."
+[blockend:17]
+
+[blockstart:18]
+AQUAS - THE WATER DRAGONS
+
+"It is a shame that there are always troublemakers. And we peace-loving dragons are rarely provoked..."
+
+<usericon:1,169,577>
+
+"...but under these circumstances we have no other choice.
+In the water dragon temple we are arming ourselves against the enemy. But only your strongest hero may enter!"
+
+Take Bjarni to the water dragon temple if you need reinforcements.
+[blockend:18]
+
+[blockstart:19]
+NAPALIANS
+
+"Not a step closer! We will not be led astray again!"
+
+<usericon:1,23,295>
+
+"Go, or we will be forced to use our weapons!"
+[blockend:19]
+
+[blockstart:20]
+NAPALIANS
+
+"You asked for it! Our weapons will destroy you. Pay the tribute and we will reconsider our attitude towards you, but only if you leave our bases at once!"
+
+Pay the tribute to make them neutral again!
+[blockend:20]
+
+[blockstart:21]
+TRIBUTE PAID!
+
+"Now we will reconsider our attitude towards you, but do not dare to enter our territory again!" the Napalians called to us and changed their diplomatic status towards us.
+
+<usericon:1,581,291>
+[blockend:21]
+
+[blockstart:22]
+NAPALIANS DEFEATED!
+
+The Napalians were beaten, but might a peaceful agreement not have been possible after all?
+
+<usericon:1,373,262>
+[blockend:22]
+
+[blockstart:23]
+ALL THE DRAGONS GATHERED!
+
+It was unbelievable! From every direction our old friends the dragons streamed in to help us!
+
+<usericon:1,361,269>
+
+Among them was Norbert.
+
+<usericon:2,6>
+
+WAMUGO had kept his word!
+[blockend:23]
+
+[blockstart:24]
+HELP FROM THE DRAGONS!
+
+It was unbelievable! From every direction our old friends the dragons streamed in to help us!
+
+<usericon:1,319,120>
+
+Now we could advance against the Napalians together!
+[blockend:24]
+
+
+[blockstart:25]
+
+[blockend:25]
+
+
+
+[blockstart:100]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+Heroism or carelessness? When BJARNI died the gods were crying ... without this hero, the outcome of this mission will remain hidden to you!
+[blockend:100]
+
+[blockstart:200]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! Your heroine CYRA died due to your negligence! Without this heroine, the outcome of this mission will remain hidden to you!
+[blockend:200]
+
+[blockstart:500]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! MANI, son of Bjarni and Cyra, died due to your negligence! Without him, the outcome of this mission will remain hidden to you!
+[blockend:500]
+
+[blockstart:600]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! Your friend and hero NORBERT, the dragon, died due to your negligence! Without this hero, the outcome of this mission will remain hidden to you!
+[blockend:600]

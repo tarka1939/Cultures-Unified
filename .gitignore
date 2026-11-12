@@ -1,0 +1,10 @@
+# extracted game text / build output / local tooling (never commit game assets)
+*.pyc
+.tools/
+__pycache__/
+build/
+re/export/
+re/ghidra/
+re/logs/
+work/
+loader/bin/

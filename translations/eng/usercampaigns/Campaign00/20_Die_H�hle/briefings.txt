@@ -1,0 +1,40 @@
+[blockstart:start_header]
+The Cave
+
+[blockend:start_header]
+
+[blockstart:start_body]
+Hey, look, what a huge chasm. Come on, we have to keep following the others. Hey, careful, don't go so close to the edge. What did you say?...crunch, heeelp, I'm falling. Let go of me, no heeelp I'm falling too....thud. You and your terrible curiosity. Now look what you've done. Come on, let's look for the exit, it can't be that far......
+Mission objective: Find the exit.
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+Thank you for your help. I will tell my people what brave and helpful men you are. As thanks I promise you our friendship. Hey look, there's another chasm. I'm sick of chasms. Come on, this way, come on. I'm going already......
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have lost !! Why not try a round of Chess.
+
+[blockend:lost_body]
+
+[blockstart:findmappos1]
+Hooray, dear folk. My name is Silvermoon, because I was born by moonlight. My people live in South Africa. A slave trader there locked me up here. She demands 20 gold ingots as ransom. Do you have something sweet with you? I haven't eaten anything sweet for sooo long. I could do with a little cake. Well, we decided not to be mean and help her. We had only seen gold in one place. Where we had fallen into the cave...
+Mission objective: Store 20 gold ingots and 20 cakes.
+
+[blockend:findmappos1]
+

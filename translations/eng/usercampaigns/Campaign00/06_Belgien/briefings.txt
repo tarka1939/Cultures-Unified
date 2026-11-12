@@ -1,0 +1,84 @@
+[blockstart:start_header]
+Belgium
+
+[blockend:start_header]
+
+[blockstart:start_body]
+We set out with a small crew towards Belgium. We wanted to help the people there, as a great famine was raging. Besides, Luxembourg had the best seamstresses. We wanted to have different clothes made for us before we moved on, because in our green clothes we would be spotted too quickly later. Our soldiers also had to be better equipped. So we wanted to get hold of amulets.
+Mission objective: Store 10 wind amulets and 10 amulets of strength.
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+At last we had stored the required amulets. Proud and happy about our new clothes, we left this friendly land towards Germania.
+Our revenge was still to come for the prank Caesar the forest troll had played on us...
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have lost, although this mission actually cannot be lost.
+
+[blockend:lost_body]
+
+[blockstart:findmappos1]
+Hello there, I am Caesar the forest troll. Have you discovered the Luxembourgers yet? They live in the south-west. They urgently need food and crockery. Cherry lives there too. She is the best seamstress in the whole country. She may be able to do you good service. By the way, I have brought you a present from the far north.
+Giggling, the troll vanished again......
+
+[blockend:findmappos1]
+
+[blockstart:playerdied1]
+Player 1 has died.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+Antwerp !!
+Heelp.. We are huungry!!
+Please give us something to eat. You will not regret it. We have something you need.
+
+[blockend:playerseen1]
+
+[blockstart:playerenemy1]
+Player 1 is now hostile.
+
+[blockend:playerenemy1]
+
+[blockstart:playerfriendly1]
+The people of Antwerp are now friendly towards you. You can now trade with them.
+
+[blockend:playerfriendly1]
+
+[blockstart:playerdied2]
+Player 2 has died.
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+Luxembourg!!
+Heelp.. Please help us, we are almost dying of hunger. We have great amulets for you, but first please bring us something to eat. You want new clothes? No problem, Cherry, our master seamstress, will make them for you, for a small tribute, of course.
+
+[blockend:playerseen2]
+
+[blockstart:playerenemy2]
+Player 2 is now hostile.
+
+[blockend:playerenemy2]
+
+[blockstart:playerfriendly2]
+Thank you, thank you for food and drink. Now we have the strength to make your clothes. What colour shall it be ? RED ???? Hmm, all right, but it will take longer. In the meantime you can trade with us.
+
+[blockend:playerfriendly2]
+

@@ -1,0 +1,128 @@
+[blockstart:header]
+FREEING THE DRAGONS
+[blockend:header]
+
+[blockstart:00_start]
+These musty dungeons of the Napalians, where we now found ourselves, were unusual...
+Underground, mushrooms and reeds sprouted here in a boggy landscape!
+[blockend:00_start]
+[blockstart:00_start1]
+The prisoners would be well guarded. But Napalian buildings often had many secret passages. We could make use of them.
+
+Find the imprisoned dragons and free them!
+[blockend:00_start1]
+
+
+
+[blockstart:50_endheader]
+MISSION COMPLETED!
+[blockend:50_endheader]
+[blockstart:50_end]
+We had managed to free all the dragons from the Napalian dungeons,
+and left the dark walls by the quickest way!
+[blockend:50_end]
+[blockstart:50_end1]
+<usericon:2,11>
+[blockend:50_end1]
+
+
+[blockstart:01]
+NAPALIANS
+
+<usericon:1,66,88>
+
+"You dare to enter our dungeons? You are dead!"
+[blockend:01]
+
+
+[blockstart:02]
+EARTH DRAGONS
+
+<usericon:2,11>
+
+At last we had found earth dragons! Norbert was beside himself with joy!
+[blockend:02]
+
+[blockstart:03]
+MAGIC DRAGONS
+
+<usericon:2,12>
+
+"These Napalians are up to no good everywhere. We thought we magic dragons were safe from them, but we were captured too. Thank you for freeing us."
+[blockend:03]
+
+[blockstart:04]
+WATER DRAGONS
+
+<usericon:2,13>
+
+"We are easy prey for the Napalians. Thank you for freeing us."
+[blockend:04]
+
+
+[blockstart:05]
+SWITCH OPERATED!
+
+<usericon:1,36,136>
+
+With a mighty creak, two heavy wooden doors opened not far from here.
+[blockend:05]
+
+
+[blockstart:06]
+NAPALIANS DIED!
+
+The Napalians were defeated!
+
+<usericon:2,1>
+[blockend:06]
+
+[blockstart:07]
+WATER DRAGONS DIED!
+
+All the water dragons had died! The outcome of this mission will remain hidden to you!
+[blockend:07]
+
+[blockstart:08]
+EARTH DRAGONS DIED!
+
+All the earth dragons had died! The outcome of this mission will remain hidden to you!
+[blockend:08]
+
+[blockstart:09]
+MAGIC DRAGONS DIED!
+
+All the magic dragons had died! The outcome of this mission will remain hidden to you!
+[blockend:09]
+
+[blockstart:100]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+Heroism or carelessness? When BJARNI died the gods were crying ... without this hero, the outcome of this mission will remain hidden to you!
+[blockend:100]
+
+[blockstart:200]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! Your heroine CYRA died due to your negligence! Without this heroine, the outcome of this mission will remain hidden to you!
+[blockend:200]
+
+[blockstart:500]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! MANI, son of Bjarni and Cyra, died due to your negligence! Without him, the outcome of this mission will remain hidden to you!
+[blockend:500]
+
+[blockstart:600]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! Your friend and hero NORBERT, the dragon, died due to your negligence! Without this hero, the outcome of this mission will remain hidden to you!
+[blockend:600]

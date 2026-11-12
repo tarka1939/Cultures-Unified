@@ -1,0 +1,230 @@
+[blockstart:header]
+THE DARK FOREST
+[blockend:header]
+
+[blockstart:00_start]
+For days our tribe wandered through the eerie forests. Whenever we thought we had found a way out, we were already deeper in the Dark Forest. Our supplies were running low and the disappearance of Mani and Norbert filled us with great worry.
+[blockend:00_start]
+
+[blockstart:00_start1]
+It was obvious: we were lost!
+
+Build a camp and look for a way out of the forest!
+[blockend:00_start1]
+
+
+[blockstart:50_endheader]
+MISSION COMPLETED!
+[blockend:50_endheader]
+
+[blockstart:50_end]
+The Keepers of the Forest meant well by us and at last we saw a clearing!
+[blockend:50_end]
+
+[blockstart:50_end1]
+We had found a way out of the Dark Forest through the Swamps of Oblivion and would now be able to reach our planned settlement site. We still had no trace of Mani and Norbert. So we left some scouts here and sent some ahead.
+[blockend:50_end1]
+
+
+[blockstart:01]
+A GOOD CAMP SITE
+
+GUCKFIX, our scout, had found a camp site that suited us perfectly:
+
+<usericon:2,3>
+
+The trees were not too close together here, so there was plenty of room to build. All resources were also close at hand.
+[blockend:01]
+
+[blockstart:02]
+ENTRANCE TO THE PITCH-DARK CAVE
+
+<usericon:1,256,67>
+
+You should only enter this cave with heroes! Who knows what lurks inside?
+[blockend:02]
+
+[blockstart:03]
+FOREST KEEPER WEIDENTREU
+
+Beneath the weeping willows we came across a Forest Keeper.
+
+<usericon:2,5>
+
+"Oh, you are lost? That happens to many who don't know the forest. I will help you if you let me have some of your fresh bee honey."
+
+Deliver honey to Weidentreu (as tribute)!
+[blockend:03]
+
+
+[blockstart:04]
+HONEY DELIVERED TO WEIDENTREU
+
+"You can count on my help. I am ready and waiting once the other two Forest Keepers are too!"
+
+<usericon:2,5>
+[blockend:04]
+
+
+[blockstart:05]
+FOREST KEEPER BORKENZAHN
+
+"Welcome!" said FOREST KEEPER BORKENZAHN.
+
+<usericon:2,4>
+
+"We Forest Keepers could of course lead you out of the forest, but first I have a request:
+
+Some time ago a few dark dragons came into my house and stole one of the most valuable crystals from my crystal collection. There is a cave north-west of here. I think the crystal is inside, but the cave is so dark that you cannot see a step ahead!"
+
+Bring Borkenzahn the crystal and he will help you.
+[blockend:05]
+
+[blockstart:06]
+CRYSTAL HANDED TO BORKENZAHN!
+
+"You can count on my help. I am ready and waiting once the other two Forest Keepers are too!"
+
+<usericon:2,4>
+[blockend:06]
+
+[blockstart:07]
+FOREST KEEPER RAPSLIESCHEN
+
+"Welcome!" said FOREST KEEPER RAPSLIESCHEN.
+
+<usericon:2,6>
+
+"I would so love to spin, but I have no wool!"
+
+Trade 20 goods with Rapslieschen so that she receives at least 20 sacks of wool!
+[blockend:07]
+
+[blockstart:08]
+GOODS TRADED WITH RAPSLIESCHEN
+
+"You can count on my help. I am ready and waiting once the other two Forest Keepers are too!"
+
+<usericon:2,6>
+[blockend:08]
+
+[blockstart:09]
+PYRO THE FIRE DRAGON
+
+The animals of the forest had come running at the deafening cries.
+"One of us fire dragons has been trapped by a rockfall!" said the fire dragons. Can you help us?
+
+<usericon:2,9>
+
+Free Pyro the fire dragon from the rock by mining stone, ore and gold around him!
+[blockend:09]
+
+[blockstart:10]
+PYRO FREED
+
+This fire dragon was very grateful for his rescue and joined our mission. He had spent days wedged between boulders, but now he was finally free again!
+
+<usericon:2,9>
+[blockend:10]
+
+[blockstart:11]
+
+[blockend:11]
+
+[blockstart:12]
+CAMP ESTABLISHED!
+
+With our new cake bakery, the foundation for a working Viking camp was laid.
+[blockend:12]
+
+[blockstart:13]
+THE OLD MAN
+
+<usericon:1,223,72>
+
+"You are lost in the forest? These forests are tricky. Once they have you under their spell, they don't let go easily!
+
+But visit the Forest Keepers. If anyone can lead you out of the forest, it is these three."
+[blockend:13]
+
+[blockstart:14]
+THE OLD MAN
+
+<usericon:1,295,314>
+
+"A terrible earthquake made the stones move. Since then all the animals of the forest run to a spot north of here. Soft cries of lament drift from there into the forest without pause. Surely nothing has happened to anyone?"
+[blockend:14]
+
+
+[blockstart:15]
+ALL THE FOREST KEEPERS' OUTPOSTS
+
+Now we had visited all the Forest Keepers' outposts and helped them. They were indeed of great use to us, for they showed us the way out of the forest through the Swamps of Oblivion:
+
+From BORKENZAHN we received a protective crystal,
+
+<usericon:2,4>
+
+from WEIDENTREU a map
+
+<usericon:2,5>
+
+and RAPSLIESCHEN gave us the stamina potions we needed to cross the Swamps of Oblivion without rest.
+
+<usericon:2,6>
+
+And so we set off...
+[blockend:15]
+
+
+[blockstart:16]
+END OF THE FOREST
+
+
+[blockend:16]
+
+[blockstart:17]
+
+[blockend:17]
+
+[blockstart:18]
+
+[blockend:18]
+
+[blockstart:19]
+
+[blockend:19]
+
+[blockstart:20]
+
+[blockend:20]
+
+
+
+
+
+
+
+[blockstart:100]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+Heroism or carelessness? When BJARNI died the gods were crying ... without this hero, the outcome of this mission will remain hidden to you!
+[blockend:100]
+
+[blockstart:200]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! Your heroine CYRA died due to your negligence! Without this heroine, the outcome of this mission will remain hidden to you!
+[blockend:200]
+
+[blockstart:300]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! Your friend, the dragon PYRO, died due to your negligence! Without him, the outcome of this mission will remain hidden to you!
+[blockend:300]

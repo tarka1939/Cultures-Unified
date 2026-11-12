@@ -1,0 +1,98 @@
+[blockstart:start_header]
+Australia
+
+[blockend:start_header]
+
+[blockstart:start_body]
+At last daylight had us again. But what kind of strange land was this? Some of us thought they had seen a strange animal in the thicket, with big feet and long ears, that moved by hopping. But as we did not want to make fools of ourselves in front of the others, everyone kept their opinion to themselves. But slowly we were seized by homesickness for Wigrid Wall. We decided to store the goods we needed and set sail for home.
+Mission objective: Store the following goods.
+90 food, 90 cakes, 90 mead, 90 wooden tools, 90 small nourishing potions.
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+We had gathered all the goods needed for such a long journey. Our shipbuilder had meanwhile built several ships to take us home. Some of us, however, wanted to stay here. We could not blame them, for it was a very hospitable land. When we had loaded all the ships, we said goodbye to the others. We sensed that it would be a farewell for ever...
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have lost !!
+
+[blockend:lost_body]
+
+[blockstart:playerdied1]
+Player 1 has died.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+Perth !!
+Hello, dear folk ! We are the inhabitants of Perth. Send your merchants. Culturator, our stonemason, makes first-class goods.
+
+[blockend:playerseen1]
+
+[blockstart:playerenemy1]
+Player 1 is now hostile.
+
+[blockend:playerenemy1]
+
+[blockstart:playerneutral1]
+Player 1 is now neutral.
+
+[blockend:playerneutral1]
+
+[blockstart:playerdied2]
+Player 2 has died.
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+Melbourne !!
+Hello there ! We, the inhabitants of Melbourne, greet you. Send your merchants by. Malte, our toolmaker, makes the best tools in the whole country.
+
+[blockend:playerseen2]
+
+[blockstart:playerenemy2]
+Player 2 is now hostile.
+
+[blockend:playerenemy2]
+
+[blockstart:playerneutral2]
+Player 2 is now neutral.
+
+[blockend:playerneutral2]
+
+[blockstart:playerdied3]
+Player 3 has died.
+
+[blockend:playerdied3]
+
+[blockstart:playerseen3]
+Sydney !!
+Good day, dear folk. Do you want to trade with us? Mully, our herb expert, is famous for his herbs that can be used for anything. We even supply Switzerland for the famous Rik-Ola herbal potions.
+
+[blockend:playerseen3]
+
+[blockstart:playerenemy3]
+Player 3 is now hostile.
+
+[blockend:playerenemy3]
+
+[blockstart:playerneutral3]
+Player 3 is now neutral.
+
+[blockend:playerneutral3]
+

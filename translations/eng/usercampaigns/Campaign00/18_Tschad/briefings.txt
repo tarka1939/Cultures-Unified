@@ -1,0 +1,104 @@
+[blockstart:start_header]
+Chad
+
+[blockend:start_header]
+
+[blockstart:start_body]
+Heavens above, what a scorching heat. To make matters worse, we had brought too little water. When we found a well, we decided to set up a small outpost to store new water supplies...
+Mission objectives : Build up your village.
+Store 100 units of water in the warehouse.
+Explore the area for allies or enemies.
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+We had done it. Merlin and Buffalo Dan were destroyed. We had to get out of this unbearable heat as soon as possible, so we loaded our ox carts with the water and marched on into the interior. Our new friends came along. Supposedly to stand by us in the fight against Tank...
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have lost !! Was the map too hard? Then you needn't even try the next one.
+
+[blockend:lost_body]
+
+[blockstart:findmappos1]
+Well, what was that thing? Oh, treasure chests. Curious as we were, we wanted to see right away what was inside.
+
+[blockend:findmappos1]
+
+[blockstart:playerdied1]
+Player 1 has died.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+Hooray, friends, we told you we would help you in the fight against Tank, the nasty Saracen chieftain. Do you need potions, or even amulets? We have the best. As always, we want weapons in return.
+
+[blockend:playerseen1]
+
+[blockstart:playerenemy1]
+Player 1 is now hostile.
+
+[blockend:playerenemy1]
+
+[blockstart:playerneutral1]
+Player 1 is now neutral.
+
+[blockend:playerneutral1]
+
+[blockstart:playerdied2]
+Merlin's henchmen are destroyed. But many of our friends had to pay with their lives too.
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+Halt, stop !! I, Merlin, the right hand of Tank the Saracen chieftain, now prophesy your downfall. Surrender, or you will die. Surrender?? Pah. Not us. However, we needed many soldiers to destroy this superior force.
+Mission objective: Destroy Merlin's henchmen.
+
+[blockend:playerseen2]
+
+[blockstart:playerneutral2]
+Player 2 is now neutral.
+
+[blockend:playerneutral2]
+
+[blockstart:playerfriendly2]
+Player 2 is now friendly.
+
+[blockend:playerfriendly2]
+
+[blockstart:playerdied3]
+Buffalo Dan's henchmen are destroyed.
+
+[blockend:playerdied3]
+
+[blockstart:playerseen3]
+Buffalo Dan's henchmen !!
+At them with a roar !! Cut them down!! They must not under any circumstances advance further into the land. Arrows flew at us. First this heat wave and then we had to fight too...
+Mission objective: Destroy Buffalo Dan's henchmen.
+
+[blockend:playerseen3]
+
+[blockstart:playerneutral3]
+Player 3 is now neutral.
+
+[blockend:playerneutral3]
+
+[blockstart:playerfriendly3]
+Player 3 is now friendly.
+
+[blockend:playerfriendly3]
+

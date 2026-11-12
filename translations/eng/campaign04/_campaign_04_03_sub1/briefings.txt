@@ -1,0 +1,94 @@
+[blockstart:header]
+BENEATH THE SEA
+[blockend:header]
+
+[blockstart:00_start]
+All at once we found ourselves in a strange, unfamiliar place.
+[blockend:00_start]
+[blockstart:00_start1]
+No doubt we were in one of the many water temples of the AQUAS!
+[blockend:00_start1]
+
+
+[blockstart:50_endheader]
+MISSION COMPLETED!
+[blockend:50_endheader]
+[blockstart:50_end]
+A jolt and a rumble ran through the little island realm. And indeed, this switch should have set the teleporters on the surface in motion!
+
+<usericon:1,36,37>
+
+...one to step into
+
+<usericon:1,59,37>
+
+... the other spins us back out again!
+
+Remember: the teleporter only works in one direction! If you want to leave the island of the forest village school again, you will need a ship.
+[blockend:50_end]
+[blockstart:50_end1]
+
+[blockend:50_end1]
+
+
+[blockstart:01]
+WATER DRAGON
+
+"Welcome to our water temple. We rarely have earthlings as visitors here, but make yourselves at home."
+
+<usericon:1,44,107>
+
+No doubt the Aquas knew a thing or two about hospitality!
+[blockend:01]
+
+
+[blockstart:02]
+SHIPS
+
+<usericon:1,55,108>
+
+We would probably need a ship, too, to reach the switch for the teleporters...
+[blockend:02]
+
+[blockstart:03]
+AQUAROM AND THE SWITCH
+
+"I am tired of standing on this switch, but it is vital for us here beneath the sea, because it runs the turbine for the water flow."
+
+<usericon:2,3>
+
+"If you take over from me for a while, I will lend you my ship."
+[blockend:03]
+
+[blockstart:04]
+AQUAROM AND THE SWITCH
+
+"Good, my ship is yours as long as one of you stands on the switch."
+
+<usericon:2,3>
+[blockend:04]
+
+[blockstart:05]
+AQUAROM
+
+"If none of you is standing on the switch, the ship is mine again!"
+
+<usericon:1,88,123>
+[blockend:05]
+
+
+[blockstart:100]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+Heroism or carelessness? When BJARNI died the gods were crying ... without this hero, the outcome of this mission will remain hidden to you!
+[blockend:100]
+
+[blockstart:200]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! Your heroine CYRA died due to your negligence! Without this heroine, the outcome of this mission will remain hidden to you!
+[blockend:200]

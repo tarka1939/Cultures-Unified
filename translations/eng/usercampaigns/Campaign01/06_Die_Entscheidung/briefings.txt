@@ -1,0 +1,120 @@
+[blockstart:start_header]
+The Decision
+
+[blockend:start_header]
+
+[blockstart:start_body]
+And so the two of them went on their way. We advised them to stay with us, but the homesickness was simply too great. Karo above all was glad to see her children again. To be on the safe side we had built a few defence towers. You never knew. Our scout reported a very small number of berry bushes in the land. So we would probably have to brew nourishing potions to be able to push further inland. We had not yet caught sight of Merlin, but we surely would soon....
+Mission objective: Find Merlin, the Red Corsair, and destroy him for good.
+Tip: Quickly build up your defences.
+Brew nourishing potions to explore the interior.
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+We had done it. Merlin and his henchmen were destroyed. But the price was high. Felix and his people had been wiped out. Since there was no more life in this beautiful stretch of land, some of us decided to stay here and found a new colony. Suddenly a ship came from our far, far distant homeland Wigrid Wall. The half-starved captain told us of great problems in our homeland.
+But that is a new story. Perhaps I will tell it to you some day...........
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+We had lost. The attackers had been too strong. Suddenly the sky opened above us and a voice spoke to us. Friends, I give you a second chance, simply start again from the beginning....
+
+[blockend:lost_body]
+
+[blockstart:findmappos1]
+Merlin's outpost !!
+We would destroy this outpost quickly.
+Mission objective: Destroy Merlin's outpost.
+
+[blockend:findmappos1]
+
+[blockstart:findmappos2]
+Outpost of the elite bodyguard !!
+This had to be an outpost of Merlin's elite bodyguard.
+Mission objective: Destroy the outpost.
+
+[blockend:findmappos2]
+
+[blockstart:playerdied1]
+At last we had destroyed Merlin along with his outpost. Now peace would finally return....
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+Merlin's troops !!
+I, Merlin, Pirate of the Seven Seas, ruler of the Caribbean, will now destroy you. You did not get past my outpost unpunished....
+Mission objective: Destroy Merlin the Red Corsair.
+Find the outpost and destroy it too.
+Tip: Perhaps you can only reach the outpost by sea....
+
+
+[blockend:playerseen1]
+
+[blockstart:playerneutral1]
+Player 1 is now neutral.
+
+[blockend:playerneutral1]
+
+[blockstart:playerfriendly1]
+Player 1 is now friendly.
+
+[blockend:playerfriendly1]
+
+[blockstart:playerdied2]
+Through a messenger we received terrible news. Merlin's troops had attacked the village of Felix and his people and wiped out everything living there. Our grief turned to hatred and rage. We swore revenge........
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+This must have been the village of Felix and his S-KI-MOS.
+
+[blockend:playerseen2]
+
+[blockstart:playerenemy2]
+Player 2 is now hostile.
+
+[blockend:playerenemy2]
+
+[blockstart:playerneutral2]
+Player 2 is now neutral.
+
+[blockend:playerneutral2]
+
+[blockstart:playerdied3]
+At last we had destroyed Merlin's elite bodyguard along with his outpost.
+
+[blockend:playerdied3]
+
+[blockstart:playerseen3]
+Merlin's elite bodyguard !!
+I, Maverick, commander-in-chief of Merlin's elite bodyguard, prophesy your downfall. But how could you get past my outpost unpunished?
+Mission objective: Destroy Merlin's elite bodyguard.
+Find the outpost of the elite bodyguard and destroy it too.
+Tip: Perhaps you can only reach the outpost by sea....
+
+[blockend:playerseen3]
+
+[blockstart:playerneutral3]
+Player 3 is now neutral.
+
+[blockend:playerneutral3]
+
+[blockstart:playerfriendly3]
+Player 3 is now friendly.
+
+[blockend:playerfriendly3]
+

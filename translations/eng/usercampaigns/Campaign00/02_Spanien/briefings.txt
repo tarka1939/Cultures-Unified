@@ -1,0 +1,114 @@
+[blockstart:start_header]
+Spain
+
+[blockend:start_header]
+
+[blockstart:start_body]
+At last we had arrived in Spain. Our helmsman was so drunk that he had run onto a reef off the coast. We could only save a few chests of weapons, which Bjarni did not like one bit.
+Furious, he gave us the following order:
+Now store 40 longswords, 40 amulets of defence and 40 plate armours in the warehouses.
+Furthermore, he ordered, the Portuguese live in the west.
+Destroy them all !!
+But why we had to sail to Spain, he did not say.
+Well, grumbling, we got to work. But where were we to get the amulets?
+We decided to send out a scout. Perhaps there were still peoples here we could trade with..........
+
+1. Build up your village
+2. Defeat the Portuguese in the west
+3. Store 40 longswords, 40 amulets of defence and 40 plate armours in your future warehouses.
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+At last we had stored all the goods and defeated the Portuguese.
+Bravo, Bjarni praised us. You are really good. Now let us set off.
+Our next destination is France.
+We looked at each other in amazement. What did Bjarni want in France ?
+And whether the French would receive us with open arms was more than doubtful. So we loaded our oxen and set off towards France.
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have lost!
+
+[blockend:lost_body]
+
+[blockstart:playerdied1]
+Player 1 has died.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+Halt! Not one step further. This is our land. Get lost.
+Arrows flew towards us. This seemed to be the border of the Portuguese realm.
+
+[blockend:playerseen1]
+
+[blockstart:playerneutral1]
+Player 1 is now neutral.
+
+[blockend:playerneutral1]
+
+[blockstart:playerfriendly1]
+Player 1 is now friendly.
+
+[blockend:playerfriendly1]
+
+[blockstart:playerdied2]
+Player 2 has died.
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+Bonjour, we are the French. Pay us a 'modest' tribute, and we will gladly trade with you.
+Do you have mead ? Our people want a lot of mead. By the way, we make the best longswords and plate armours in all of France....
+
+[blockend:playerseen2]
+
+[blockstart:playerenemy2]
+Player 2 is now hostile.
+
+[blockend:playerenemy2]
+
+[blockstart:playerfriendly2]
+Player 2 is now friendly.
+
+[blockend:playerfriendly2]
+
+[blockstart:playerdied3]
+Player 3 has died.
+
+[blockend:playerdied3]
+
+[blockstart:playerseen3]
+Hooray, welcome, dear folk. Who are you, then ?
+What long beards you have!
+What funny helmets you are wearing!
+What long hair you have!
+It was clear, at any rate, that this people was seeing a Viking for the first time. We sat down and drank a few bottles of mead together first. Then we were offered generous trade deals.
+
+[blockend:playerseen3]
+
+[blockstart:playerenemy3]
+Player 3 is now hostile.
+
+[blockend:playerenemy3]
+
+[blockstart:playerneutral3]
+Player 3 is now neutral.
+
+[blockend:playerneutral3]
+

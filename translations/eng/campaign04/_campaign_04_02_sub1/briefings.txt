@@ -1,0 +1,11 @@
+[blockstart:header]
+THE DARK CAVE
+[blockend:header]
+
+[blockstart:00_start]
+It was pitch dark down here in the cave. Without torches we could do little, even though we saw a faint glow in the distance.
+[blockend:00_start]
+[blockstart:00_start1]
+We had to ask a fire dragon for help to explore the cave!
+[blockend:00_start1]
+

@@ -1,0 +1,87 @@
+[blockstart:start_header]
+The Lava Island
+
+[blockend:start_header]
+
+[blockstart:start_body]
+The island was empty, no outpost in sight. On the beach we met an injured man. Those damned pirates, he cursed. They came from the sea out of nowhere and attacked us. There were hundreds. We had no chance. Suddenly Felix came running. And my wife ? Where is my wife Karo? With his last words the injured man told us that the pirates had abducted her and carried her off to their island, which is also called the Lava Island. First we built a small home for Felix, and he also wanted to try his hand at fishing to take his mind off things. After that we wanted to look for the Lava Island....
+Mission objective: Find the Lava Island and destroy the pirates of the Red Corsair.
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+We had won. The henchmen of the Red Corsair were driven out of this world too. But once again Merlin slipped through our fingers. Judging by his wake, he sailed north, straight into the home world of Felix and his people...
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have lost !! Why not try a round of Chess.
+
+[blockend:lost_body]
+
+[blockstart:findmappos1]
+Thank you for building this little home for me, my friends. Be on your guard on the Lava Island. They say there is nothing edible there. But that is only a rumour, because everyone who set foot on the island never came back.....
+Besides, there is another island people south-west of here. Back then we were able to trade valuable goods with them.
+Mission objective: Find the people in the south-west. Build a ship to do so.
+
+[blockend:findmappos1]
+
+[blockstart:findmappos2]
+Halt !! I, Cherry, the lava demoness, warn you !! If you go on, it will be your downfall !!
+
+[blockend:findmappos2]
+
+[blockstart:playerdied1]
+Player 1 has died.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+Hooray !! I, Stupsie, Grand Princess of the Saracens, greet you. Do you happen to have herbs for us? We need herbs, because our herb gatherer ran his ship onto a reef south of here. Bring us herbs and you may trade with us. You see, we make first-class amulets and potions. So you are looking for the Lava Island? But there is nothing edible there, and the pirates are too powerful there. It will not be an easy task for you......
+
+[blockend:playerseen1]
+
+[blockstart:playerenemy1]
+Player 1 is now hostile.
+
+[blockend:playerenemy1]
+
+[blockstart:playerfriendly1]
+Thank you for the herbs. If you want amulets, send your merchants by.
+
+[blockend:playerfriendly1]
+
+[blockstart:playerdied2]
+At last Karo was freed and fell into Felix's arms when they saw each other again. But Merlin, the Red Corsair, managed to escape us again. He had a getaway ship ready in a small bay away from the island, and steered for Felix's homeland.....
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+Halt !! I, Merlin, Pirate of the Seven Seas, ruler of the Caribbean, Grand Prince and Grand Mogul of the pirates of the red flag, future husband of Karo, order you to withdraw, otherwise my elite soldiers will destroy you....
+Were we strong enough to stand against such a superior force?
+
+[blockend:playerseen2]
+
+[blockstart:playerneutral2]
+Player 2 is now neutral.
+
+[blockend:playerneutral2]
+
+[blockstart:playerfriendly2]
+Player 2 is now friendly.
+
+[blockend:playerfriendly2]
+

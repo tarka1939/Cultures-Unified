@@ -1,0 +1,103 @@
+[blockstart:start_header]
+Congo
+
+[blockend:start_header]
+
+[blockstart:start_body]
+As we marched into the Congo, our friends suddenly attacked us and abducted almost all our women. We could still hear their screams from afar, but we could no longer help them. The one who had posed as our friend, and whom we had supplied with so many weapons, was none other than Tank himself. Once again he had taken our friends from us. But it was to be the last time, for here he was trapped.
+Mission objective: Defeat Tank and all his allies !!
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+We had made the impossible possible. Tank and his allies were defeated. At last we could leave this land. We set off towards South Africa, for we needed to smell the sea air again....
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have lost !! Why not try a round of Pick-up Sticks.
+
+[blockend:lost_body]
+
+[blockstart:findmappos1]
+Suddenly an image of Tank appeared !! As it was only an illusion, we could not attack him.
+Halt, not a step further. From here my realm begins. You had better withdraw, or you will die.
+
+[blockend:findmappos1]
+
+[blockstart:playerdied1]
+Maverick's bandits are history.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+Suddenly we were attacked. I, Maverick, friend of Tank, tell you, you will never reach Tank's headquarters, because WE will finish you off first.
+Mission objective: Destroy Maverick and his bandits.
+
+[blockend:playerseen1]
+
+[blockstart:playerneutral1]
+Player 1 is now neutral.
+
+[blockend:playerneutral1]
+
+[blockstart:playerfriendly1]
+Player 1 is now friendly.
+
+[blockend:playerfriendly1]
+
+[blockstart:playerdied2]
+Yvoks' bandits are history.
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+Suddenly arrows shot at us. I, Yvoks, ruler of the Congo, friend of Tank, tell you, you will never reach Tank's headquarters, because WE will finish you off first.
+Mission objective: Defeat Yvoks' bandits !!
+
+[blockend:playerseen2]
+
+[blockstart:playerneutral2]
+Player 2 is now neutral.
+
+[blockend:playerneutral2]
+
+[blockstart:playerfriendly2]
+Player 2 is now friendly.
+
+[blockend:playerfriendly2]
+
+[blockstart:playerdied3]
+Tank is dead, long live the Vikings !!
+
+[blockend:playerdied3]
+
+[blockstart:playerseen3]
+For this cowardly murder of our women, we wanted to hang Tank from the tallest palm tree.
+Mission objective: Destroy Tank and his followers.
+
+[blockend:playerseen3]
+
+[blockstart:playerneutral3]
+Player 3 is now neutral.
+
+[blockend:playerneutral3]
+
+[blockstart:playerfriendly3]
+Player 3 is now friendly.
+
+[blockend:playerfriendly3]
+

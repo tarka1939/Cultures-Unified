@@ -1,0 +1,101 @@
+[blockstart:start_header]
+The Merchants
+
+[blockend:start_header]
+
+[blockstart:start_body]
+Felix, who had meanwhile learned the fisherman's trade, told us that there were many merchants in this world with valuable goods. Since we did not know how to get to the homeland of the S-KI-MOS anyway, we wanted to seek out these merchants. Perhaps we could learn more from them....
+Mission objective: Build up your village and explore the island world. Build a ship to do so.
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+Now we had three sea charts. But each one pointed us in a different direction. So two had to be fakes. In the end we let chance decide, and first followed the first chart.....
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You can't normally lose on this map.
+
+[blockend:lost_body]
+
+[blockstart:playerdied1]
+Player 1 has died.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+Hello strangers !!
+Where are you headed? To the home world of the S-KI-MOS? Well, we have a sea chart that could lead you straight there. But it costs a little something...
+Mission objective: Pay the tribute they ask for to get the sea chart.
+
+[blockend:playerseen1]
+
+[blockstart:playerenemy1]
+Player 1 is now hostile.
+
+[blockend:playerenemy1]
+
+[blockstart:playerfriendly1]
+When we had paid the tribute they asked for, we saw the great trade offers. We decided to trade some goods.
+Mission objective: Store 40 nourishing amulets.
+
+[blockend:playerfriendly1]
+
+[blockstart:playerdied2]
+Player 2 has died.
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+Strangers, you are welcome in peace. Hmm, the home world of the S-KI-MOS? That is very far from here, they told us. But we have an old sea chart. It says there where you must sail from. But the chart is not exactly cheap...
+Mission objective: Pay the tribute they ask for to get the sea chart.
+
+[blockend:playerseen2]
+
+[blockstart:playerenemy2]
+Player 2 is now hostile.
+
+[blockend:playerenemy2]
+
+[blockstart:playerfriendly2]
+Thank you for the small tribute. Perhaps you need a few amulets of defence? We did not think long and decided to store 40 of them.
+Mission objective: Store 40 amulets of defence.
+
+[blockend:playerfriendly2]
+
+[blockstart:playerdied3]
+Player 3 has died.
+
+[blockend:playerdied3]
+
+[blockstart:playerseen3]
+Hello there, you are welcome, strangers. You are looking for the home world of the S-KI-MOS? Well, we have not been there ourselves, but we recently received a sea chart from a merchant, with the exact route in it. But it is not cheap, mind you....
+Mission objective: Pay the tribute they ask for to get the sea chart.
+
+[blockend:playerseen3]
+
+[blockstart:playerenemy3]
+Player 3 is now hostile.
+
+[blockend:playerenemy3]
+
+[blockstart:playerfriendly3]
+They had great trade offers here, we marvelled, and decided to trade some goods.
+Mission objective: Store 40 amulets of strength.
+
+[blockend:playerfriendly3]
+

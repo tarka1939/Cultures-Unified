@@ -1,0 +1,62 @@
+[blockstart:header]
+BENEATH THE SEA
+[blockend:header]
+
+[blockstart:00_start]
+The moment Mani and Norbert entered the water dragon temple, they found themselves in a strange, unfamiliar place. All their movements became slower and everything shimmered before their eyes, as if they were diving.
+
+<usericon:2,5>
+[blockend:00_start]
+[blockstart:00_start1]
+This temple really was beneath the sea. Mani and Norbert were in one of the three water temples of the AQUAS!
+[blockend:00_start1]
+
+
+[blockstart:50_endheader]
+MISSION COMPLETED!
+[blockend:50_endheader]
+[blockstart:50_end]
+
+
+<usericon:1,24,287>
+[blockend:50_end]
+[blockstart:50_end1]
+
+[blockend:50_end1]
+
+
+[blockstart:01]
+AQUARIUS' GUARD
+
+"It's enough to make you breathe fire! Only we water dragons are not very good at that, sadly...
+The waters of the water dragons have cooled down a lot and suddenly it was there, this ICE STATUE.
+
+<usericon:1,44,69>
+
+Now it blocks the way to AQUARIUS for all visitors, and for me too! Anyone who gets too close freezes solid, like this poor
+creature here...
+
+<usericon:1,76,22>
+
+Our people will perish without the wisdom of AQUARIUS...
+Can you help us?
+
+Go to the exit together to get back to the surface of the sea. Come back when you can help us. The water dragons will always be kind to you!
+[blockend:01]
+
+
+[blockstart:500]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! Your friend and hero NORBERT, the dragon, died due to your negligence! Without this hero, the outcome of this mission will remain hidden to you!
+[blockend:500]
+
+[blockstart:600]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! MANI, son of Bjarni and Cyra, died due to your negligence! Without him, the outcome of this mission will remain hidden to you!
+[blockend:600]

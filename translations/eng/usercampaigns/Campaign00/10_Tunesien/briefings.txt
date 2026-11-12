@@ -1,0 +1,105 @@
+[blockstart:start_header]
+Tunisia
+
+[blockend:start_header]
+
+[blockstart:start_body]
+We steered for the coast of Tunisia. Here we wanted to rest and recover from the hardships of the past months. Suddenly Fridi, our druid, came. We have too few potions in our warehouses. There are plenty of ingredients here for new potions. I urgently need 25 big nourishing potions, 25 big healing potions and 25 big stamina potions.
+In the meantime we wanted to send out a scout, for you never knew...
+Mission objective: Make the required potions and store them.
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+We had defeated the monsters and found the entrance to the underworld. But what might await us there?
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have lost !!
+Why not try a round of Halma.
+
+[blockend:lost_body]
+
+[blockstart:playerdied1]
+Player 1 has died.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+Unknown people !!
+Umnur de Krumu. Lumumba ul Kranrikel de Polunak en Munaba.
+We looked at each other, baffled. Fridi, our druid, said: All I understood is that we are to pay them a tribute in the form of potions. Once they drink them, we should be able to understand them better. Oh well, we thought.
+Mission objective: Pay the unknown people the tribute they ask for.
+
+[blockend:playerseen1]
+
+[blockstart:playerenemy1]
+Player 1 is now hostile.
+
+[blockend:playerenemy1]
+
+[blockstart:playerfriendly1]
+Thank you, dear folk. We normally live in the underworld, and we have lost our way. We cannot find the entrance to our realm. Can you help us?
+Mission objective: Find the entrance to the underworld.
+
+[blockend:playerfriendly1]
+
+[blockstart:playerdied2]
+Player 2 has died.
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+Weresnakes !!
+What strange creatures were these? In any case they did not seem to have a sense of humour.
+Mission objective: Destroy the weresnakes.
+
+[blockend:playerseen2]
+
+[blockstart:playerneutral2]
+Player 2 is now neutral.
+
+[blockend:playerneutral2]
+
+[blockstart:playerfriendly2]
+Player 2 is now friendly.
+
+[blockend:playerfriendly2]
+
+[blockstart:playerdied3]
+Player 3 has died.
+
+[blockend:playerdied3]
+
+[blockstart:playerseen3]
+Werewolves !!
+What kind of creatures were these now ?
+In any case they did not seem to have a sense of humour.
+Mission objective: Destroy the werewolves.
+
+[blockend:playerseen3]
+
+[blockstart:playerneutral3]
+Player 3 is now neutral.
+
+[blockend:playerneutral3]
+
+[blockstart:playerfriendly3]
+Player 3 is now friendly.
+
+[blockend:playerfriendly3]
+

@@ -1,0 +1,98 @@
+[blockstart:start_header]
+Paris
+
+[blockend:start_header]
+
+[blockstart:start_body]
+When we came back from Switzerland we were quite astonished. Bjarni had built quite a lot in the meantime. At once Bjarni explained the current situation to us:
+Our builders, who had obviously swallowed too much mead, have built our village between the fronts, i.e. we are surrounded. He glared at the builders as he said it. I fear the first attacks will not be long in coming. We should try to destroy the outposts south of here first, before we venture on to Paris.
+Then at last we will make the King of France pay.
+Mission objective : Destroy all enemies !!
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+At last Felix, King of France, was defeated. But he left a heap of rubble behind. Many countries in Europe were starving. They lacked everything. Above all food and clothing. We wanted to try to help some of the peoples. Our next destination was Belgium.
+What we did not suspect was that the King of France also had allies in other countries. And they would certainly not welcome us.....
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have lost!!
+Why not just play a round of Nine Men's Morris *g
+
+[blockend:lost_body]
+
+[blockstart:playerdied1]
+The city of Paris was destroyed.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+You have discovered the elite soldiers of Paris.
+
+[blockend:playerseen1]
+
+[blockstart:playerneutral1]
+Player 1 is now neutral.
+
+[blockend:playerneutral1]
+
+[blockstart:playerfriendly1]
+Player 1 is now friendly.
+
+[blockend:playerfriendly1]
+
+[blockstart:playerdied2]
+The city of Montpellier was destroyed.
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+You have discovered the soldiers of Montpellier.
+
+[blockend:playerseen2]
+
+[blockstart:playerneutral2]
+Player 2 is now neutral.
+
+[blockend:playerneutral2]
+
+[blockstart:playerfriendly2]
+Player 2 is now friendly.
+
+[blockend:playerfriendly2]
+
+[blockstart:playerdied3]
+The city of Toulouse was destroyed.
+
+[blockend:playerdied3]
+
+[blockstart:playerseen3]
+You have discovered the soldiers of Toulouse.
+
+[blockend:playerseen3]
+
+[blockstart:playerneutral3]
+Player 3 is now neutral.
+
+[blockend:playerneutral3]
+
+[blockstart:playerfriendly3]
+Player 3 is now friendly.
+
+[blockend:playerfriendly3]
+

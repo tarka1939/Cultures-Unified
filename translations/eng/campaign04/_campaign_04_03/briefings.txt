@@ -1,0 +1,300 @@
+[blockstart:header]
+THE GREAT RESETTLEMENT
+[blockend:header]
+
+[blockstart:00_start]
+At last we had reached the fertile land we meant to settle. But the disappearance of Mani and Norbert still filled us with great worry.
+[blockend:00_start]
+
+[blockstart:00_start1]
+We were bound to our tribe and had to see to building the village, but we decided to send out a search party.
+
+Build your village and look for Mani and Norbert!
+[blockend:00_start1]
+
+
+[blockstart:50_endheader]
+MISSION COMPLETED!
+[blockend:50_endheader]
+
+[blockstart:50_end]
+We had tracked down Mani and Norbert among the Napalians and managed to free them. Now we were all together again.
+[blockend:50_end]
+
+[blockstart:50_end1]
+They were sorry to have caused us such great worry, but the main thing was that they were back among us. Together we decided to get to the bottom of the earth dragons' disappearance.
+[blockend:50_end1]
+
+
+[blockstart:01]
+FOREST OUTPOST 1 - THE TEMPLE GUARDIANS
+
+"Welcome!" said the Temple Guardians.
+
+<usericon:1,201,69>
+
+"We are an outpost of the Forest Keepers. But our temple is far from the others and we are rarely supplied with herbs and mushrooms. Give us some as tribute and our help is yours!"
+[blockend:01]
+
+[blockstart:02]
+TRIBUTE PAID TO THE TEMPLE GUARDIANS!
+
+"We have rarely had such fresh mushrooms and sweet-smelling herbs! Our help is yours when the time comes! You can rely on us!"
+
+<usericon:1,201,69>
+[blockend:02]
+
+
+[blockstart:03]
+OUTPOST 2 - HERB GATHERERS
+
+"We would gladly go about our work, but we lack the right tools! Our old sickles are blunt and rust has eaten through them."
+
+<usericon:1,358,90>
+
+Deliver new iron tools to the Herb Gatherers!
+[blockend:03]
+
+[blockstart:04]
+IRON TOOLS DELIVERED TO THE HERB GATHERERS
+
+"We have never had tools with such shiny, sharp blades! Our help is yours when the time comes! You can rely on us!"
+
+<usericon:1,358,90>
+[blockend:04]
+
+
+[blockstart:05]
+GEROLS - THE STONE DRAGONS
+
+In the stony mountains we met old, wise stone dragons.
+
+<usericon:1,312,65>
+[blockend:05]
+
+
+[blockstart:06]
+VIKING VILLAGE
+
+The Vikings in this region were exceedingly friendly. They left us their smaller warehouse in the north of the village
+
+<usericon:1,365,345>
+
+and offered us favourable trade agreements.
+[blockend:06]
+
+[blockstart:07]
+OUTPOST 3 - MERCHANTS
+
+"Come in and marvel at my goods! My terms are favourable!" the merchant called to us from afar.
+
+<usericon:1,246,361>
+
+"Sadly I am in a little trade slump, but if you trade with me, my help is yours."
+[blockend:07]
+
+[blockstart:08]
+GOODS TRADED WITH THE MERCHANT
+
+"My business is booming, thanks to your help! I too will help you with my house dragon when the time comes."
+
+<usericon:1,246,361>
+[blockend:08]
+
+[blockstart:09]
+FIRE DRAGONS
+
+"We are not on good terms with other creatures. Hunger constantly plagues us and makes us grumpy. We don't want to harm anyone, but the hunger..."
+
+<usericon:1,152,345>
+
+Bring cakes to the fire dragons, perhaps that will ease their appetite!
+[blockend:09]
+
+[blockstart:10]
+FIRE DRAGONS
+
+"You are true master bakers! You can count on our support!"
+said the fire dragons.
+
+<usericon:1,152,345>
+
+Five of us will be at your service from now on! If you need more of us, pay the tribute!
+[blockend:10]
+
+[blockstart:11]
+OUTPOST 4 - FOREST SCHOOL OF THE WATER DRAGONS
+
+"If only we had enough pupils! We have a wonderful school here and Professor WAMUGO is as good a teacher as anyone could wish for."
+
+<usericon:1,78,530>
+
+Find pupils for Professor WAMUGO's school!
+[blockend:11]
+
+[blockstart:12]
+PUPILS ARRIVED AT THE WATER DRAGONS' FOREST VILLAGE SCHOOL
+
+<usericon:1,78,530>
+
+"At last I have a whole class together! This will give me joy," said Professor WAMUGO. "Our thanks and our knowledge are with you!"
+[blockend:12]
+
+[blockstart:13]
+OUTPOST 5 - SCHOOL AT THE PALM GROVE
+
+"Our children are extremely eager to learn, but sadly we cannot teach them much.
+
+<usericon:1,376,559>
+
+If only there were a school for the older children with a capable teacher, where the children could be taught over the summer... They say Professor WAMUGO runs such a school, we have only heard good things about it... "
+
+<usericon:1,78,530>
+
+Find Professor WAMUGO's school and take the children there.
+[blockend:13]
+
+[blockstart:14]
+THE OLD MAN
+
+<usericon:1,98,211>
+
+"The Napalians are not to be trifled with! As soon as you venture into their territory, arrows rain down on you. They surely have something to hide, for it is not for nothing that they protect their second base with this poison cloud! The forest outposts around here have dragons that are immune to the poison, you would only need enough of them."
+
+<usericon:1,104,219>
+
+"This dragon here is my friend. Take him with you, he can support you on your mission!"
+[blockend:14]
+
+[blockstart:15]
+ALL THE FOREST KEEPERS' OUTPOSTS
+
+Now we had visited all the Forest Keepers' outposts and helped them. They were indeed of great use to us, for they found out that Mani and Norbert had been abducted by the Napalians!
+
+<usericon:1,440,163>
+
+So that was why they had been so unfriendly to us and refused us entry to their bases...
+
+The largest base, where Mani and Norbert were also being held, was surrounded by an impenetrable smoke cloud of the poison dragons....
+
+<usericon:1,372,261>
+[blockend:15]
+
+[blockstart:16]
+POISON CLOUD REMOVED
+
+But what was that? The house dragons of each forest outpost neutralised the poison cloud around the Napalians' main base!
+
+<usericon:1,372,261>
+
+Now the way was open and we had to decide for ourselves whether to take the warlike path or a peaceful one. The Forest Keepers whispered that the prisoners could be freed almost unseen from the east!
+
+<usericon:1,439,151>
+[blockend:16]
+
+[blockstart:17]
+THE OLD MAN
+
+<usericon:1,505,190>
+
+"The little path north-west of here leads straight to the prisoners. Once the poison cloud is gone, it would be easy to get to them unseen!"
+[blockend:17]
+
+[blockstart:18]
+AQUAS - THE WATER DRAGONS
+
+We are peace-loving dragons. Feel free to use our ship here!
+
+<usericon:1,169,577>
+
+If you sail east, you will reach a water dragon temple,
+while to the west lies Professor WAMUGO's school, a little way off the beaten track.
+[blockend:18]
+
+[blockstart:19]
+NAPALIANS
+
+"Not a step closer! Otherwise we will use our weapons!"
+
+<usericon:1,23,295>
+
+A thoroughly unfriendly people! We had never been received like this. There was nothing for it but to not come too close, for surely they would carry out their threat.
+[blockend:19]
+
+[blockstart:20]
+NAPALIANS
+
+"You asked for it! Our weapons will destroy you. Pay the tribute and we will reconsider our attitude towards you, but only if you leave our bases at once!"
+
+Pay the tribute to make them neutral again!
+[blockend:20]
+
+[blockstart:21]
+TRIBUTE PAID!
+
+"Now we will reconsider our attitude towards you, but do not dare to enter our territory again!" the Napalians called to us and immediately changed their diplomatic status towards us.
+
+<usericon:1,581,291>
+[blockend:21]
+
+[blockstart:22]
+NAPALIANS DEFEATED!
+
+The Napalians were beaten, but might a peaceful agreement not have been possible after all?
+<usericon:1,578,299>
+[blockend:22]
+
+[blockstart:23]
+TELEPORTERS ACTIVE
+
+Now the teleporters that would take the children to WAMUGO were activated.
+
+<usericon:1,95,545>
+[blockend:23]
+
+[blockstart:24]
+OWN VILLAGE BUILT!
+
+With our new cake bakery, the foundation for a working village was laid.
+[blockend:24]
+
+
+[blockstart:25]
+
+[blockend:25]
+
+
+
+[blockstart:100]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+Heroism or carelessness? When BJARNI died the gods were crying ... without this hero, the outcome of this mission will remain hidden to you!
+[blockend:100]
+
+[blockstart:200]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! Your heroine CYRA died due to your negligence! Without this heroine, the outcome of this mission will remain hidden to you!
+[blockend:200]
+
+[blockstart:500]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! MANI, son of Bjarni and Cyra, died due to your negligence! Without him, the outcome of this mission will remain hidden to you!
+[blockend:500]
+
+[blockstart:600]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! Your friend and hero NORBERT, the dragon, died due to your negligence! Without this hero, the outcome of this mission will remain hidden to you!
+[blockend:600]
+
+

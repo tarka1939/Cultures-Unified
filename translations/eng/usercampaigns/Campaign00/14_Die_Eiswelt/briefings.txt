@@ -1,0 +1,86 @@
+[blockstart:start_header]
+The Ice World
+
+[blockend:start_header]
+
+[blockstart:start_body]
+Didn't I say, follow the right path? But no, you always know better. Why did you follow me anyway? You could have taken the right path. Somehow this could not be the upper world. It looked as if we were trapped in some kind of in-between world...
+Mission objective: Build up your village. Look for a way to reach the upper world.
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+We had defeated the ice demoness. Now we could step through the gate and finally leave this land. We were eager for the next adventures that still lay ahead of us.
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have lost !!
+Why not try a round of Draughts.
+
+[blockend:lost_body]
+
+[blockstart:findmappos1]
+Halt !! I, Stupsie, demoness of the ice, ruler of this land, princess of Qaanaaq, which is also called Thule, command you to turn back at once. Otherwise my black elite ice demons will destroy you.
+Mission objective: Find the ice demoness' headquarters and destroy it completely.
+
+[blockend:findmappos1]
+
+[blockstart:playerdied1]
+The ice demons were destroyed. In thanks, Karo, the good ice fairy, gave us her best fighter, who from now on would always fight at our side.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+The elite ice demons !! There they are !! Get them !! Surround them !! Finish them all !!
+Suddenly we were attacked from all sides. It would be hard to destroy these ice demons.
+Mission objective: Destroy the ice demons.
+Look for the gate to the upper world.
+
+[blockend:playerseen1]
+
+[blockstart:playerneutral1]
+Player 1 is now neutral.
+
+[blockend:playerneutral1]
+
+[blockstart:playerfriendly1]
+
+
+[blockend:playerfriendly1]
+
+[blockstart:playerdied2]
+Player 2 has died.
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+Hello, proud Vikings !!
+I, Karo, the good ice fairy of the lava lake, greet you. If you are friendly, you may settle here as long as you like. But beware of the north. Stupsie the evil ice demoness lives there. We once fought her, but she beat all our soldiers. She demands a monthly tribute from us. We have secretly built a weapon smithy. We would gladly trade weapons with you, for a small tribute, of course.
+Mission objective: Give Karo a tribute if you want to trade weapons with her.
+Find Stupsie, the ice demoness, in the north of the land.
+
+[blockend:playerseen2]
+
+[blockstart:playerenemy2]
+Player 2 is now hostile.
+
+[blockend:playerenemy2]
+
+[blockstart:playerfriendly2]
+Thank you for your gifts. Send your merchants now. With our ice blades you will soon destroy the ice demoness.
+
+[blockend:playerfriendly2]

@@ -1,0 +1,76 @@
+[blockstart:start_header]
+South Africa
+
+[blockend:start_header]
+
+[blockstart:start_body]
+At last we had reached the southernmost tip of Africa. Our two runaways had found their way back too. Slowly homesickness gripped us. It was time to sail towards home. But for such a long journey we needed some provisions.
+Mission objective: Store the following goods in your warehouse:
+20 nourishing amulets, 20 amulets of strength, 20 amulets of stamina, 20 units of food and 20 cakes.
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+We quickly stored the goods. How we looked forward to our home Wigrid Wall. We had brought peace to Europe and Africa and had great adventures. We quickly loaded our ships and soon sailed towards home...
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have lost !! Although on this map you actually cannot lose.
+
+[blockend:lost_body]
+
+[blockstart:playerdied1]
+Player 1 has died.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+Hello friends. I, Ceebee, ruler of South Africa, welcome you to my land. Enjoy our hospitality as long as you like. For a small tribute we would give you great amulets.
+
+[blockend:playerseen1]
+
+[blockstart:playerenemy1]
+Player 1 is now hostile.
+
+[blockend:playerenemy1]
+
+[blockstart:playerfriendly1]
+Thanks for the goods. Now send your merchants and get yourselves amulets. They are all the rage in all of Africa.
+
+[blockend:playerfriendly1]
+
+[blockstart:playerdied2]
+Player 2 has died.
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+Silvermoon's village !!
+Hello friends, didn't I say that from now on we are your friends? Send your merchants, we will make you unique offers.
+
+[blockend:playerseen2]
+
+[blockstart:playerenemy2]
+Player 2 is now hostile.
+
+[blockend:playerenemy2]
+
+[blockstart:playerneutral2]
+Player 2 is now neutral.
+
+[blockend:playerneutral2]
+

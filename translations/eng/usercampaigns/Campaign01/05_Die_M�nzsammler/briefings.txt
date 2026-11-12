@@ -1,0 +1,115 @@
+[blockstart:start_header]
+The Coin Collectors
+
+[blockend:start_header]
+
+[blockstart:start_body]
+Hey folks, our warehouse master called to us excitedly. I have just noticed that we have no wind amulets left at all. Get out there and look for some. I need at least 50. Since we could not make the amulets ourselves, we wanted to send out a scout in the hope that there were peoples here we could trade with.
+Mission objectives:
+1. Build up your village.
+2. Explore the island world
+3. Store 50 wind amulets.
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+When we had everything together, we sailed on northwards. Suddenly Felix and Karo recognised the new island chains opening up before us. Yes, we are coming home, he cried happily. But Merlin, the Red Corsair, was already there. A decisive battle lay ahead of us......
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have lost !!
+
+[blockend:lost_body]
+
+[blockstart:findmappos1]
+Felix and Karo !!
+We thank you once again for the cosy house. We will be able to hold out here for a while.
+
+[blockend:findmappos1]
+
+[blockstart:playerdied1]
+Player 1 has died.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+The Franks !!
+We greeted the Franks joyfully. They did have wind amulets, but the price of 67 coins for a trade agreement seemed rather high to us. We asked them about Merlin, the Red Corsair. We only know of an island in the south. The red flag of the corsair is said to have been seen there....
+Mission objectives:
+1. Pay the tribute they ask for so you can trade wind amulets with the Franks.
+2. Explore the island in the south-west.
+
+[blockend:playerseen1]
+
+[blockstart:playerenemy1]
+Player 1 is now hostile.
+
+[blockend:playerenemy1]
+
+[blockstart:playerfriendly1]
+Thank you for the coins. If you like, we will now trade amulets with you. Send your merchants by.
+
+[blockend:playerfriendly1]
+
+[blockstart:playerdied2]
+Player 2 has died.
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+The Byzantines !!
+Hello there, they called. So, so, you want a trade agreement with us? Hmm, let me think. The current economic situation is quite good for us. Pay us 34 coins and we have a deal. By the way, there is an island in the south-west. Strange creatures are said to live there. We sent out scouts, but nobody came back.
+Mission objectives:
+1. Pay the tribute they ask for if you want to trade with the Byzantines.
+2. Explore the island in the south-west.
+
+[blockend:playerseen2]
+
+[blockstart:playerenemy2]
+Player 2 is now hostile.
+
+[blockend:playerenemy2]
+
+[blockstart:playerfriendly2]
+Thank you for the coins !!
+You may now trade with us.
+
+[blockend:playerfriendly2]
+
+[blockstart:playerdied3]
+The wolves have died !!
+We had also thwarted Merlin's plan to set up a wolf farm.
+
+[blockend:playerdied3]
+
+[blockstart:playerseen3]
+Wolves !!
+Heavens, what kind of beasts were these ? They wore the colours of the Red Corsair. He had surely planned a wolf farm here. But we had to prevent that at all costs.
+Mission objective: Destroy the wolves.
+
+[blockend:playerseen3]
+
+[blockstart:playerneutral3]
+Player 3 is now neutral.
+
+[blockend:playerneutral3]
+
+[blockstart:playerfriendly3]
+Player 3 is now friendly.
+
+[blockend:playerfriendly3]
+

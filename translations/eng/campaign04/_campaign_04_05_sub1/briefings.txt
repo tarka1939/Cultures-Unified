@@ -1,0 +1,10 @@
+[blockstart:header]
+BENEATH THE SEA
+[blockend:header]
+
+[blockstart:00_start]
+"What? Things are that bad above the sea? Take 10 of my best dragons while I train more." said Aquarom.
+[blockend:00_start]
+[blockstart:00_start1]
+With you leading us, we have a chance!"
+[blockend:00_start1]

@@ -1,0 +1,57 @@
+[blockstart:start_header]
+Switzerland
+
+[blockend:start_header]
+
+[blockstart:start_body]
+Now that we had passed France's outposts, we split up. Bjarni wanted to build a strong fortification before Paris and the other part of us made a detour to Switzerland. Our druid Samino had good friends there who brewed great healing potions. We decided to store 100 big healing potions. Either by making them ourselves or by trading.
+That would give us a considerable advantage in the fight against Paris, or so we thought.....
+Mission objective: Store 100 big healing potions.
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+You have stored the required healing potions.
+We hurried back, for Bjarni surely needed our healing potions urgently.
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have lost !!
+
+[blockend:lost_body]
+
+[blockstart:playerdied1]
+Player 1 has died.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+The Brewers !!
+Gruezi everyone. We have already heard of your plan, but let us tell you. You will never take Paris without our famous Rik-Ola healing potions. Unfortunately we have just run out of herbs. Bring us herbs and perhaps a little mead, then we can do business.
+
+[blockend:playerseen1]
+
+[blockstart:playerenemy1]
+Player 1 is now hostile.
+
+[blockend:playerenemy1]
+
+[blockstart:playerfriendly1]
+The Brewers are now friendly towards you. You can now trade with them.
+
+[blockend:playerfriendly1]
+

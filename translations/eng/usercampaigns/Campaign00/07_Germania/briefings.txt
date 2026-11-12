@@ -1,0 +1,89 @@
+[blockstart:start_header]
+Germania
+
+[blockend:start_header]
+
+[blockstart:start_body]
+Now we had arrived in beautiful Germania. Only we did not quite know what we were supposed to do here. Suddenly Fridi, our master druid, came. Dear friends, when I was young, I discovered a peaceful people who call themselves the Dutch. They must be far, far away in the north-west. There you could get great coins in exchange for simple cake. We looked at Fridi suspiciously. Had he swallowed too much mead again ? Cake for coins ? Who does that ? But since we knew nobody else in this land, we sent out a scout.
+Mission objective: Find the Dutch in the north-west.
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+We had defeated the bandits and made friends with the Dutch. But as the bandits had their main base in Italy, we set off at once to destroy them there too.
+But to get to Italy we first had to go to Austria....
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have lost !! Why not try a game of Mau Mau.
+
+[blockend:lost_body]
+
+[blockstart:findmappos1]
+Altena Castle !!
+These had to be the ruins of Altena Castle. But who was capable of destroying such a large castle ?
+
+[blockend:findmappos1]
+
+[blockstart:playerdied1]
+Player 1 has died.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+The Dutch !!
+Hooray, greetings, we are the Dutch. Do you have mead or honey or cake ?
+Best of all a bit of each. You will also get great coins from us if you bring us sweets.
+Hmm, so our druid Fridi had been right after all. We could use coins, as we had spent all the rest in Paris on our soldiers.
+Mission objective: Store 50 coins in your warehouse.
+
+[blockend:playerseen1]
+
+[blockstart:playerenemy1]
+Player 1 is now hostile.
+
+[blockend:playerenemy1]
+
+[blockstart:playerfriendly1]
+Thanks for the sweets. You can send merchants to us now. Beware of the north-east. Very dangerous bandits live there.
+Mission objective: Find the bandits in the north-east.
+
+[blockend:playerfriendly1]
+
+[blockstart:playerdied2]
+The bandits are destroyed. But what was that? A voice rang out. You may have defeated us here, but do not come to our homeland in Italy. There you will be slaughtered...
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+Bandits !!
+Arrows flew at us from all directions. Heavens, we thought. Only they can be responsible for the destruction of the castle.
+We swore to take revenge.
+Mission objective: Destroy the bandits.
+
+[blockend:playerseen2]
+
+[blockstart:playerneutral2]
+Player 2 is now neutral.
+
+[blockend:playerneutral2]
+
+[blockstart:playerfriendly2]
+Player 2 is now friendly.
+
+[blockend:playerfriendly2]
+

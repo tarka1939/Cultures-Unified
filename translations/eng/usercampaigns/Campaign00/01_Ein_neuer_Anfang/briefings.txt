@@ -1,0 +1,48 @@
+[blockstart:start_header]
+A New Beginning
+
+[blockend:start_header]
+
+[blockstart:start_body]
+Life in our village was calm and peaceful, when suddenly King Bjarni said:
+My men have grown lazy and fat. It is time we put to sea again and had new adventures. Come on, ready a ship and set sail. In the end he found only one loyal follower willing to sail with Bjarni. So the two of them put to sea alone.......
+
+At last we found a small island. Perhaps there were women here willing to marry ?.....
+
+King Bjarni ordered me:
+1. Build a new village
+2. Store 20 longswords, 20 plate armours, 20 chain mails and 20 shortswords in your warehouses.
+Also, 20 big healing potions must be in the warehouse.
+What did Bjarni want with so many weapons ?
+Did he know more than he cared to admit ?
+Well, first we had to find willing girls to marry, then we would try to fulfil Bjarni's wish.
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+No sooner had we produced the required goods than Bjarni urged us to travel on. We loaded our ship with the many weapons, and Bjarni ordered us to sail towards Spain.
+What did Bjarni want in Spain?
+We preferred not to ask too many questions, after all we did not want to spoil Bjarni's mood.
+Some of us wanted to stay here, though, for they had come to love the peace and quiet.
+What might await us in Spain ?
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have failed the mission!
+
+[blockend:lost_body]
+

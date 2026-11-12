@@ -1,0 +1,320 @@
+[blockstart:header]
+FREEING THE EARTH DRAGONS
+[blockend:header]
+
+[blockstart:00_start]
+We pitched our camp along the river. This landing place would make a good base, and from here we could set out in search of the earth dragons.
+[blockend:00_start]
+[blockstart:00_start1]
+There had to be fighting not far from here, for on the mild nights we heard noises that robbed us of our sleep. We had to get to the bottom of these clashes. Perhaps dragons were involved too?
+
+Build up your village and search for the earth dragons.
+[blockend:00_start1]
+
+
+[blockstart:50_endheader]
+MISSION COMPLETED!
+[blockend:50_endheader]
+[blockstart:50_end]
+From the dungeon we were able to free not only earth dragons but also some magic and water dragons. But for Norbert, meeting his own kind was the most important thing. How much he could learn from them!
+
+[blockend:50_end]
+[blockstart:50_end1]
+Mani, meanwhile, was sad, because the farewell from his best friend was now at hand. They had bravely come through so many adventures together and now Norbert would leave with the other earth dragons.
+
+Some Napalians were seen heading in the direction of our homeland. Would we never be able to live with them in peace? Their culture was so different from ours...
+[blockend:50_end1]
+
+
+[blockstart:01]
+SHEPHERDS
+
+"Dragons are more to be trusted than humans! We have lived in small villages in this land for centuries and now the others are making life hard for us!" complained these poor shepherds.
+
+<usericon:1,380,19>
+
+They told us of their former community with the dragons, and how humans came, captured them and carried them off to show them as circus attractions and zoo animals in their land.
+
+They themselves were neither friend nor foe to us, so we had to win their trust.
+
+They noticed our good shoemaking, even though our shoes were already very worn and scuffed. They would gladly have a few pairs for themselves!
+
+Give the shepherds a few shoes and they will offer you their trade deals!
+[blockend:01]
+
+[blockstart:02]
+SHOES DELIVERED!
+
+We had presented the shepherds with the shoes as tribute. They changed their attitude towards us at once. Their joy over the shoes was so great that they offered us extremely favourable trade deals.
+
+<usericon:1,395,25>
+
+They also told us of what was probably the most powerful kind of dragon: the MAGIC DRAGONS. If anyone could support us on our mission, it was surely this tribe.
+[blockend:02]
+
+
+[blockstart:03]
+MERCENARIES from the SHEPHERD FOLK
+
+"You seem very brave! We will support you! We are a simple people, but fighting alongside you we stand a chance!" said the shepherds.
+
+<usericon:1,248,119>
+
+"If you build 3 defence towers in the nearly destroyed settlement south of Babul, we will support you even more!"
+
+Note: To place buildings, your Vikings must be nearby!
+[blockend:03]
+
+[blockstart:04]
+DEFENCE TOWERS BUILT!
+
+We had built the Shepherd Folk a defence that would hopefully withstand all attacks from Babul. They were extremely grateful and supported us with more soldiers.
+
+<usericon:1,201,261>
+[blockend:04]
+
+[blockstart:05]
+MORE SOLDIERS FROM THE SHEPHERDS!
+
+For this tribute we received more soldiers from the shepherds. It was hard to believe how many mercenaries this little people could muster...
+
+<usericon:1,201,261>
+[blockend:05]
+
+[blockstart:06]
+MAGIC DRAGONS
+
+"You mean us no harm... We magic dragons have a fine sense for bad people. Perhaps you can stand by the dragons?"
+
+<usericon:1,321,394>
+
+"Prove your skill by delivering the following goods to the obelisk circle west of here, and the support of us magic dragons is yours."
+
+Deliver 80 wood and 40 clay to the dragons.
+[blockend:06]
+
+[blockstart:07]
+GOODS DELIVERED TO THE MAGIC DRAGONS!
+
+We had delivered the goods to the magic dragons. They turned the spot of the obelisk circle into a place full of magic where our life energy was healed, and opened further portals into the regions of the Napalians.
+
+<usericon:1,262,416>
+
+They spoke of an invisibility potion they could brew for us, so we could avoid any conflict with the Napalians. If we delivered the necessary herbs, they would do their best.
+
+Give the magic dragons herbs for a peaceful solution.
+[blockend:07]
+
+
+[blockstart:08]
+INVISIBILITY POTION
+
+The magic dragons handed the potion to us heroes. And as if by magic we became invisible - only our own people could faintly make out our outlines.
+
+<usericon:2,1>
+
+Since the potion would not last long, the magic dragons guided us by the shortest route to the underground dungeons. As if remote-controlled we walked through the Napalians' camp...
+[blockend:08]
+
+[blockstart:09]
+WATER DRAGONS
+
+<usericon:1,115,29>
+
+"Those wretched humans! They have captured our brothers and are keeping them in cramped cages. There are still plenty of us left, but the earth dragons are really badly off, they are almost wiped out!" lamented the water dragons.
+
+Free the water dragons and the earth dragons.
+[blockend:09]
+
+[blockstart:10]
+WATER DRAGONS
+
+"You brought them back to us unharmed!" the water dragons rejoiced when we came back to the temple with the other dragons.
+
+<usericon:1,123,14>
+
+Take your heroes and the dragons to the temple!
+[blockend:10]
+
+[blockstart:11]
+WATER DRAGONS FREED!
+
+"At last we have been freed from the clutches of these cruel humans. It is hard to imagine what would have happened to us otherwise. The dragons they carried off, we never saw again!"
+
+<usericon:2,9>
+
+"Now and then we also caught sight of the rare earth dragons here. What can have become of them?"
+
+Free the other dragons!
+[blockend:11]
+
+
+[blockstart:12]
+NAPALIANS
+
+"Hey, you there! Nobody is welcome here! We open fire at once if you dare take another step!"
+[blockend:12]
+
+[blockstart:13]
+BABUL
+
+"Hey, you there! You are not welcome in our town! Pay us a tribute and we will leave you alone! But don't be too curious! Many a snoop has not fared well in our town!"
+
+<usericon:1,106,243>
+[blockend:13]
+
+[blockstart:14]
+TRIBUTE PAID TO BABUL!
+
+<usericon:1,86,196>
+
+We had paid BABUL the enormous tribute and so they reluctantly released the water dragons. They said the water dragons were such easy prey that they could raid and plunder them again at any time...
+[blockend:14]
+
+[blockstart:15]
+ENTRANCE TO THE UNDERGROUND DUNGEONS
+
+You have no permission to enter the DUNGEONS. Go and help the Shepherd Folk and the water dragons. Then return here with your heroes and access will be granted!
+
+<usericon:1,39,473>
+[blockend:15]
+
+[blockstart:16]
+TRIBUTE PAID TO BABUL!
+
+"For now we are neutral towards you, but don't stick your noses into things that are none of your business!"
+
+<usericon:1,86,196>
+[blockend:16]
+
+[blockstart:17]
+NAPALIANS DEFEATED!
+[blockend:17]
+
+[blockstart:18]
+MAGIC FIELDS
+
+<usericon:1,238,79>
+
+We came across teleporters. Sadly the exits must have been blocked, so they were of no use to us.
+[blockend:18]
+
+
+[blockstart:19]
+BABUL HOSTILE AGAIN!
+
+"You stuck your noses into things that are none of your business! Pay the tribute and we will give you what you want."
+
+<usericon:1,106,243>
+[blockend:19]
+
+[blockstart:20]
+50 COINS
+
+<usericon:1,186,38>
+
+This magic chest contained 50 gold coins, which automatically went to our headquarters!
+[blockend:20]
+
+[blockstart:21]
+WATER DRAGONS DIED!
+
+Oh dear, the WATER DRAGONS have died. Without them, the outcome of this mission will remain hidden to you!
+[blockend:21]
+
+[blockstart:22]
+BABUL DEFEATED!
+
+We had defeated BABUL! Never again would they harm the Shepherd Folk.
+[blockend:22]
+
+[blockstart:23]
+CATAPULTS FOUND
+
+<usericon:1,42,295>
+
+Who could have left these catapults here? In any case they could do us good service!
+[blockend:23]
+
+[blockstart:24]
+CAMP ESTABLISHED!
+
+The unmistakable smell of warm, crusty bread would soon delight our noses, for with the bakery we had created a stable food supply for our camp.
+[blockend:24]
+
+[blockstart:25]
+CEMETERY
+
+"Unbelievable, what we saw before us in the middle of the desert. It had to be a cemetery, but no ordinary one, as we could tell from the oversized gravestones.
+
+<usericon:1,257,298>
+[blockend:25]
+
+[blockstart:26]
+ALL WATER DRAGONS FREED!
+
+Now we had finally freed all the water dragons in Babul.
+
+<usericon:2,9>
+
+They all told us of the rare earth dragons. Nobody had seen them any more. There were rumours of underground dungeons where they were being held."
+
+Escort the water dragons to the water temple!
+[blockend:26]
+
+[blockstart:27]
+TELEPORTERS ACTIVATED!
+
+In thanks for the freeing of the water dragons, the water dragons activated the teleporters in the desert.
+
+<usericon:1,31,335>
+[blockend:27]
+
+[blockstart:28]
+EARTH DRAGONS!
+
+At last we had found earth dragons!
+
+<usericon:1,125,141>
+[blockend:28]
+
+[blockstart:29]
+50 COINS
+
+<usericon:1,125,142>
+
+This magic chest contained 50 gold coins, which automatically went to our headquarters!
+[blockend:29]
+
+[blockstart:100]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+Heroism or carelessness? When BJARNI died the gods were crying ... without this hero, the outcome of this mission will remain hidden to you!
+[blockend:100]
+
+[blockstart:200]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! Your heroine CYRA died due to your negligence! Without this heroine, the outcome of this mission will remain hidden to you!
+[blockend:200]
+
+
+[blockstart:500]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! Your friend and hero NORBERT, the dragon, died due to your negligence! Without this hero, the outcome of this mission will remain hidden to you!
+[blockend:500]
+
+[blockstart:600]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! MANI, son of Bjarni and Cyra, died due to your negligence! Without him, the outcome of this mission will remain hidden to you!
+[blockend:600]

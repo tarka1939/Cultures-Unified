@@ -1,0 +1,139 @@
+[blockstart:header]
+THE SACRED HALL OF THE STONE DRAGONS
+[blockend:header]
+
+[blockstart:00_start]
+Norbert and Mani had made it this far.
+The sacred hall of the stone dragons lay before them.
+
+[blockend:00_start]
+[blockstart:00_start1]
+Would wise Grauholm know anything about Norbert's origins?
+They would soon have an answer to that question...
+[blockend:00_start1]
+
+
+[blockstart:50_endheader]
+MISSION COMPLETED!
+[blockend:50_endheader]
+[blockstart:50_end]
+GRAUHOLM
+
+"Now you have brought these two together as well. In thanks I will tell you what I know of your origins:
+Norbert, my young earth dragon
+The earth dragons were a peaceful people who never harmed other creatures.
+
+<usericon:1,121,29>
+
+Sadly their good nature was often abused and they were a favourite quarry of the TORUMEN. Only a few survived, secluded from the rest of the world.
+If there are any earth dragons left, they are in the jungle.
+
+So head south!"
+[blockend:50_end]
+[blockstart:50_end1]
+
+[blockend:50_end1]
+
+
+[blockstart:01]
+THE GUARD DRAGONS AROUND GRAUHOLM
+
+<usericon:2,9>
+
+"GRAUHOLM is already expecting you! Follow us to him!"
+[blockend:01]
+
+
+[blockstart:02]
+GRAUHOLM
+
+"Truly, you have managed to settle the quarrel between the peoples!
+
+<usericon:2,1>
+
+Only one is left, but I doubt these two are quarrelling out of intolerance, fear or envy....
+Rothild and Blaustrump, a fire dragon and a water dragon, are really making life hard for each other here...
+
+Rothild is in the halls to the west and Blaustrump in those to the east. Find them and bring them to me and I will tell you of your origins!
+[blockend:02]
+
+[blockstart:03]
+FLOWERS!
+
+Mani and Norbert had to use a trick to bring the two together...
+The dragons were very stubborn. Then they had an idea!
+
+<usericon:1,10,116>
+
+Perhaps a few flowers and a few kind white lies?
+So Mani and Norbert picked some blue flowers and went to Rothild...
+[blockend:03]
+
+[blockstart:04]
+ROTHILD
+
+"I will not come along and meet that conceited water dragon! ... Hmph."
+said Rothild and turned her back on us.
+
+<usericon:2,2>
+[blockend:04]
+
+
+[blockstart:05]
+ROTHILD
+
+"Blue flowers, how beautiful!
+What? These flowers are from Blaustrump?
+
+<usericon:2,2>
+
+For a water dragon he has good taste. Perhaps I was wrong about him?
+
+Fine, I will come with you."
+[blockend:05]
+
+[blockstart:06]
+BLAUSTRUMP
+
+"That Rothild thinks she is something special! No, I will not come along and possibly meet her there."
+said Blaustrump and turned his back on us.
+
+<usericon:2,3>
+[blockend:06]
+
+
+[blockstart:07]
+BLAUSTRUMP
+
+"What, she likes me? Is that really true? Well, in that case I will of course come with you. Secretly I always found her quite cute."
+
+<usericon:2,3>
+[blockend:07]
+
+[blockstart:08]
+ROTHILD AND BLAUSTRUMP
+
+When the two stubborn dragons saw each other with different eyes, everything fell into place. In spite of their different ancestry they had found each other."
+
+<usericon:2,2>
+[blockend:08]
+
+[blockstart:09]
+
+[blockend:09]
+
+[blockstart:500]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! Your friend and hero NORBERT, the dragon, died due to your negligence! Without this hero, the outcome of this mission will remain hidden to you!
+[blockend:500]
+
+[blockstart:600]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! MANI, son of Bjarni and Cyra, died due to your negligence! Without him, the outcome of this mission will remain hidden to you!
+[blockend:600]

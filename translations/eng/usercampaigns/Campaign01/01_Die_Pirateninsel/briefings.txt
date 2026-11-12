@@ -1,0 +1,108 @@
+[blockstart:start_header]
+The Pirate Island
+
+[blockend:start_header]
+
+[blockstart:start_body]
+A holiday was on the cards. Hooray, we thought, at last. We had settled on a great island and pulled our ship ashore, which we wanted to use as a warehouse. On the way here we had noticed an island covered in ice far in the distance. But since we were all ripe for the holiday island, we headed for it with the topsail set.....
+We decided to store a few goods and then later take a look at that little ice island in the south-west.
+Mission objective: Store 50 iron tools and 50 big healing potions.
+Explore the ice island in the south-west. Build a ship to do so.
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+Phew, that had been hard work. At last we had stored the required goods, had fetched Felix from his island and Merlin had been driven from his island. But he had escaped, and we did not like that at all. Since he had fled north, and Felix's people also lived in the north, we feared the worst. We wanted to follow quickly so that Merlin's henchmen would not cause more mischief.
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have lost !!
+
+[blockend:lost_body]
+
+[blockstart:findmappos1]
+Hooray, friends, my name is Felix and I belong to the tribe of the S-KI-MOS. We live far, far away in the north. In a world that consists only of snow and ice. I want to go home but a terrible pirate lives in the north, causing trouble here. Numerous raids are down to him. He plunders the peaceful islanders who still live here. He calls himself Merlin, the Red Corsair. Would you help me get to my homeland?
+I would also show my gratitude.
+Mission objective: Destroy Merlin, who owns an island in the north.
+
+[blockend:findmappos1]
+
+[blockstart:playerdied1]
+Player 1 has died.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+Sallamaleikumgum !!
+We, the Sallamaleikas of Sallamaleigum, heartily greet you, honourable warriors. You are looking for gold to make coins for your healing potions ? Hmm, well, OK. For a small tribute we could make you a few good trade offers. What do you say ?
+Mission objective: Pay the Sallamaleikas the tribute they ask for, because only then can you reach your goal.
+
+[blockend:playerseen1]
+
+[blockstart:playerenemy1]
+Player 1 is now hostile.
+
+[blockend:playerenemy1]
+
+[blockstart:playerfriendly1]
+Thank you for the modest tribute. You may now send your merchants. But be warned. If you send gold miners we will attack you at once....
+
+[blockend:playerfriendly1]
+
+[blockstart:playerdied2]
+Player 2 has died.
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+Halt !! What do you want here ? So you need iron to make iron tools? We have iron in abundance, but first pay us a tribute, then we will talk business.
+Mission objective: Pay the tribute they ask for, only then can you get the iron you need for your goal.
+
+[blockend:playerseen2]
+
+[blockstart:playerenemy2]
+Player 2 is now hostile.
+
+[blockend:playerenemy2]
+
+[blockstart:playerfriendly2]
+Oh, thank you for the tribute, you may now send your merchants to us. But beware. If you send iron miners, we will attack you at once....
+
+[blockend:playerfriendly2]
+
+[blockstart:playerdied3]
+Merlin's headquarters was destroyed, but he himself escaped on a fast ship. Since we still had to fetch Felix from his bleak island, and had to pack our things, we could not go after him at once. But we would see him again, that much was certain....
+
+[blockend:playerdied3]
+
+[blockstart:playerseen3]
+Halt !!
+I, Merlin, the Red Corsair, ruler of the Caribbean, king of all islands, Grand Prince and Grand Mogul of the pirate world, advise you to disappear at once or my archers will destroy you.
+Mission objective: Destroy Merlin the Red Corsair and his headquarters.
+
+[blockend:playerseen3]
+
+[blockstart:playerneutral3]
+Player 3 is now neutral.
+
+[blockend:playerneutral3]
+
+[blockstart:playerfriendly3]
+Player 3 is now friendly.
+
+[blockend:playerfriendly3]
+

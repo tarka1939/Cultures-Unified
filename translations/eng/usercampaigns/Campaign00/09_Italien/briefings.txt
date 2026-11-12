@@ -1,0 +1,111 @@
+[blockstart:start_header]
+Italy
+
+[blockend:start_header]
+
+[blockstart:start_body]
+Hey helmsman, there's an island with a lighthouse on it coming up. Nonsense, that's just the moon. Oh I see......crash, bang, clatter, sink, glug. Our helmsman had done it again. All the ships except one had sunk and the deep sea had swallowed our comrades. Only one soldier managed to save himself.
+Mission objective: Make your way to northern Italy, where your comrades, who had come into the country from Austria, are hopefully waiting for you.
+
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+We had won once again. The bandits and the Sicilians were destroyed. Now peace reigned again. First we wanted to take a holiday and rest in sunny Tunisia.....
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have lost !!
+Why not try a round of 'Ludo'
+
+[blockend:lost_body]
+
+[blockstart:findmappos1]
+Well, well, what were all these chests doing here? Curious, I wanted to open one right away.
+
+[blockend:findmappos1]
+
+[blockstart:findmappos2]
+What a desolate area this was! And not a berry bush in sight. Surely nobody could live here.....
+
+[blockend:findmappos2]
+
+[blockstart:playerdied1]
+The Sicilians have died.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+Sicilians !!
+We are the allies of the bandits. Get lost, or we will massacre you.
+Mission objective: Destroy the Sicilians.
+
+[blockend:playerseen1]
+
+[blockstart:playerneutral1]
+Player 1 is now neutral.
+
+[blockend:playerneutral1]
+
+[blockstart:playerfriendly1]
+Player 1 is now friendly.
+
+[blockend:playerfriendly1]
+
+[blockstart:playerdied2]
+The bandits have died.
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+Bandits !!
+Here at last was the bandits' main base. Once we were done with them, peace would reign in the land again.
+Mission objective: Destroy the bandits.
+
+[blockend:playerseen2]
+
+[blockstart:playerneutral2]
+Player 2 is now neutral.
+
+[blockend:playerneutral2]
+
+[blockstart:playerfriendly2]
+Player 2 is now friendly.
+
+[blockend:playerfriendly2]
+
+[blockstart:playerdied3]
+Player 3 has died.
+
+[blockend:playerdied3]
+
+[blockstart:playerseen3]
+Bulgarians !!
+Hello there, what are you doing here? Do you happen to have some wheat, water and mead? Yes?, good, then give us some and you can trade with us. But we don't have much to offer, as we are very poor.
+
+[blockend:playerseen3]
+
+[blockstart:playerenemy3]
+Player 3 is now hostile.
+
+[blockend:playerenemy3]
+
+[blockstart:playerfriendly3]
+Thanks, thanks, you can send your merchants now, but make sure they carry plenty of food with them, or they will starve on the way.
+
+[blockend:playerfriendly3]
+

@@ -1,0 +1,92 @@
+[blockstart:start_header]
+Lost World
+
+[blockend:start_header]
+
+[blockstart:start_body]
+The whirlpool swept us all away. Nobody could escape it. Our ships were smashed on the riverbank of a small island surrounded by solidified lava. Luckily Felix and his wife Karo escaped unharmed. So did some of us, but most fell victim to the whirlpool....
+Mission objective: Build a small village and explore the area.
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+At last we had reached our goal !! The first ship had passed the obelisks. Now we could fetch the others. But where we would come out was still a mystery to us. Hopefully we would soon find our home waters again.....
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have lost. Now you are trapped in this lost world for ever.
+
+[blockend:lost_body]
+
+[blockstart:findmappos1]
+Felix and Karo !!
+Thank you for the duplex, my friends. We hope you will find a way for us to get out of here.....
+
+[blockend:findmappos1]
+
+[blockstart:findmappos2]
+An old man !!
+New visitors again? I am glad to see you. I hope you are friendlier to me than the sinister figures who visited me recently. They were heavily armed and wore red uniforms. Merlin the Red Corsair, it could only have been him. So he had sailed into this whirlpool too. You want to get out of here again? Well, first you must get past the snakes, then through the lava road to the desert island, then past the Ice Saints. Then sail through the two obelisks, and you will be able to leave this land. But where the sinister figures are, I do not know......
+
+[blockend:findmappos2]
+
+[blockstart:playerdied1]
+Well, they were gone. Since we could not get any further over land, we decided to build a ship to explore the area further.
+Mission objective: Build a ship and explore the area by sea.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+Hiss !! Crackle !! Flick !!
+Whoa, there were big snakes here. It must be the hot lava, we thought. These had to be the snakes the old man meant. We had to destroy them if we wanted to get further.
+Mission objective: Destroy the snakes.
+
+[blockend:playerseen1]
+
+[blockstart:playerneutral1]
+Player 1 is now neutral.
+
+[blockend:playerneutral1]
+
+[blockstart:playerfriendly1]
+Player 1 is now friendly.
+
+[blockend:playerfriendly1]
+
+[blockstart:playerdied2]
+We had victory in the bag quickly, there had not been too many pirates. So now we had to get past the Ice Saints to the two obelisks. We decided to build another ship on the western side of the island.
+Mission objective: Build another ship west of the island and look for the two obelisks. Then sail through them and you have won.
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+Vikings !! Seize them !!
+Arrows shot at us. So this was where the army of the Red Corsair had settled. He himself did not seem to be there, so there had to be a way out. The old man had been right. But first we had to destroy the remaining pirates.
+Mission objective: Destroy the pirates.
+
+[blockend:playerseen2]
+
+[blockstart:playerneutral2]
+Player 2 is now neutral.
+
+[blockend:playerneutral2]
+
+[blockstart:playerfriendly2]
+Player 2 is now friendly.
+
+[blockend:playerfriendly2]
+

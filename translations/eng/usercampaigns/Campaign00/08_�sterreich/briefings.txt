@@ -1,0 +1,56 @@
+[blockstart:start_header]
+Austria
+
+[blockend:start_header]
+
+[blockstart:start_body]
+As winter had set in in Austria, we pitched our camp in the southernmost part of Germania. Since we knew nobody in the strange land, we wanted to send out a few scouts first. Bjarni wanted to sail around Spain and reach Italy from the sea.
+Mission objective: Explore Austria with a scout.
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+This time too we had managed to beat back the bandits. But it had only been a small garrison. What might await us in Italy?
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have failed the mission. 
+
+[blockend:lost_body]
+
+[blockstart:playerdied1]
+The bandits have died.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+Bandits !!
+Once again we were attacked by the bandits. We had to beat them back here too, so that peace would reign here again.
+Mission objective: Destroy the bandits.
+
+[blockend:playerseen1]
+
+[blockstart:playerneutral1]
+Player 1 is now neutral.
+
+[blockend:playerneutral1]
+
+[blockstart:playerfriendly1]
+Player 1 is now friendly.
+
+[blockend:playerfriendly1]
+

@@ -1,0 +1,99 @@
+[blockstart:start_header]
+The Trial
+
+[blockend:start_header]
+
+[blockstart:start_body]
+As we stepped out of the exit we saw a strange-looking figure. Aah, newcomers, he whispered, you want to go to the Valley of the Kings? To do so you must undergo 10 trials. On 10 small islands enemies await you. You must defeat them all. Only then are you worthy enough to enter the Valley of the Kings. But remember, you must make do with what you have with you. On the eleventh island is finally the gate to the Valley of the Kings.
+Mission objective 1: Defeat all enemies.
+Mission objective 2: Find the gate to the Valley of the Kings.
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+We had done it. It had not been so hard at all, as we had gathered a lot of combat experience on our long journey. Now there was nothing for it but to go straight into the next gate. We were very curious what the Valley of the Kings was all about...
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have lost. Maybe you should change your tactics a little...
+
+[blockend:lost_body]
+
+[blockstart:playerdied1]
+The snakes have died.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+Snakes !!
+Once again we were attacked by the strange-looking creatures. But this time there were not too many of them.
+
+[blockend:playerseen1]
+
+[blockstart:playerneutral1]
+Player 1 is now neutral.
+
+[blockend:playerneutral1]
+
+[blockstart:playerfriendly1]
+Player 1 is now friendly.
+
+[blockend:playerfriendly1]
+
+[blockstart:playerdied2]
+The snakes have died.
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+Snakes !!
+Yeah, sure, we thought. We would finish them off too.
+
+[blockend:playerseen2]
+
+[blockstart:playerneutral2]
+Player 2 is now neutral.
+
+[blockend:playerneutral2]
+
+[blockstart:playerfriendly2]
+Player 2 is now friendly.
+
+[blockend:playerfriendly2]
+
+[blockstart:playerdied3]
+The snakes have died.
+
+[blockend:playerdied3]
+
+[blockstart:playerseen3]
+Snakes !!
+Third time lucky, or how did that go?
+By now we were well trained. We would finish off the last ones quickly.
+
+[blockend:playerseen3]
+
+[blockstart:playerneutral3]
+Player 3 is now neutral.
+
+[blockend:playerneutral3]
+
+[blockstart:playerfriendly3]
+Player 3 is now friendly.
+
+[blockend:playerfriendly3]
+

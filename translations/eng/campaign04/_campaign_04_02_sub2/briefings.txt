@@ -1,0 +1,101 @@
+[blockstart:header]
+THE DARK CAVE
+[blockend:header]
+
+[blockstart:00_start]
+It was still pitch dark in the cave. However hard we tried, we could not move on. A strange energy field surrounded the tall pillars and would not let us further into the cave.
+[blockend:00_start]
+[blockstart:00_start1]
+Our hopes rested on PYRO, the fire dragon. Surely he could relight the extinguished torches...
+
+Light the torches and find the way to the crystal.
+[blockend:00_start1]
+
+
+[blockstart:50_endheader]
+MISSION COMPLETED!
+[blockend:50_endheader]
+[blockstart:50_end]
+We had found the crystal inside the cave! Now we had to take it to the Forest Keeper BORKENZAHN.
+
+<usericon:1,49,21>
+
+[blockend:50_end]
+[blockstart:50_end1]
+
+[blockend:50_end1]
+
+
+[blockstart:01]
+ALL TORCHES LIT!
+
+Here at the entrance of the cave all the torches were now lit! As if by magic, one of the strange pillars had vanished and the energy field was broken.
+We could now explore the inside of the cave further! Surely there were still many torches to light here.
+[blockend:01]
+
+
+[blockstart:02]
+ALL TORCHES LIT!
+
+All the torches were lit by our friend Pyro. The way to the fire crystal was now open!
+[blockend:02]
+
+
+[blockstart:03]
+DARK DRAGONS
+
+Through the lattice walls we saw black dragons. They seemed dangerous and probably guarded the entrance to the crystal.
+
+<usericon:2,4>
+
+We had to try to lure them away from there. Perhaps we could lock them in the rainbow room?
+
+<usericon:1,43,61>
+[blockend:03]
+
+[blockstart:04]
+DRAGONS DEFEATED!
+
+We had defeated the colourless creatures, but had that really been necessary? Couldn't we have lured them into a trap in the rainbow room?
+[blockend:04]
+
+
+[blockstart:05]
+DRAGONS LOCKED IN!
+
+<usericon:2,4>
+
+We had done it, all the dark dragons were in the rainbow room!
+[blockend:05]
+
+
+[blockstart:06]
+LOCKED ROOM
+
+The inside of this room will remain hidden from you until all the torches are lit!
+[blockend:06]
+
+
+[blockstart:100]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+Heroism or carelessness? When BJARNI died the gods were crying ... without this hero, the outcome of this mission will remain hidden to you!
+[blockend:100]
+
+[blockstart:200]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! Your heroine CYRA died due to your negligence! Without this heroine, the outcome of this mission will remain hidden to you!
+[blockend:200]
+
+[blockstart:300]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! Your friend PYRO died due to your negligence! Without him, the outcome of this mission will remain hidden to you!
+[blockend:300]

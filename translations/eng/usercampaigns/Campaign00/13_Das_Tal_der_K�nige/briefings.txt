@@ -1,0 +1,110 @@
+[blockstart:start_header]
+The Valley of the Kings
+
+[blockend:start_header]
+
+[blockstart:start_body]
+Just two soldiers had survived the trial. Hey, come on, let's go further north, said one to the other. I think I saw something there. From here? replied the other. You must have good glasses on. Of course. Hey, this time we'll brew enough potions so we have enough for the next adventures, what do you think? Yep, was all the other said.
+Mission objective 1: Store 50 big nourishing potions and 50 big healing potions.
+Mission objective 2: Find the gate to the upper world to leave this land again.
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+We had done it once more. Caesar's hordes were defeated, and the way to the upper world was finally open. But where would we come out ?
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have lost. Why not try a round of Pick-up Sticks.
+
+[blockend:lost_body]
+
+[blockstart:findmappos1]
+This seemed to be an abandoned village. Eagerly we hoisted our red flag. From now on it was to be ours.
+
+[blockend:findmappos1]
+
+[blockstart:findmappos2]
+Halt !! I, Caesar III, claim the whole land behind this mountain. Go no further. What ? You want to go on anyway? In spite of my warning?
+Abracadabra, Hocus Pocus, Simsalabim. By the time you reach my village you will have starved....
+
+[blockend:findmappos2]
+
+[blockstart:playerdied1]
+Player 1 has died.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+Hello there !!
+I am King DJ Culture. I greet you most warmly. I am the king of the north-west. Come, send your merchants. We have great offers of goods for you. Beware of the north-east, Caesar III lives there with his hordes. Do not get in his way.
+
+[blockend:playerseen1]
+
+[blockstart:playerenemy1]
+Player 1 is now hostile.
+
+[blockend:playerenemy1]
+
+[blockstart:playerneutral1]
+Player 1 is now neutral.
+
+[blockend:playerneutral1]
+
+[blockstart:playerdied2]
+Caesar's hordes were defeated. Now the way to the gate was open.
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+Caesar's hordes !!
+Halt, I, Caesar III, ruler of the north-east, warn you not to go further, or we will slaughter you like suckling pigs.
+Mission objective: Destroy Caesar's hordes.
+
+[blockend:playerseen2]
+
+[blockstart:playerneutral2]
+Player 2 is now neutral.
+
+[blockend:playerneutral2]
+
+[blockstart:playerfriendly2]
+Player 2 is now friendly.
+
+[blockend:playerfriendly2]
+
+[blockstart:playerdied3]
+Player 3 has died.
+
+[blockend:playerdied3]
+
+[blockstart:playerseen3]
+Hooray !!
+I, Birdy, ruler of the south-east, greet you, men. Come, send your merchants, we have great goods on offer. Beware of the north-east. Caesar III lives there with his ruffians.
+
+[blockend:playerseen3]
+
+[blockstart:playerenemy3]
+Player 3 is now hostile.
+
+[blockend:playerenemy3]
+
+[blockstart:playerneutral3]
+Player 3 is now neutral.
+
+[blockend:playerneutral3]
+

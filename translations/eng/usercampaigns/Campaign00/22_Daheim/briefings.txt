@@ -1,0 +1,79 @@
+[blockstart:start_header]
+Home
+
+[blockend:start_header]
+
+[blockstart:start_body]
+Hey helmsman, the coast is further to port. Port? Hic, is that right or left now? Hic......crash, clatter, glug. Strange, there was no coast here the other day, was there? Hic. Mani, Bjarni's son, who had finally grown up, came towards us angrily. It seems to me you drink too much mead. As punishment you will now make so much mead that you will have enough of it for all time.
+Mission objective: Store 200 units of mead, 30 coins, 30 oil, 30 big nourishing potions and 30 big stamina potions.
+Tip: Why not drop in on your neighbours...
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+Now we had everything together. Bravo, said Mani, at last we can hold our feast. We looked at each other, baffled. Hehe, giggled Mani, we want to welcome you properly, and for that we needed the mead.
+In the evening at the campfire everyone listened spellbound to our druid Fridi as he told of our adventures.  Back then we had no idea of the threat that was to come upon us. But that is a new story.....
+The End
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have lost !!
+
+[blockend:lost_body]
+
+[blockstart:playerdied1]
+Player 1 has died.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+We were joyfully greeted by our neighbours. Come, sit down and drink some mead with us. We also have cigars from a land far, far away in the west....
+If you like you may send your merchants, we have great goods on offer.
+
+[blockend:playerseen1]
+
+[blockstart:playerenemy1]
+Player 1 is now hostile.
+
+[blockend:playerenemy1]
+
+[blockstart:playerneutral1]
+Player 1 is now neutral.
+
+[blockend:playerneutral1]
+
+[blockstart:playerdied2]
+Player 2 has died.
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+Hooray, neighbours !! Come, sit down. We are tapping a barrel in your honour. Here, have a piece of roast game. We also have a new drink from a land far, far away in the west.....
+Come, send your merchants by. We have something you might be able to use.
+
+[blockend:playerseen2]
+
+[blockstart:playerenemy2]
+Player 2 is now hostile.
+
+[blockend:playerenemy2]
+
+[blockstart:playerneutral2]
+Player 2 is now neutral.
+
+[blockend:playerneutral2]
+

@@ -1,0 +1,75 @@
+[blockstart:header]
+BENEATH THE SEA
+[blockend:header]
+
+[blockstart:00_start]
+Mani and Norbert entered the water temple of the AQUAS beneath the sea once more. In this strange place, all their movements were slower and everything shimmered before their eyes.
+
+[blockend:00_start]
+[blockstart:00_start1]
+And there it was, the ice statue blocking the way to Aquarius!
+[blockend:00_start1]
+
+
+[blockstart:50_endheader]
+MISSION COMPLETED!
+[blockend:50_endheader]
+[blockstart:50_end]
+Through their helpfulness, Mani and Norbert had managed to bring whole peoples together! The Aquas and the Lumis were on friendly terms again! That was a success!
+
+<usericon:2,6>
+
+The wise GRAUHOLM would surely appreciate this!
+[blockend:50_end]
+[blockstart:50_end1]
+
+[blockend:50_end1]
+
+
+[blockstart:01]
+AQUARIUS' GUARD
+
+"Oh, I see you have brought one of the Lumis, a fire dragon. They shun water as we shun fire. It must have taken great effort. Perhaps he can melt the ice?
+
+<usericon:2,9>
+
+Go right up to the ice statue. If you cannot do it, then probably nobody can!"
+[blockend:01]
+
+
+[blockstart:02]
+AQUARIUS' GUARD
+
+"You really did it. We truly underestimated the fire dragons. Our thanks are yours forever. Now follow me to AQUARIUS!"
+[blockend:02]
+
+[blockstart:03]
+AQUARIUS
+
+"Welcome to the realm beneath the sea!" said Aquarius in a gurgling voice, and little bubbles rose from his mouth.
+
+<usericon:2,8>
+
+ "The fish have already told me of your adventure. Thanks to you, the entrance to the temple is free again. I will send word to the wise peacemaker GRAUHOLM that we have made peace with the fire dragons, and then he will let you in and help you."
+
+Go back to the exit!
+[blockend:03]
+
+
+
+
+[blockstart:500]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! Your friend and hero NORBERT, the dragon, died due to your negligence! Without this hero, the outcome of this mission will remain hidden to you!
+[blockend:500]
+
+[blockstart:600]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! MANI, son of Bjarni and Cyra, died due to your negligence! Without him, the outcome of this mission will remain hidden to you!
+[blockend:600]

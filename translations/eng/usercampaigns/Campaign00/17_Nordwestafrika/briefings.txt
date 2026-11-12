@@ -1,0 +1,100 @@
+[blockstart:start_header]
+Northwest Africa
+
+[blockend:start_header]
+
+[blockstart:start_body]
+On arrival, near the coast, we were attacked by allies of the Saracen chieftain. So we set up our headquarters inland. But there was no sign of Tank, the Saracen chieftain. So we had to push deeper into the heart of Africa. To avoid having enemies at our backs, we decided to destroy all enemies near the coast. We would also run into food problems later. So we likewise decided to store 20 big nourishing potions. But since we found no gold, we had to see whether there were merchants nearby.
+Mission objective 1: Kill all peoples hostile to you.
+Mission objective 2: Store 20 big nourishing potions.
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+We had won. The enemies were destroyed, and thanks to the Saracens in the south the required nourishing potions were stored. Through the hot desert sun we marched on into the interior of Africa, to finally take revenge on Tank, the Saracen chieftain...
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+Was the map too hard? Why not try a round of Nine Men's Morris.
+
+[blockend:lost_body]
+
+[blockstart:playerdied1]
+Morocco is destroyed.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+Morocco !!
+Halt, we, the friends of Tank, the one true ruler of Africa, order you to surrender. Otherwise we will cut you down.
+Mission objective: Destroy Morocco.
+
+[blockend:playerseen1]
+
+[blockstart:playerneutral1]
+Player 1 is now neutral.
+
+[blockend:playerneutral1]
+
+[blockstart:playerfriendly1]
+Player 1 is now friendly.
+
+[blockend:playerfriendly1]
+
+[blockstart:playerdied2]
+Dakar is destroyed.
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+Dakar !!
+Halt, we, the friends of Tank, the one true king of Africa, order you to turn back, otherwise you will be destroyed by our troops.
+Mission objective: Destroy Dakar.
+
+[blockend:playerseen2]
+
+[blockstart:playerneutral2]
+Player 2 is now neutral.
+
+[blockend:playerneutral2]
+
+[blockstart:playerfriendly2]
+Player 2 is now friendly.
+
+[blockend:playerfriendly2]
+
+[blockstart:playerdied3]
+Player 3 has died.
+
+[blockend:playerdied3]
+
+[blockstart:playerseen3]
+Saracens !!
+We, the people of Ibadan, greet you, noble Vikings. Tank, who calls himself king of Africa, is starving us out. But thanks to our nourishing potions, we manage to survive. We would gladly fight side by side with you against Tank, but we need weapons for it. A proposal: you give us weapons, and in return we give you ingredients so you can make nourishing potions. We might even be able to let you have a few big nourishing potions. But first pay us a small, modest tribute...
+
+[blockend:playerseen3]
+
+[blockstart:playerenemy3]
+Player 3 is now hostile.
+
+[blockend:playerenemy3]
+
+[blockstart:playerfriendly3]
+Thanks for the weapons. You may now send your merchants.
+
+[blockend:playerfriendly3]
+

@@ -1,0 +1,85 @@
+[blockstart:header]
+THE THREE WATERFALLS
+[blockend:header]
+
+[blockstart:00_start]
+We had followed the dragons and at once found ourselves in a strange, unfamiliar place.
+No doubt we were once again in one of the many water temples of the AQUAS!
+[blockend:00_start]
+[blockstart:00_start1]
+Our companions went their own ways at once. We had to find the guardian of this temple, perhaps he could support us on our mission?
+
+Find GULP!
+[blockend:00_start1]
+
+
+[blockstart:50_endheader]
+MISSION COMPLETED!
+[blockend:50_endheader]
+[blockstart:50_end]
+SURPRISE!
+
+"Really, the waterfalls are nothing but a small hydroelectric plant. With the help of the immense water power and by operating the three switches, we are able to run the teleporters on the surface!"
+
+<usericon:1,73,37>
+[blockend:50_end]
+[blockstart:50_end1]
+In thanks for their rescue, and because they were more to us than just any dragons, the Aquas activated the teleporters.
+[blockend:50_end1]
+
+
+[blockstart:01]
+GULP
+
+"You have truly achieved great things in saving our tribe members."
+
+<usericon:2,4>
+
+
+"Did you memorise them, do you remember their names? Three of them are here at the waterfalls. Find them and they have a surprise in store for you!"
+
+Find the three water dragons who accompanied you.
+[blockend:01]
+
+
+[blockstart:02]
+SPRUDEL
+
+<usericon:2,11>
+
+"You recognised me! So the chatty SPRUDEL talked his way into your heads after all?"
+[blockend:02]
+
+[blockstart:03]
+NIXE
+
+<usericon:2,12>
+
+"You recognised me! NIXE will always carry you in her heart too!"
+[blockend:03]
+
+[blockstart:04]
+WELLE
+
+<usericon:2,13>
+
+"You recognised me! "
+[blockend:04]
+
+
+
+[blockstart:100]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+Heroism or carelessness? When BJARNI died the gods were crying ... without this hero, the outcome of this mission will remain hidden to you!
+[blockend:100]
+
+[blockstart:200]
+<font:$local$\fonts\fonthead16bld.fnt>
+MISSION FAILED!
+<font:$local$\fonts\font12.fnt>
+<picture:$local$\graphics\Hero_Dead_F.pcx>
+A short moment of negligence, that's all it takes to lose your life! Your heroine CYRA died due to your negligence! Without this heroine, the outcome of this mission will remain hidden to you!
+[blockend:200]

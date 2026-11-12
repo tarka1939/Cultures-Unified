@@ -1,0 +1,112 @@
+[blockstart:start_header]
+The Underworld
+
+[blockend:start_header]
+
+[blockstart:start_body]
+Hey, you were only supposed to find the entrance, not go in. You went in, I just followed you. No, you did. No, you did. Meanwhile one of us had explored the area. Hey guys, stop arguing, there's a lovely valley in the north. An ideal place to settle. Really? Great. Let's go...
+Mission objective: Find the valley in the north and build a new settlement, then explore the area further.
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+We had won by a hair's breadth. What would await us in the Valley of the Kings?
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have lost !!
+Why not try a game of Monopoly.
+
+[blockend:lost_body]
+
+[blockstart:findmappos1]
+Treasure chests !?! Hmm, what could be inside??
+
+[blockend:findmappos1]
+
+[blockstart:findmappos2]
+Hmm, from here on there seemed to be nothing edible. First we wanted to go back and make nourishing potions....
+
+[blockend:findmappos2]
+
+[blockstart:playerdied1]
+We curse you. May the Serpents of Darkness destroy you.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+The Guardians !!
+Halt, strangers. We are the guardians of the entrance to the Valley of the Kings. If you value your lives, go no further.
+Mission objective 1: Destroy the guardians.
+Mission objective 2: Find the entrance to the Valley of the Kings.
+
+[blockend:playerseen1]
+
+[blockstart:playerneutral1]
+Player 1 is now neutral.
+
+[blockend:playerneutral1]
+
+[blockstart:playerfriendly1]
+Player 1 is now friendly.
+
+[blockend:playerfriendly1]
+
+[blockstart:playerdied2]
+The gatekeepers were destroyed too. Now we could enter the gate.
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+The Gatekeepers !!
+Here you will die, cried a voice. He was not entirely wrong, after all these gatekeepers outnumbered us...
+Mission objective: Destroy the gatekeepers.
+
+[blockend:playerseen2]
+
+[blockstart:playerneutral2]
+Player 2 is now neutral.
+
+[blockend:playerneutral2]
+
+[blockstart:playerfriendly2]
+Player 2 is now friendly.
+
+[blockend:playerfriendly2]
+
+[blockstart:playerdied3]
+Hiss, whistle, flick... It was all Greek to us. Was that another curse?
+
+[blockend:playerdied3]
+
+[blockstart:playerseen3]
+The Serpents of Darkness !!
+So that was the curse. They fell upon us like vultures. We had to destroy them too if we wanted to reach the Valley of the Kings.
+Mission objective: Destroy the Serpents of Darkness.
+
+[blockend:playerseen3]
+
+[blockstart:playerneutral3]
+Player 3 is now neutral.
+
+[blockend:playerneutral3]
+
+[blockstart:playerfriendly3]
+Player 3 is now friendly.
+
+[blockend:playerfriendly3]
+

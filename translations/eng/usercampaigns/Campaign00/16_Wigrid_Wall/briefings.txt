@@ -1,0 +1,75 @@
+[blockstart:start_header]
+Wigrid Wall
+
+[blockend:start_header]
+
+[blockstart:start_body]
+As we left our ships to go to our village, there was fresh smoke in the air. Oh great, we thought, fresh sausages. But our new friend from the Ice World said: "No, that is the smoke of death". We looked at each other, baffled, and at the same time worried about our friends. We hurried off to our village...
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+We had stored all the required weapons and driven the Saracen chieftain out of our homeland. But he himself had fled by ship. As we had sworn revenge, we wanted to follow at once. But we had to leave many soldiers behind so that our homeland would be protected from attacks this time. The Saracen chieftain Tank could only flee to a land where he had allies. So we steered for the northernmost tip of Africa...
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have lost !! Why not try a round of 'Ludo'.
+
+[blockend:lost_body]
+
+[blockstart:playerdied1]
+The last of our friends was gone now too. We buried the dead and swore revenge.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+What a horrifying sight met us when we came to our village. Everything was burnt down. The smoke of death still hung over the roofs. Who could have done this?  A survivor told us of a Saracen chieftain who calls himself Tank. It was he who had attacked the peaceful village without reason. He is said to have retreated to the far north. We discussed what to do. A long time ago we had buried treasure chests south-east of here. Were they still there? With their help we could build a new village. Besides, we needed weapons, many weapons.
+Mission objective 1: Store the following goods in your warehouse: 100 longswords, 100 shortswords, 100 iron spears, 100 plate armours and 100 chain mails. Find Tank, the Saracen chieftain.
+
+[blockend:playerseen1]
+
+[blockstart:playerenemy1]
+Player 1 is now hostile.
+
+[blockend:playerenemy1]
+
+[blockstart:playerneutral1]
+Player 1 is now neutral.
+
+[blockend:playerneutral1]
+
+[blockstart:playerdied2]
+The Saracen chieftain was defeated, but he himself managed to escape.
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+Halt !! I, Tank, chieftain of the Saracens, new king of Wigrid Wall, ruler of Africa and all Arab lands, order you to submit to me. Otherwise I will order my troops to cut you down, just as we have already done to your friends. Submit to them? Pah, they would soon feel the steel of our blades, we thought.
+Mission objective 2: Destroy Tank the Saracen chieftain and his followers.
+
+[blockend:playerseen2]
+
+[blockstart:playerneutral2]
+Player 2 is now neutral.
+
+[blockend:playerneutral2]
+
+[blockstart:playerfriendly2]
+Player 2 is now friendly.
+
+[blockend:playerfriendly2]
+

@@ -1,0 +1,104 @@
+[blockstart:start_header]
+France
+
+[blockend:start_header]
+
+[blockstart:start_body]
+After leaving some troops behind in Spain who could possibly supply us with reinforcements, we pitched our camp at the French border.
+It was not long before Bjarni stepped into our midst and told us why we had come to France.
+Well, the story is quickly told, he murmured. King Felix of France has declared war on all of Europe. Our friends all over Europe are oppressed by him and condemned to slavery. Friends, he cried, we must put an end to this. It seems he has entrenched himself in Paris. But Paris is far from here. First we must reach the French outposts and either win them over to our side or destroy them. In any case we must reach Paris, whatever it takes. Some peoples may demand a tribute, so we must make sure to fill our coffers with plenty of coins. Our aim should be to store 100 coins.....
+
+
+Created by: Yogi
+
+[blockend:start_body]
+
+[blockstart:won_header]
+Mission completed!
+
+[blockend:won_header]
+
+[blockstart:won_body]
+You have stored the required coins.
+Come on, cried Bjarni in a grave voice, on to Paris. Let us make Felix, King of France, pay for it......
+If we had known what lay ahead of us, we would surely all have stayed here.
+
+[blockend:won_body]
+
+[blockstart:lost_header]
+Mission failed!
+
+[blockend:lost_header]
+
+[blockstart:lost_body]
+You have failed the mission.
+
+[blockend:lost_body]
+
+[blockstart:playerdied1]
+Player 1 has died.
+
+[blockend:playerdied1]
+
+[blockstart:playerseen1]
+Madrid !!
+Hooray, friends. Do you need supplies?
+We have great potions for you. Why not drop by our merchant.
+
+[blockend:playerseen1]
+
+[blockstart:playerenemy1]
+Player 1 is now hostile.
+
+[blockend:playerenemy1]
+
+[blockstart:playerneutral1]
+Player 1 is now neutral.
+
+[blockend:playerneutral1]
+
+[blockstart:playerdied2]
+Player 2 has died.
+
+[blockend:playerdied2]
+
+[blockstart:playerseen2]
+Clermont-Ferrand !!
+At last we had reached the first outpost, the town of Clermont-Ferrand. It was the same people we had already met at the Spanish-French border.
+Hello there, they cried, welcome to our humble little village. Do you perhaps need longswords again ?
+You know we have the best. We might also have coins to offer. But first pay us a small tribute, then we will talk further.
+
+[blockend:playerseen2]
+
+[blockstart:playerenemy2]
+Player 2 is now hostile.
+
+[blockend:playerenemy2]
+
+[blockstart:playerfriendly2]
+Player 2 is now friendly.
+
+[blockend:playerfriendly2]
+
+[blockstart:playerdied3]
+Player 3 has died.
+
+[blockend:playerdied3]
+
+[blockstart:playerseen3]
+Le Mans !!
+The inhabitants of Le Mans eyed us suspiciously.
+What do you want here ? the village elder hissed at us. You are looking for coins ? Well, perhaps we might have coins to offer, but first pay us a tribute, then we will talk further.
+
+[blockend:playerseen3]
+
+[blockstart:playerenemy3]
+Player 3 is now hostile.
+
+[blockend:playerenemy3]
+
+[blockstart:playerfriendly3]
+Player 3 is now friendly.
+
+[blockend:playerfriendly3]
+
