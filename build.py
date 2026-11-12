@@ -11,7 +11,7 @@ Phase 1 output (build/):
       - Saga-only graphics (menu logos / title pictures) copied unchanged under the eng path,
       - our translations (translations/eng) for campaign 4 and saga001.
 """
-import argparse, json, os, re, shutil, struct, sys
+import argparse, json, os, re, shutil, struct, subprocess, sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(ROOT, 'tools'))
@@ -135,6 +135,18 @@ def build_overlay(saga_lib, eng_libs, translations, manifest, out, c2_lib):
                 put(en, a.read(hit), label); break
         else:
             put(en, sg.read(name), 'saga-copy')
+    # C2 campaign history pages share the history book with the mythology pages: no file names collide except
+    # index.hlt (fonts/palettes are byte-identical), so add them and append C2's index entries to the index.
+    hist = BS.join(['data', 'text', 'eng', 'hypertext', 'history', ''])
+    have = {n.lower(): n for n in ov.files}
+    idx = have.get(hist + 'index.hlt')
+    if not idx:
+        raise SystemExit('overlay: no English history index to merge into')
+    for name in c2.names():
+        if name.lower().startswith(hist) and name.lower() not in have:
+            put(name, c2.read(name), 'c2-history')
+    c2_idx = c2.read(hist + 'index.hlt').split(b'\n', 1)[1]          # drop its leading <anchor:0>
+    ov.set(idx, ov.read(idx).rstrip(b'\r\n') + b'\r\n\r\n' + c2_idx)
     for name in c2.names():
         parts = name.lower().split(BS)
         if parts[:2] == ['data', 'maps'] and len(parts) > 3 and parts[2].startswith(C2_MAPS):
@@ -192,6 +204,55 @@ def build_usercampaigns(saga, out, translations, manifest):
                 os.chmod(dst, 0o666)
             a.save(dst); n += 1
     log(f'user campaigns: {n} maps with English text')
+
+
+# English versions of the Saga's campaign videos (same films as the GOG Northland / 8th Wonder ones; sizes match
+# within a few KB). Saga-only intro.mpg has no English counterpart: the engine falls back to FMV\Ger.
+FMV_ENG = {'intro01.mpg': ('Northland', 'intro.mpg'), 'Seq_0001.mpg': ('Northland', 'Seq_0000.mpg'),
+           'intro02.mpg': ('8th Wonder of the World', 'intro.mpg'),
+           'Seq_0002.mpg': ('8th Wonder of the World', 'Seq_0000.mpg')}
+
+
+def install_fmv(nw, c2_dir, out):
+    d = os.path.join(out, 'DataX', 'FMV', 'Eng')
+    os.makedirs(d, exist_ok=True)
+    for dst, (game, src) in FMV_ENG.items():
+        s, t = os.path.join(nw, game, 'DataX', 'FMV', 'Eng', src), os.path.join(d, dst)
+        if not (os.path.exists(t) and os.path.getsize(t) == os.path.getsize(s)):
+            shutil.copy2(s, t); os.chmod(t, 0o666)
+    log(f'videos: {len(FMV_ENG)} English campaign films')
+    install_c2_fmv(c2_dir, d)
+
+
+# Cultures 2 ships Bink videos, which the Saga can't play: convert them to the Saga's MPEG-1 format (640x480 25 fps,
+# MP2 48 kHz). intro00 = C2's game intro, shown before campaign 1 mission 10 (cx.dll); Seq_0000 = C2's ending, which
+# the C2 maps request as sequence 0 (the Saga's own films are 1 and 2).
+C2_FMV = {'intro00.mpg': 'Intro.bik', 'Seq_0000.mpg': 'Seq_0000.bik'}
+
+
+def find_ffmpeg():
+    local = os.path.join(ROOT, '.tools', 'ffmpeg', 'ffmpeg.exe')
+    return local if os.path.exists(local) else shutil.which('ffmpeg')
+
+
+def install_c2_fmv(c2_dir, d):
+    ff = find_ffmpeg()
+    src_dir = os.path.join(c2_dir, 'DataX', 'FMV', 'Eng')
+    if not ff:
+        log('videos: no ffmpeg (.tools/ffmpeg or PATH): Cultures 2 videos skipped')
+        return
+    n = 0
+    for dst, src in C2_FMV.items():
+        s, t = os.path.join(src_dir, src), os.path.join(d, dst)
+        if os.path.exists(t) and os.path.getmtime(t) >= os.path.getmtime(s):
+            continue
+        r = subprocess.run([ff, '-v', 'error', '-y', '-i', s, '-r', '25', '-c:v', 'mpeg1video', '-b:v', '3000k',
+                            '-maxrate', '3000k', '-bufsize', '640k', '-c:a', 'mp2', '-ar', '48000', '-ac', '2',
+                            '-b:a', '192k', '-f', 'mpeg', t + '.tmp'], capture_output=True, text=True)
+        if r.returncode:
+            raise SystemExit(f'ffmpeg failed on {src}:\n{r.stderr}')
+        os.replace(t + '.tmp', t); n += 1
+    log(f'videos: Cultures 2 films converted ({n} new)')
 
 
 def install_cx(out):
@@ -258,6 +319,7 @@ def main():
     for exe, pl in PATCHES.items():
         patch_exe(os.path.join(a.out, exe), pl)
     install_cx(a.out)
+    install_fmv(nw, os.path.join(a.gog, 'Cultures and Cultures 2', 'Cultures 2'), a.out)
     with open(os.path.join(a.out, 'Game.ini'), 'w', newline='\r\n') as f:
         f.write('set_language 1\n')
         # with cnc-ddraw the game must request fullscreen; the wrapper decides window/borderless/scaling

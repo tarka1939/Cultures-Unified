@@ -7,7 +7,8 @@
  *     sending command 5006 (free slot 6 of the menu command jump table);
  *   - screen 5 (the Northland map; the C2 map background is the same picture, frame 2) is switched to campaign 1
  *     by re-pointing its campaign id, marker table and path-overlay table while it is shown for C2;
- *   - after a C2 mission the engine sets start_campaign_1_screen, which the Saga never consumes: we do.
+ *   - after a C2 mission the engine sets start_campaign_1_screen, which the Saga never consumes: we do;
+ *   - C2's intro (intro00.mpg) plays before campaign 1 mission 10, like intro01/02 for Northland/8th Wonder.
  * Addresses: see re/NOTES.md (Menu system, Campaign map screen data).
  */
 #include <windows.h>
@@ -200,9 +201,41 @@ static __declspec(naked) void cmd_c2_stub(void)
     }
 }
 
+/* FUN_00403100 (pre-mission video): at 0x4031a7 it compares the campaign of the map about to start with 2/3/4 and
+ * picks intro01/02/03 for mission 10. A mid-function detour adds campaign 1 -> intro00 (C2's intro, converted by
+ * build.py), then re-runs the original `cmp dword [edi+0x124], 2` and returns to the jne at 0x4031ae. */
+static void __cdecl fmv_c2(int *map, char *out)
+{
+    if (map[0x124 / 4] == 1 && map[0x128 / 4] == 10) { out[0] = 1; strcpy(out + 1, "intro00"); }
+}
+static __declspec(naked) void fmv_stub(void)
+{
+    __asm {
+        pushad
+        push esi
+        push edi
+        call fmv_c2
+        add esp, 8
+        popad
+        cmp dword ptr [edi + 0x124], 2
+        push 0x4031ae
+        ret
+    }
+}
+
+static void fmv_install(void)
+{
+    unsigned char jmp[7] = { 0xE9, 0, 0, 0, 0, 0x90, 0x90 };
+    if (!same(VA(0x4031a7), "83bf2401000002751c")) { dbg("fmv: unexpected bytes"); return; }
+    *(int *)(jmp + 1) = (int)((unsigned char *)fmv_stub - (unsigned char *)0x4031ac);
+    put(VA(0x4031a7), jmp, 7);
+    dbg("fmv hook installed");
+}
+
 static void install(void)
 {
     unsigned slot = 0x4d8b02 + 6 * 4, def = 0x4d8af9, stub = (unsigned)cmd_c2_stub;
+    fmv_install();
     c2_init();
     if (!c2_ok) return;
     if (*(unsigned *)VA(slot) != def) { dbg("c2: jump table slot in use"); c2_ok = 0; return; }

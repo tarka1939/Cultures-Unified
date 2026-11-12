@@ -129,7 +129,9 @@ Code changes go through a **loader DLL with runtime hooks**. The original exe st
    - screen 5 (the Northland map, the same picture as C2's) is switched to campaign 1 (campaign id, marker table from Cultures2.exe `0x4fc2e0`, path overlays = C2 frames 3..11 appended to `LS_menu_logos.bmd` as 26..34);
    - `start_campaign_1_screen` is consumed after a C2 mission.
    Every patch site is checked against the original bytes first. The user confirmed in game that it works.
-   Still open: C2 history/chronicle pages (`hypertext\history` collides with 8W's), and the C2 intro FMV before mission 10.
+   C2 history pages: the 8W and C2 page names don't collide (`history_*` vs `campaign_01_*`). build.py adds C2's 26 pages and appends C2's `index.hlt` entries to the 8W index (not yet checked in game).
+   Saga videos: the Saga ships only German FMVs. build.py copies the identical English NL/8W films to `FMV\Eng` (intro01/Seq_0001 ← NL, intro02/Seq_0002 ← 8W). The Saga-only `intro.mpg` stays German (via the fallback).
+   C2 videos: build.py converts C2's Bink films with ffmpeg (`.tools/ffmpeg` or PATH; skipped if missing) to the Saga's MPEG-1 format: `Intro.bik` → `intro00.mpg`, shown before campaign 1 mission 10 by a cx.dll hook in `FUN_00403100`; `Seq_0000.bik` → `Seq_0000.mpg` (C2 maps request sequence 0; the Saga uses 1 and 2). Hooks are verified in memory; playback not yet seen in game.
 4. Play-test the C2 campaign end to end: balance changes or removed script verbs could soft-lock missions.
 
 ### Phase 4: Unified scenario panel

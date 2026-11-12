@@ -75,3 +75,6 @@ from c2 `0x4fc2e0` and overlay table `{20,25}…{110,33}`; hook `FUN_0040212b`, 
 - In-game GUI layout and its dependence on screen size (Stage B scaling).
 - Archive lookup precedence for duplicate names (overlay strategy).
 - Saga vs w8 code diff for bug fixes (w8 is 3 weeks newer but lacks campaigns 2, user campaigns, mythology).
+
+**FMV**: path `datax\FMV\<lang>\<name>.mpg` (FUN_00402bc9 / FUN_0040337d via the resolver FUN_0040679c, eng→ger fallback). FUN_00403100 plays intro01/02/03 before campaign 2/3/4 mission 10 (cfg key `start_pre_ingame_fmv`). Campaign check at 0x4031a7 (`cmp [edi+0x124],2; jne`); cx.dll detours it to add campaign 1 → intro00. Script action 0x30 sets `start_fmv` = `seq_%4.4d`. C2 uses Bink (.bik), which the Saga has no player for: build.py converts it.
+**History book**: the 8W `hypertext\history\index.hlt` lists `history_*.hlt` pages; C2 uses `campaign_01_*.hlt` + `history.txt` in the same folder. The names don't clash, so build.py merges the indexes.

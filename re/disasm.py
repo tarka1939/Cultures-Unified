@@ -1,6 +1,6 @@
 """Disassemble a range of a PE (x86) with capstone.
 
-  python re/dis.py <exe> <va-hex> <count-bytes> [grep-substring]
+  python re/disasm.py <exe> <va-hex> <count-bytes> [grep-substring]
 """
 import os, re, sys
 import capstone
