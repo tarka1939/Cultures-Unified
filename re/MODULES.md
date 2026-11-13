@@ -68,6 +68,22 @@ The other callers (0x4022af, 0x40278a, 0x402cdf, 0x403493) are menus, loading sc
 **Sprites:** `NXBasics::CBobManager` blitters around 0x49b000-0x49ffff (`PrintBob_Shadow` 0x49c2ad,
 `PrintBob_1Bit_TimeMask` 0x49f4d7, and more without names). The bob blitter used for glyphs is `0x466ead`.
 
+**World renderer** (object 0x994 bytes, constructor `0x47d522`; the map window `0x4bb05b`, vtable 0x4f9fd4, keeps it at
++0x30; the in-game GUI object `[0x56c2b4]` keeps the map window at +4):
+- +0x64 target bitmap (the window's view), +0x68 draw bitmap, +0x78 zoom (-1..1), +0x96c landscape cache.
+- `0x47dd84` SetZoom (clamps to -1..1, rebuilds the bitmaps through `0x482318`); `0x47ddf0`/`0x47de13`/`0x47de2d` zoom keys.
+- At zoom -1, +0x68 is a separate bitmap of twice the view size. `0x48250a` draws a frame and ends by shrinking +0x68
+  into +0x64 with `0x40e09b` (thiscall src, dst; needs src = 2x dst, width a multiple of 64), called at 0x48255e.
+- Other renderers: menu background `0x491c56`, minimap `0x4dc076`/`0x4dc151`, `0x4a57f5`.
+
+**Minimap:**
+- Window class `0x4ca767` (vtable 0x4fa924), rect (0, h-120, 140, 120), kept at +0x44 of the in-game GUI object `[0x56c2b4]`.
+  Buttons and the picture are created in `0x4ca8bf`. GUI windows keep x, y, w, h at +4..+0x10 and their bitmap at +0x2c.
+- Picture widget `0x4cf4a0` (vtable 0x4fab20, 0x816c bytes, at window +0x74, 112x112 at 4,4): draw `0x4cf696`, full redraw
+  `0x4cf9a0` (tiles per pixel at +0x8038/+0x803c, from the map size `0x514758`/`0x51475a` and the bitmap size), partial
+  redraw `0x4cffe9`, terrain cache bitmap +0x8040, zoom +0x8064, dirty flag +0x8044. Pixel to map `0x4d07f2`, map to pixel
+  `0x4d0852`. Events `0x4d08a2`.
+
 ## Display settings
 
 - `0x479ad4` `SetDisplayMode` (thiscall: w, h, depth, flag).
