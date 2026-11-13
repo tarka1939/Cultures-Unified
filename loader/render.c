@@ -18,7 +18,8 @@
 
 #define BF(b, off) (*(int *)((char *)(b) + (off)))
 
-static int r_on;                 /* render=native */
+static int r_on;
+static int r_mm_grow = 112;   /* cx.ini minimap=: picture size in GUI pixels is 112 * minimap */                 /* render=native */
 static double r_scale = 2.0;     /* physical / logical */
 static char r_face[64] = "Georgia";
 static int r_weight = FW_BOLD;
@@ -52,24 +53,12 @@ static void origin(POINT *o)
 static int to_log(int v, int o, int p, int l) { return p ? o + MulDiv(v - o, l, p) : v; }
 static int to_phys(int v, int o, int p, int l) { return l ? o + MulDiv(v - o, p, l) : v; }
 
-/* the enlarged minimap, as present last drew it: its logical rect and where it is on the display */
-static int r_mm_scale = 2;                       /* cx.ini minimap=: size relative to the rest of the GUI */
-static int r_mm_x, r_mm_y, r_mm_k;               /* logical origin, display pixels per logical pixel (0 = off) */
-static RECT r_mm_phys;                           /* client pixels */
-
 static BOOL WINAPI my_getcur(POINT *pt)
 {
     POINT o;
     BOOL r = real_getcur(pt);
     if (r) {
-        int cx, cy;
         origin(&o);
-        cx = pt->x - o.x; cy = pt->y - o.y;
-        if (r_mm_k && cx >= r_mm_phys.left && cx < r_mm_phys.right && cy >= r_mm_phys.top && cy < r_mm_phys.bottom) {
-            pt->x = o.x + r_mm_x + (cx - r_mm_phys.left) / r_mm_k;
-            pt->y = o.y + r_mm_y + (cy - r_mm_phys.top) / r_mm_k;
-            return r;
-        }
         pt->x = to_log(pt->x, o.x, phys_w(), log_w());
         pt->y = to_log(pt->y, o.y, phys_h(), log_h());
     }
@@ -324,62 +313,6 @@ static void r_text(int dx, int dy, double s)
     GdiFlush();
 }
 
-/* ---- smooth upscaling for enlarged GUI art ----
- * Catmull-Rom (bicubic) by an integer factor k. Key-coloured (transparent) pixels stay transparent: a display pixel
- * whose nearest source pixel is the key is skipped, and key pixels don't take part in the filter. */
-#define FLOORI(v) ((v) < 0 ? (int)(v) - 1 : (int)(v))
-static void cr_weights(double t, double *w)
-{
-    double t2 = t * t, t3 = t2 * t;
-    w[0] = (-t3 + 2 * t2 - t) / 2; w[1] = (3 * t3 - 5 * t2 + 2) / 2;
-    w[2] = (-3 * t3 + 4 * t2 + t) / 2; w[3] = (t3 - t2) / 2;
-}
-/* draw source rect (sx, sy, sw, sh) of src scaled by k; display rows y0..y0+rows of the scaled rect go to dst */
-static void r_upscale(const unsigned short *src, int sp, int sx, int sy, int sw, int sh, int k,
-                      unsigned short *dst, int dp, int y0, int rows, int cols)
-{
-    double wt[16][4];
-    int X, Y, i, j;
-    if (k > 16) return;
-    for (i = 0; i < k; i++) cr_weights((i + 0.5) / k - 0.5 + (i + 0.5 < k / 2.0 ? 1 : 0), wt[i]);
-    for (Y = 0; Y < rows; Y++) {
-        int yy = y0 + Y, by = FLOORI((yy + 0.5) / k - 0.5), py = yy % k;
-        const double *wy = wt[py];
-        unsigned short *d = dst + Y * dp;
-        for (X = 0; X < cols; X++) {
-            int bx = FLOORI((X + 0.5) / k - 0.5), px = X % k, nx = X / k, ny = yy / k;
-            const double *wx = wt[px];
-            double r = 0, g = 0, b = 0, ws = 0;
-            if (src[(sy + ny) * sp + sx + nx] == R_KEY) continue;
-            for (j = 0; j < 4; j++) {
-                int cy = by - 1 + j;
-                if (cy < 0) cy = 0;
-                if (cy >= sh) cy = sh - 1;
-                for (i = 0; i < 4; i++) {
-                    int cx = bx - 1 + i;
-                    unsigned short p;
-                    double w;
-                    if (cx < 0) cx = 0;
-                    if (cx >= sw) cx = sw - 1;
-                    p = src[(sy + cy) * sp + sx + cx];
-                    if (p == R_KEY) continue;
-                    w = wx[i] * wy[j];
-                    r += w * ((p >> 11) & 31); g += w * ((p >> 5) & 63); b += w * (p & 31); ws += w;
-                }
-            }
-            if (ws <= 0.01) { d[X] = src[(sy + ny) * sp + sx + nx]; continue; }
-            r /= ws; g /= ws; b /= ws;
-            if (r < 0) r = 0;
-            if (r > 31) r = 31;
-            if (g < 0) g = 0;
-            if (g > 63) g = 63;
-            if (b < 0) b = 0;
-            if (b > 31) b = 31;
-            d[X] = (unsigned short)(((int)(r + 0.5) << 11) | ((int)(g + 0.5) << 5) | (int)(b + 0.5));
-        }
-    }
-}
-
 /* ---- minimap image at display resolution ----
  * The minimap picture is a child widget of the minimap window (class 0x4cf4a0, vtable 0x4fab20, kept at window +0x74,
  * 112x112 at 4,4). It draws into its own bitmap (+0x2c) from a cached terrain bitmap (+0x8040), and 0x4cf9a0 picks the
@@ -451,37 +384,106 @@ static void __fastcall r_mm_tomap(int self, void *edx, int *pt, short *out)
 }
 
 /* The in-game minimap window (class at 0x4ca767, vtable 0x4fa924, kept at +0x44 of the GUI object [0x56c2b4]; a window
- * keeps x, y, w, h at +4..+0x10) is drawn again over the scaled frame, r_mm_scale times larger and anchored at its
- * bottom-left corner. my_getcur maps the cursor inside it back to the window. */
-static void r_minimap(const unsigned short *src, int sp, int w, int h, int dx, int dy, int dw, int dh)
-{
-    int gui = *(int *)VA(0x56c2b4), mm, mx, my, mw, mh, k, L, T, W, H, X, Y;
-    r_mm_k = 0;
-    if (r_mm_scale <= 1 || dw != 2 * w || dh != 2 * h || !readable(gui, 0x48)) return;
-    mm = BF(gui, 0x44);
-    if (!readable(mm, 0x14) || BF(mm, 0) != 0x4fa924) return;
-    mx = BF(mm, 4); my = BF(mm, 8); mw = BF(mm, 0xc); mh = BF(mm, 0x10);
-    if (mw <= 0 || mh <= 0 || mx < 0 || my < 0 || mx + mw > w || my + mh > h) return;
-    k = 2 * r_mm_scale; W = mw * k; H = mh * k;
-    L = dx + 2 * mx; T = dy + 2 * (my + mh) - H;
-    if (T < 0) { H += T; T = 0; }
-    if (L + W > dx + dw) W = dx + dw - L;
-    r_upscale(src, sp, mx, my, mw, mh, k, r_px + T * phys_w() + L, phys_w(), mh * k - H, H, W);
+ * keeps x, y, w, h at +4..+0x10) is made r_mm_grow GUI pixels wider and taller by adjusting the rects its constructors
+ * build (CRect calls at 0x4ca786 for the window, 0x4ca8e8 for the picture, five more for the buttons). Its frame is
+ * one sprite, GUI bob 0x37 drawn 13 pixels above the window (0x4ca883, vtable slot 3); r_mm_frame draws it again in
+ * pieces around the bigger picture: bar ends, tiled bar, corner, tiled rope column, column foot, black interior. */
+static int __fastcall rect_window(int *r, void *edx, int x, int y, int w, int h)
+{ (void)edx; r[0] = x; r[1] = y - r_mm_grow; r[2] = w + r_mm_grow; r[3] = h + r_mm_grow; return (int)r; }
+static int __fastcall rect_picture(int *r, void *edx, int x, int y, int w, int h)
+{ (void)edx; r[0] = x; r[1] = y; r[2] = w + r_mm_grow; r[3] = h + r_mm_grow; return (int)r; }
+static int __fastcall rect_button(int *r, void *edx, int x, int y, int w, int h)
+{ (void)edx; r[0] = x + r_mm_grow; r[1] = y; r[2] = w; r[3] = h; return (int)r; }
 
-    if (k == r_hik) {   /* the minimap picture, 1:1 */
-        int wg = BF(mm, 0x74), top = dy + 2 * (my + mh) - mh * k;
-        struct mmhi *m = readable(wg, 0x14) && BF(wg, 0) == 0x4fab20 ? mm_find(wg) : 0;
-        if (m) {
-            int hi = m->hi, hw = BF(hi, 0x10), hh = BF(hi, 0x14), X0 = L + BF(wg, 4) * k, Y0 = top + BF(wg, 8) * k;
-            for (Y = 0; Y < hh; Y++) {
-                if (Y0 + Y < T || Y0 + Y >= T + H) continue;
-                if (X0 < 0 || X0 + hw > phys_w()) break;
-                memcpy(r_px + (Y0 + Y) * phys_w() + X0, (unsigned short *)BF(hi, 0x28) + Y * BF(hi, 0x30), hw * 2);
-            }
-        }
+typedef void (__fastcall *bobdraw_t)(int lib, void *edx, int id, int target, int x, int y, int pal, int flags);
+/* bob 0x37 piece (sx, sy, sw, sh), in sprite coordinates relative to the window (the bar starts at y -13), to
+ * window position (dx, dy); (ax, ay) is the window on the root bitmap */
+static void frame_piece(int root, int ax, int ay, int sx, int sy, int sw, int sh, int dx, int dy)
+{
+    int view[0x60 / 4], X = ax + dx, Y = ay + dy, W = sw, H = sh;
+    if (X < 0) { W += X; sx -= X; dx -= X; X = 0; }
+    if (Y < 0) { H += Y; sy -= Y; dy -= Y; Y = 0; }
+    if (X + W > BF(root, 0x10)) W = BF(root, 0x10) - X;
+    if (Y + H > BF(root, 0x14)) H = BF(root, 0x14) - Y;
+    if (W <= 0 || H <= 0) return;
+    ((void (__fastcall *)(int *, void *, int, int, int, int, int))VA(0x40d325))(view, 0, root, X, Y, W, H);
+    ((bobdraw_t)VA(0x467b20))(*(int *)VA(0x56cb00), 0, 0x37, (int)view, -sx, -sy - 13, *(int *)VA(0x56cb1c), 0x80);
+    ((void (__fastcall *)(int *))VA(0x40d362))(view);
+}
+static void __stdcall r_mm_frame_body(int target)
+{
+    int root = target, ax = 0, ay = 0, d = r_mm_grow, x, y;
+    const int C = 104, T = 6, cw = 50;          /* column starts at sprite x 104, the bar ends at y 6 */
+    while (BF(root, 0x48)) { ax += BF(root, 0x40); ay += BF(root, 0x44); root = BF(root, 0x48); }
+    for (y = T; y < 120 + d; y += 114)          /* black interior */
+        for (x = 0; x < C + d; x += C)
+            frame_piece(root, ax, ay, 0, T, x + C <= C + d ? C : C + d - x, y + 114 <= 120 + d ? 114 : 120 + d - y, x, y);
+    frame_piece(root, ax, ay, 0, -13, C, T + 13, 0, -13);                               /* bar, left end */
+    for (x = C; x < C + d; x += 80)                                                      /* bar, tiled */
+        frame_piece(root, ax, ay, 20, -13, x + 80 <= C + d ? 80 : C + d - x, T + 13, x, -13);
+    frame_piece(root, ax, ay, C, -13, cw, 53, C + d, -13);                              /* corner, column top */
+    for (y = 40; y < 100 + d; y += 60)                                                   /* column, tiled */
+        frame_piece(root, ax, ay, C, 40, cw, y + 60 <= 100 + d ? 60 : 100 + d - y, C + d, y);
+    frame_piece(root, ax, ay, C, 100, cw, 20, C + d, 100 + d);                          /* column foot */
+}
+/* thiscall (window; target, clip), ret 8 */
+static void __declspec(naked) r_mm_frame(void)
+{
+    __asm {
+        push dword ptr [esp + 4]
+        call r_mm_frame_body
+        ret 8
     }
-    r_mm_x = mx; r_mm_y = my + (mh * k - H) / k; r_mm_k = k;
-    r_mm_phys.left = L; r_mm_phys.top = T; r_mm_phys.right = L + W; r_mm_phys.bottom = T + H;
+}
+
+/* debug (trace=1): save GUI bob 0x37 (the minimap frame) to cx_bob37.bmp */
+static void r_dump_bob(int id)
+{
+    static int done;
+    int lib = *(int *)VA(0x56cb00), scr = r_screen(), b, x, y, W = 200, H = 200;
+    FILE *f;
+    if (done || !trace_f || !lib || !scr) return;
+    done = 1;
+    b = new_bitmap(W, H, BF(scr, 4));
+    if (!b || BF(b, 0x34) != 2) return;
+    for (y = 0; y < H; y++) for (x = 0; x < W; x++) ((unsigned short *)BF(b, 0x28))[y * BF(b, 0x30) + x] = R_KEY;
+    ((bobdraw_t)VA(0x467b20))(lib, 0, id, b, 20, 33, *(int *)VA(0x56cb1c), 0x80);
+    f = fopen("cx_bob37.bmp", "wb");
+    if (!f) return;
+    {
+        unsigned char hdr[54] = {'B', 'M'};
+        int sz = 54 + W * H * 3;
+        memcpy(hdr + 2, &sz, 4); hdr[10] = 54; hdr[14] = 40;
+        memcpy(hdr + 18, &W, 4); memcpy(hdr + 22, &H, 4); hdr[26] = 1; hdr[28] = 24;
+        fwrite(hdr, 1, 54, f);
+        for (y = H - 1; y >= 0; y--)
+            for (x = 0; x < W; x++) {
+                unsigned short p = ((unsigned short *)BF(b, 0x28))[y * BF(b, 0x30) + x];
+                unsigned char c[3] = {(unsigned char)((p & 31) << 3), (unsigned char)(((p >> 5) & 63) << 2), (unsigned char)((p >> 11) << 3)};
+                fwrite(c, 1, 3, f);
+            }
+    }
+    fclose(f);
+}
+
+/* the minimap picture at display resolution, over the scaled frame */
+static void r_minimap(int w, int h, int dx, int dy, int dw, int dh)
+{
+    int gui = *(int *)VA(0x56c2b4), mm, wg, Y;
+    struct mmhi *m;
+    if (r_hik != 2 || dw != 2 * w || dh != 2 * h || !readable(gui, 0x48)) return;
+    mm = BF(gui, 0x44);
+    if (!readable(mm, 0x78) || BF(mm, 0) != 0x4fa924) return;
+    r_dump_bob(0x37);
+    wg = BF(mm, 0x74);
+    m = readable(wg, 0x14) && BF(wg, 0) == 0x4fab20 ? mm_find(wg) : 0;
+    if (m) {
+        int hi = m->hi, hw = BF(hi, 0x10), hh = BF(hi, 0x14);
+        int X0 = dx + 2 * (BF(mm, 4) + BF(wg, 4)), Y0 = dy + 2 * (BF(mm, 8) + BF(wg, 8));
+        if (X0 < 0 || Y0 < 0 || X0 + hw > phys_w() || Y0 + hh > phys_h()) return;
+        for (Y = 0; Y < hh; Y++)
+            memcpy(r_px + (Y0 + Y) * phys_w() + X0, (unsigned short *)BF(hi, 0x28) + Y * BF(hi, 0x30), hw * 2);
+    }
 }
 
 static void __fastcall r_present(void *app, void *edx, int bmp, void *rect, int flags)
@@ -490,7 +492,7 @@ static void __fastcall r_present(void *app, void *edx, int bmp, void *rect, int 
     double s = r_scale;
     unsigned short *src;
     if (!bmp || rect || flags || BF(bmp, 0x34) != 2 || !pw || !ph || !r_alloc(pw, ph)) {
-        nglyphs = 0; r_mm_k = 0;
+        nglyphs = 0;
         present_orig(app, edx, bmp, rect, flags);
         return;
     }
@@ -531,7 +533,7 @@ static void __fastcall r_present(void *app, void *edx, int bmp, void *rect, int 
     }
     r_wsrc = 0;
     if (r_world) r_default_zoom();
-    r_minimap(src, sp, w, h, dx, dy, dw, dh);
+    r_minimap(w, h, dx, dy, dw, dh);
     r_text(dx, dy, (double)dw / w);
     nglyphs = 0;
     memcpy(r_fake, (void *)bmp, 0x60);
@@ -571,14 +573,23 @@ static void render_install(const char *ini)
     present_orig = (present_t)detour(VA(0x479f24), r_present, 5, "8b414c85c0");
     if (!drawchar_orig || !present_orig) { dbg("render: hook failed"); return; }
     for (i = 0; i < 8; i++) { patch_call2(wsites[i], 0x479be8, logical_width); patch_call2(hsites[i], 0x479bf9, logical_height); }
-    r_mm_scale = GetPrivateProfileIntA("cx", "minimap", 2, ini);
-    if (r_scale == 2 && r_mm_scale >= 1 && *(unsigned *)VA(0x4fab2c) == 0x4cf696 &&
+    i = GetPrivateProfileIntA("cx", "minimap", 2, ini);
+    r_mm_grow = i > 1 ? 112 * (i - 1) : 0;
+    if (r_scale == 2 && *(unsigned *)VA(0x4fab2c) == 0x4cf696 && *(unsigned *)VA(0x4fa930) == 0x4ca883 &&
         patch_call2(0x4cf757, 0x4b9b4c, r_mm_blit)) {
         static const unsigned mmsites[] = {0x4d0977, 0x4d09c3, 0x4d0ad3};
+        static const unsigned btn[] = {0x4ca930, 0x4ca989, 0x4ca9e8, 0x4caa44, 0x4caaa0};
         void *p = r_mm_draw;
         for (i = 0; i < 3; i++) patch_call2(mmsites[i], 0x4d07f2, r_mm_tomap);
         put(VA(0x4fab2c), &p, 4);
-        r_hik = 2 * r_mm_scale;
+        r_hik = 2;
+        if (r_mm_grow) {
+            p = r_mm_frame;
+            put(VA(0x4fa930), &p, 4);
+            patch_call2(0x4ca786, 0x410fe3, rect_window);
+            patch_call2(0x4ca8e8, 0x410fe3, rect_picture);
+            for (i = 0; i < 5; i++) patch_call2(btn[i], 0x410fe3, rect_button);
+        }
     }
     GetPrivateProfileStringA("cx", "world", "native", v, sizeof v, ini);
     r_world = !_stricmp(v, "native") && r_scale == 2;

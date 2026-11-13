@@ -78,7 +78,10 @@ The other callers (0x4022af, 0x40278a, 0x402cdf, 0x403493) are menus, loading sc
 
 **Minimap:**
 - Window class `0x4ca767` (vtable 0x4fa924), rect (0, h-120, 140, 120), kept at +0x44 of the in-game GUI object `[0x56c2b4]`.
-  Buttons and the picture are created in `0x4ca8bf`. GUI windows keep x, y, w, h at +4..+0x10 and their bitmap at +0x2c.
+  Buttons and the picture are created in `0x4ca8bf` (CRect calls: window 0x4ca786, picture 0x4ca8e8, buttons 0x4ca930,
+  0x4ca989, 0x4ca9e8, 0x4caa44, 0x4caaa0). The frame is one sprite, GUI bob 0x37 (library `[0x56cb00]`, palette
+  `[0x56cb1c]`), drawn by `0x4ca883` (vtable slot 3) with the bob blitter `0x467b20` 13 pixels above the window: a top bar
+  and a rope column from x 104, black inside. Bitmap views: `0x40d325` (thiscall view, parent, x, y, w, h), `0x40d362` frees. GUI windows keep x, y, w, h at +4..+0x10 and their bitmap at +0x2c.
 - Picture widget `0x4cf4a0` (vtable 0x4fab20, 0x816c bytes, at window +0x74, 112x112 at 4,4): draw `0x4cf696`, full redraw
   `0x4cf9a0` (tiles per pixel at +0x8038/+0x803c, from the map size `0x514758`/`0x51475a` and the bitmap size), partial
   redraw `0x4cffe9`, terrain cache bitmap +0x8040, zoom +0x8064, dirty flag +0x8044. Pixel to map `0x4d07f2`, map to pixel
