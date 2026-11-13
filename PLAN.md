@@ -200,8 +200,11 @@ Reverse engineer the in-game minimap widget (its rectangle, render routine, clic
 
 **Rules:** each rewritten function has its original address, a short note on what it does, and an in-game check. Every hook keeps checking the original bytes, as cx.dll does now. Game assets never go into the repo.
 
-### Phase 7: Packaging
+### Phase 7: Packaging ✅
 `build.py`, one command from the source folders to a playable `build\`. Plus a play-test checklist, a README, and a toggle to switch each loader feature on or off.
+- ✅ `python build.py` builds from a fresh checkout. It runs `tools/extract_text.py` itself when `work/manifest.json` is missing, and it stops with a clear message when cnc-ddraw is missing. A fresh build into an empty folder matched `build\` (checked 2026-11-13).
+- ✅ Loader switches in `cx.ini` (all on by default): `c2_campaign`, `fmv`, `world`, `minimap`, `minimap_hires`, plus the existing `render`, `scale`, `ui_scale`, `font`, `font_weight` and `trace`. `build.py` writes every key with a comment. `--off FEATURE` and `--minimap N` set them at build time. With `trace=1`, the loader's status lines also go to `cx_trace.log`. Each switch was checked from the loader log, not yet in play.
+- ✅ `README.md` (requirements, build, options, cx.ini keys) and `CHECKLIST.md` (the play-test list, with what has been seen working).
 
 ### Phase 8: Downloadable installer (final step)
 A single Windows setup `.exe` that turns the player's own installs into the finished product, with no Python, MSVC or repo checkout needed. It contains only our work, never game files.

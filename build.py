@@ -1,10 +1,12 @@
 """Assemble the playable build from the user's own game copies (sources are only read).
 
-  python build.py [--saga D:/Cultures_Saga] [--gog "D:/GOG Games"] [--out build] [--fullscreen]
+  python build.py [--saga D:/Cultures_Saga] [--gog "D:/GOG Games"] [--out build] [options, see --help]
 
-Phase 1 output (build/):
-  * a copy of the Cultures Saga install (Game.exe CD check patched),
-  * Game.ini with set_language 1 (eng),
+Prerequisites and options: README.md. Output (build/):
+  * a copy of the Cultures Saga install (Game.exe CD check patched, cx.dll imported),
+  * cx.dll (loader/), cx.ini with its feature switches, cnc-ddraw, the English and Cultures 2 videos,
+  * Game.ini with set_language 1 (eng), Saves/opt_glob.ini with the display size,
+  * DataX/UserCampaigns with the translated user campaigns,
   * DataX/Libs/data0002.lib - overlay holding only data\\...\\eng\\... files:
       - English text/graphics taken from the GOG 8th Wonder / Northland archives for every Saga
         language file that has an English counterpart (global strings, hypertext, shared maps),
@@ -329,6 +331,8 @@ def install_ddraw(src, out, window, lock_cursor=False):
     window: None -> borderless fullscreen (aspect kept), 'WxH' -> scaled window of that size.
     In a window the cursor is left free (devmode): cnc-ddraw's cursor lock clips the pointer to the window, and
     while it is locked Alt+Tab / Win+D do nothing, so the only way out was closing the game."""
+    if not os.path.exists(os.path.join(src, 'ddraw.dll')):
+        raise SystemExit(f'cnc-ddraw not found in {src}: extract a release there (see README.md) or pass --no-ddraw')
     for f in ('ddraw.dll',):
         shutil.copy2(os.path.join(src, f), os.path.join(out, f))
     if not os.path.isdir(os.path.join(out, 'Shaders')):
@@ -374,6 +378,37 @@ def pick_game_res(tw, th, scale):
     return max(same or fit, key=lambda m: m[0] * m[1])
 
 
+# cx.dll features that cx.ini can switch off (all on by default); see README.md
+FEATURES = ('c2_campaign', 'fmv', 'world', 'minimap_hires')
+
+
+def cx_ini(scale, native, a):
+    """cx.ini with every key cx.dll reads, commented, so a player can change them without rebuilding."""
+    on = lambda k: 0 if k in a.off else 1  # noqa: E731
+    t = ['[cx]',
+         '; Loader features: 1 = on, 0 = off',
+         '; Gates of Asgard (Cultures 2) campaign: its button in the campaign menu and its campaign screen',
+         f'c2_campaign={on("c2_campaign")}',
+         '; the Cultures 2 intro film before Gates of Asgard mission 10 (the other films are plain files)',
+         f'fmv={on("fmv")}',
+         '',
+         '; Display. render=native: the engine runs at display size / scale and cx.dll scales each frame up,',
+         '; redrawing text with a TrueType font. Without it, ui_scale > 1 has cnc-ddraw stretch a smaller mode.',
+         f'ui_scale={scale:g}']
+    if native:
+        t += ['render=native', f'scale={a.scale}',
+              '; world: native = landscape and units at full display resolution (scale=2 only); scaled = blocky',
+              f'world={"native" if on("world") else "scaled"}',
+              '; minimap picture size in multiples of 112 GUI pixels (1 = original size)',
+              f'minimap={a.minimap}',
+              '; draw the minimap picture at display resolution (scale=2 only)',
+              f'minimap_hires={on("minimap_hires")}',
+              '; text: TrueType face and weight (400 normal, 700 bold)',
+              'font=Georgia', 'font_weight=700']
+    t += ['', '; 1 = write cx_trace.log next to Game.exe (debugging)', 'trace=0']
+    return '\n'.join(t) + '\n'
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--saga', default='D:/Cultures_Saga')
@@ -400,6 +435,11 @@ def main():
                     help='with --window: keep the cursor inside the window (Ctrl+Tab unlocks it)')
     ap.add_argument('--hw-cursor', action='store_true',
                     help='use the hardware cursor (leaves artifacts around the pointer on modern Windows)')
+    ap.add_argument('--minimap', type=int, default=2,
+                    help='with --render native: minimap picture size in multiples of the original 112 pixels (default 2)')
+    ap.add_argument('--off', action='append', default=[], choices=FEATURES, metavar='FEATURE',
+                    help='switch a cx.dll feature off; repeatable. One of: ' + ', '.join(FEATURES) +
+                         '. The same keys can be changed later in build/cx.ini')
     a = ap.parse_args()
     use_ddraw = not a.no_ddraw
     nw = os.path.join(a.gog, 'Northland and 8th Wonder of the World')
@@ -433,11 +473,7 @@ def main():
     else:
         gw, gh = 800, 600
     with open(os.path.join(a.out, 'cx.ini'), 'w', newline='\r\n') as f:
-        f.write('[cx]\n; GUI size relative to 1:1; the engine runs at a standard mode near display size / ui_scale\n'
-                f'ui_scale={scale:g}\n')
-        if native:
-            f.write('; native: the engine runs at display size / scale, cx.dll scales frames and redraws text sharply\n'
-                    f'render=native\nscale={a.scale}\n')
+        f.write(cx_ini(scale, native, a))
     game = pick_game_res(gw, gh, scale) if scale > 1 else (gw, gh)
     if native:
         game = (gw // a.scale, gh // a.scale)
@@ -445,7 +481,12 @@ def main():
         f' -> game {game[0]}x{game[1]}')
     for k, v in (('gfx_screen_width', gw), ('gfx_screen_height', gh), ('gfx_screen_depth', 16)):
         set_option(a.out, k, v, 'opt_glob.ini')
-    manifest = json.load(open(os.path.join(ROOT, 'work', 'manifest.json'), encoding='utf-8'))
+    mpath = os.path.join(ROOT, 'work', 'manifest.json')
+    if not os.path.exists(mpath):  # a fresh checkout: index the German text first (tools/extract_text.py)
+        log('work/manifest.json missing: running tools/extract_text.py')
+        subprocess.run([sys.executable, os.path.join(ROOT, 'tools', 'extract_text.py'), '--saga', a.saga,
+                        '--gog', a.gog, '--out', os.path.join(ROOT, 'work')], check=True)
+    manifest = json.load(open(mpath, encoding='utf-8'))
     build_overlay(os.path.join(a.saga, 'DataX', 'Libs', 'data0001.lib'), eng_libs,
                   os.path.join(ROOT, 'translations', 'eng'), manifest,
                   os.path.join(a.out, 'DataX', 'Libs', 'data0002.lib'),

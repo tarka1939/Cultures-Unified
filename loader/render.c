@@ -575,7 +575,7 @@ static void render_install(const char *ini)
     for (i = 0; i < 8; i++) { patch_call2(wsites[i], 0x479be8, logical_width); patch_call2(hsites[i], 0x479bf9, logical_height); }
     i = GetPrivateProfileIntA("cx", "minimap", 2, ini);
     r_mm_grow = i > 1 ? 112 * (i - 1) : 0;
-    if (r_scale == 2 && *(unsigned *)VA(0x4fab2c) == 0x4cf696 && *(unsigned *)VA(0x4fa930) == 0x4ca883 &&
+    if (r_scale == 2 && GetPrivateProfileIntA("cx", "minimap_hires", 1, ini) && *(unsigned *)VA(0x4fab2c) == 0x4cf696 && *(unsigned *)VA(0x4fa930) == 0x4ca883 &&
         patch_call2(0x4cf757, 0x4b9b4c, r_mm_blit)) {
         static const unsigned mmsites[] = {0x4d0977, 0x4d09c3, 0x4d0ad3};
         static const unsigned btn[] = {0x4ca930, 0x4ca989, 0x4ca9e8, 0x4caa44, 0x4caaa0};

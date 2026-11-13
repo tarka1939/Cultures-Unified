@@ -46,7 +46,12 @@ static cfg_del_t  cfg_del   = (cfg_del_t)0x4e380e;
 #define STR_C2_TIP   26
 
 /* ------------------------------------------------------------------ patching helpers */
-static void dbg(const char *s) { OutputDebugStringA("cx: "); OutputDebugStringA(s); OutputDebugStringA("\n"); }
+static FILE *trace_f;   /* cx_trace.log, open with cx.ini trace=1 */
+static void dbg(const char *s)
+{
+    OutputDebugStringA("cx: "); OutputDebugStringA(s); OutputDebugStringA("\n");
+    if (trace_f) { fprintf(trace_f, "cx: %s\n", s); fflush(trace_f); }
+}
 
 static void put(void *at, const void *src, SIZE_T n)
 {
@@ -297,7 +302,7 @@ static void *__fastcall appinit_hook(void *app, void *edx, int *cfg)
 typedef void (__fastcall *drawchar_t)(void *font, void *edx, unsigned *color, int bmp, int ch, int x, int y);
 typedef void (__fastcall *present_t)(void *app, void *edx, int bmp, void *rect, int flags);
 static drawchar_t drawchar_orig; static present_t present_orig;
-static FILE *trace_f; static DWORD trace_t0; static int tr_frames, tr_glyphs, tr_screen, tr_other, tr_ow, tr_oh;
+static DWORD trace_t0; static int tr_frames, tr_glyphs, tr_screen, tr_other, tr_ow, tr_oh;
 static int screen_bmp(void) { int m = *(int *)VA(0x557f44); return m ? *(int *)(m + 0x10) : 0; }
 /* where is the bitmap `bmp` referenced from? scans the GUI manager, the display object and the top-level windows */
 static int readable(int p, int n) { return p > 0x10000 && !IsBadReadPtr((void *)p, n); }
@@ -379,11 +384,9 @@ static void patch_call(unsigned at, unsigned from, void *to)
 
 #include "render.c"
 
-static void scale_install(void)
+static void scale_install(const char *path)
 {
-    char path[MAX_PATH], v[16], *s;
-    GetModuleFileNameA(0, path, MAX_PATH);
-    if ((s = strrchr(path, '\\')) != 0) strcpy(s + 1, "cx.ini");
+    char v[16];
     GetPrivateProfileStringA("cx", "ui_scale", "1", v, sizeof v, path);
     ui_scale = atof(v);
     render_install(path);
@@ -400,6 +403,7 @@ static void scale_install(void)
 static void install(void)
 {
     unsigned slot = 0x4d8b02 + 6 * 4, def = 0x4d8af9, stub = (unsigned)cmd_c2_stub;
+    char ini[MAX_PATH], *e;
     /* DPI-aware before cnc-ddraw makes its window: otherwise, with Windows display scaling above 100%, Windows
      * shows the game a smaller desktop (2048x1280 at 125% on 2560x1600) and stretches the result, blurring it */
     {
@@ -407,8 +411,12 @@ static void install(void)
         ctx_t f = (ctx_t)GetProcAddress(GetModuleHandleA("user32.dll"), "SetProcessDpiAwarenessContext");
         if (!f || !f((void *)-4)) SetProcessDPIAware();
     }
-    scale_install();
-    fmv_install();
+    GetModuleFileNameA(0, ini, MAX_PATH);
+    if ((e = strrchr(ini, '\\')) != 0) strcpy(e + 1, "cx.ini");
+    scale_install(ini);
+    /* feature toggles (cx.ini [cx]); each defaults to on */
+    if (GetPrivateProfileIntA("cx", "fmv", 1, ini)) fmv_install(); else dbg("fmv hook off (cx.ini)");
+    if (!GetPrivateProfileIntA("cx", "c2_campaign", 1, ini)) { dbg("c2 campaign off (cx.ini)"); return; }
     c2_init();
     if (!c2_ok) return;
     if (*(unsigned *)VA(slot) != def) { dbg("c2: jump table slot in use"); c2_ok = 0; return; }
