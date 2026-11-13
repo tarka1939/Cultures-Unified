@@ -3,7 +3,7 @@
  * feature stays off (see OutputDebugString / DebugView).
  *
  * Feature 1: Cultures 2 campaign (campaign id 1) on the Saga campaign-map screen.
- *   - a "'Cultures 2' Campaign" button on the single-player screen (screen 3), above "'Northland' Campaign",
+ *   - a "'Gates of Asgard' Campaign" button on the single-player screen (screen 3), above "'Northland' Campaign",
  *     sending command 5006 (free slot 6 of the menu command jump table);
  *   - screen 5 (the Northland map; the C2 map background is the same picture, frame 2) is switched to campaign 1
  *     by re-pointing its campaign id, marker table and path-overlay table while it is shown for C2;
@@ -166,8 +166,8 @@ static void __fastcall build_hook(int *mgr)
     memcpy(rect, nl + 1, sizeof rect);
     rect[1] -= dy;
     label = saga_str(STR_C2); tip = saga_str(STR_C2_TIP);
-    if (!label || !*label) label = "'Cultures 2' Campaign";
-    if (!tip || !*tip) tip = "To the 'Cultures 2' campaign screen";
+    if (!label || !*label) label = "'Gates of Asgard' Campaign";
+    if (!tip || !*tip) tip = "To the 'Gates of Asgard' campaign screen";
     b = game_new(0x60);
     if (!b) return;
     b = btn_ctor(b, 0, rect, label, tip, CMD_C2, mgr + 0x85b);

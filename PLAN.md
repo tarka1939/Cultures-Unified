@@ -125,7 +125,7 @@ Code changes go through a **loader DLL with runtime hooks**. The original exe st
 1. ✅ `tools/validate_maps.py`: every house, good, job, vehicle, tribe and palette the C2 maps use exists in the Saga. All script verbs exist in the exe, except `True`/`Exit`/`None`, which are handled in code (they're missing from C2's own strings too). `hero_bjarni` differs from the definition only in case. `campaign_01_09` holds only briefings (no map, no marker), so there's nothing to play.
 2. ✅ The overlay carries C2's `campaign_01_*`, `singleplayer_01_*` and `multiplayer_0*` maps (915 files, English text and sfx as shipped by GOG). The C2 maps carry `mapcampaignid 1 <mission>`, so the Saga engine treats them as campaign 1 with no changes. `demo_mainmenu_0x` is left out (menu backdrops).
 3. ✅ `loader/cx.c` → `cx.dll`, built with MSVC by `loader/make.py` and added to Game.exe's import table by `tools/peimport.py`:
-   - a "'Cultures 2' Campaign" button (saga001 strings 25/26) above Northland on the single-player screen, using command 5006 (a free jump-table slot);
+   - a "'Gates of Asgard' Campaign" button (saga001 strings 25/26) above Northland on the single-player screen, using command 5006 (a free jump-table slot);
    - screen 5 (the Northland map, the same picture as C2's) is switched to campaign 1 (campaign id, marker table from Cultures2.exe `0x4fc2e0`, path overlays = C2 frames 3..11 appended to `LS_menu_logos.bmd` as 26..34);
    - `start_campaign_1_screen` is consumed after a C2 mission.
    Every patch site is checked against the original bytes first. The user confirmed in game that it works.
@@ -134,10 +134,11 @@ Code changes go through a **loader DLL with runtime hooks**. The original exe st
    C2 videos: build.py converts C2's Bink films with ffmpeg (`.tools/ffmpeg` or PATH; skipped if missing) to the Saga's MPEG-1 format: `Intro.bik` → `intro00.mpg`, shown before campaign 1 mission 10 by a cx.dll hook in `FUN_00403100`; `Seq_0000.bik` → `Seq_0000.mpg` (C2 maps request sequence 0; the Saga uses 1 and 2). Hooks are verified in memory; playback not yet seen in game.
 4. Play-test the C2 campaign end to end: balance changes or removed script verbs could soft-lock missions.
 
-### Phase 4: Unified scenario panel
-1. Every `maptype 2` map from all the games goes in one list. If the list is built by scanning maps, they show up automatically.
-2. Tag each entry with its origin (for example "[C2] …", "[NL] …", "[8W] …") using each map's own `strings.cif`/`mapnamestringid`. Optionally add grouping through the existing "Type"/"Register" sort column.
-3. Do the same for the multiplayer and "multiplayer training" lists.
+### Phase 4: Unified scenario panel ✅ (pending in-game check)
+1. ✅ The Saga builds its scenario and multiplayer lists by scanning every `data\maps\*` folder (`FUN_004118f9`, map manager `DAT_00513c0c`; list section by `maptype`: 2 = scenario, 4 = multiplayer). So every map in the overlay appears automatically. The lists now hold 22 scenarios (8 C2, 9 Northland incl. the demo and the Christmas map, 5 8th Wonder) and 30 multiplayer maps (18 C2, 7 Northland, 5 8th Wonder). The only map that was missing, NL's `weinachten_2002` ("Let it snow"), is now in the overlay.
+2. ✅ `build.py` (`tag_scenarios`) prefixes each maptype 2/4 map name (`mapnamestringid` in the map's `text\eng\strings.cif`) with its origin: `[C2]` Gates of Asgard, `[C3]` Northland, `[C4]` 8th Wonder (the series numbering), worked out from the folder name. 52 maps are tagged, and in all 114 map string files only the name line changed. The tag also shows wherever the game prints the map name (e.g. save names).
+3. ✅ The multiplayer lists use the same names, so they're tagged too.
+4. To check in game: the scenario list (single player → Free Play), its sort order with the tags, and that C2 scenarios start and play.
 
 ### Phase 5: Resolution and UI scaling
 - **Stage A, quick win:** add an open-source DirectDraw wrapper (cnc-ddraw, MIT). The game renders at a lower internal resolution and the wrapper scales it up to the native display (borderless window, integer/bilinear/shader scaling, configurable). Everything gets bigger, the world view included. **Started:** `build.py` installs cnc-ddraw (global `[ddraw]` section: windowed + fullscreen = borderless, maintas, adjmouse, renderer=auto; Game.ini `gfx_fullscreen 1`).
@@ -148,6 +149,22 @@ Reverse engineer the in-game minimap widget (its rectangle, render routine, clic
 
 ### Phase 7: Packaging
 `build.py`, one command from the source folders to a playable `build\`. Plus a play-test checklist, a README, and a toggle to switch each loader feature on or off.
+
+### Phase 8: Downloadable installer (final step)
+A single Windows setup `.exe` that turns the player's own installs into the finished product, with no Python, MSVC or repo checkout needed. It contains only our work, never game files.
+
+1. **What the installer ships:** the frozen build pipeline (`build.py` + `tools/` as one exe, e.g. PyInstaller), a prebuilt `cx.dll` (every hook: C2 campaign screen, videos, and later the scenario panel, UI scaling and minimap), all translations (`translations/eng`), the overlay recipe (which maps, history pages and menu frames to take from which game), cnc-ddraw (MIT, with its license), a README and a play-test checklist.
+2. **Wizard pages:**
+   1. Welcome and licenses.
+   2. Game locations: Cultures Saga, GOG "Cultures and Cultures 2" and GOG "Northland and 8th Wonder of the World". Paths are pre-filled from the GOG registry keys and the default folders, with Browse buttons.
+   3. Checks: each folder is verified (expected exe and lib hashes/sizes, `data0001.lib` present). Unknown versions get a clear message instead of a broken build.
+   4. Target folder: a new folder. The source installs are only read, never written.
+   5. Options: borderless, windowed or exclusive fullscreen; window size; software cursor; whether to convert the Cultures 2 videos.
+   6. Progress.
+   7. Finish: desktop and Start-menu shortcuts.
+3. **Cultures 2 videos:** ffmpeg isn't bundled, because of its GPL/LGPL obligations and size. The option converts with an ffmpeg already on PATH, or downloads the official build after the player agrees. Without it, the game simply skips those two videos.
+4. **Uninstall and repair:** the uninstaller removes only the target folder and shortcuts. Saves are kept unless the player opts in. Re-running setup rebuilds in place, e.g. after a game update or a new installer version.
+5. **Release:** the installer is built by a script (Inno Setup or NSIS around the frozen pipeline) and published as a release download. Smoke test: install on a clean Windows user account from the three GOG/Saga installs, then run the play-test checklist.
 
 ---
 
@@ -162,12 +179,15 @@ Reverse engineer the in-game minimap widget (its rectangle, render routine, clic
 | Campaign id is hard-coded in many places | Hook the single choke point, not each call site |
 | GUI uses absolute coordinates everywhere | Ship Stage A first; Stage B is incremental |
 | Copyright | Repo holds tools and our own translations only; build from your own copies |
+| Installer redistributes something it shouldn't | It ships only our code, translations and MIT cnc-ddraw. Game data is read from the player's installs at setup time; ffmpeg is used or downloaded only with consent |
+| Players have other game versions (retail CD, other GOG builds) | The installer verifies hashes and names the version it expected; add recipes per version as reported |
 
 ---
 
 ## 5. Decisions and open questions
 Decided:
 - Reverse-engineering tooling is my choice: Ghidra headless + text exports + x64dbg (see Phase 0; MCP bridge optional later).
+- Game naming: Cultures 2 is "The Gates of Asgard" (its campaign button reads "'Gates of Asgard' Campaign", like the Northland and 8th Wonder buttons). Map tags follow the series numbering: `[C2]` Gates of Asgard, `[C3]` Northland, `[C4]` 8th Wonder of the World.
 - The user campaigns show in the picker as **"Yogi"** and **"Yogi Part 2"** (already applied in `translations/eng/global/saga001.ini`).
 
 Still open:

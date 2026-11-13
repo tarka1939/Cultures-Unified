@@ -89,6 +89,48 @@ def menu_bank_with_c2(saga_bmd, c2_bmd):
 
 # C2 maps brought into the Saga data (campaign 1 + scenarios); campaign_01_09 is briefings only (no map).
 C2_MAPS = ('campaign_01_', 'singleplayer_01_', 'multiplayer_0')
+# Northland maps the Saga left out (christmas 2002 scenario).
+NL_EXTRA_MAPS = ('weinachten_2002',)
+# Scenario/multiplayer maps (maptype 2 and 4) get their game of origin in front of the name in the unified lists.
+# Folder naming: singleplayer_<game>_xx / multiplayer_<game>_xx_..., multiplayer_<game-1><nn>_... (0 C2, 1 NL, 2 8W).
+ORIGIN_TAGS = {'01': '[C2] ', '02': '[C3] ', '03': '[C4] '}  # Northland = Cultures 3, 8th Wonder = Cultures 4
+ORIGIN_EXTRA = {'demo_singleplayer_02': '02', 'weinachten_2002': '02'}
+
+
+def map_origin(folder):
+    f = folder.lower()
+    if f in ORIGIN_EXTRA:
+        return ORIGIN_EXTRA[f]
+    m = re.match(r'(?:singleplayer|multiplayer)_(\d\d)_', f)
+    if m:
+        return m.group(1)
+    m = re.match(r'multiplayer_(\d)\d\d_', f)
+    return f'0{int(m.group(1)) + 1}' if m else None
+
+
+def tag_scenarios(ov, sg, put):
+    """Prefix each scenario/multiplayer map name with its origin, e.g. '[C2] HAITABU'."""
+    files = {**{n.lower(): (sg, n) for n in sg.names()}, **{n.lower(): (ov, n) for n in ov.files}}
+    maps = BS.join(['data', 'maps', ''])
+    folders = {n.split(BS)[2] for n in files if n.startswith(maps) and n.endswith(BS + 'map.cif')}
+    for f in sorted(folders):
+        cif = libtool.cif_decode(files[maps + f + BS + 'map.cif'][0].read(files[maps + f + BS + 'map.cif'][1]))
+        types = re.findall(r'^maptype (\d+)', cif, re.M)
+        nid = re.search(r'^mapnamestringid (\d+)', cif, re.M)
+        origin = map_origin(f)
+        if not nid or not origin or not set(types) & {'2', '4'}:
+            continue
+        key = BS.join([maps + f, 'text', 'eng', 'strings.cif'])
+        if key not in files:
+            raise SystemExit(f'tag: {f} has no English strings.cif')
+        a, real = files[key]
+        text = libtool.cif_decode(a.read(real))
+        tag = ORIGIN_TAGS[origin]
+        new, n = re.subn(r'^(stringn? %s ")(?!\[)' % nid.group(1), lambda m: m.group(1) + tag, text, count=1,
+                         flags=re.M)
+        if n != 1:
+            raise SystemExit(f'tag: {f}: name string {nid.group(1)} not found')
+        put(real, libtool.cif_encode(new), 'tagged-names')
 
 
 def build_overlay(saga_lib, eng_libs, translations, manifest, out, c2_lib):
@@ -151,6 +193,12 @@ def build_overlay(saga_lib, eng_libs, translations, manifest, out, c2_lib):
         parts = name.lower().split(BS)
         if parts[:2] == ['data', 'maps'] and len(parts) > 3 and parts[2].startswith(C2_MAPS):
             put(name, c2.read(name), 'c2-maps')
+    nl = next(a for label, a, _ in sources if label == 'nl')
+    for name in nl.names():
+        parts = name.lower().split(BS)
+        if parts[:2] == ['data', 'maps'] and len(parts) > 3 and parts[2] in NL_EXTRA_MAPS:
+            put(name, nl.read(name), 'nl-extra-maps')
+    tag_scenarios(ov, sg, put)
     ov.save(out)
     log(f'overlay: {len(ov.files)} files -> {out}')
     for k, v in sorted(stats.items()):
