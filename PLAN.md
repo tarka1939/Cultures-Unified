@@ -142,10 +142,61 @@ Code changes go through a **loader DLL with runtime hooks**. The original exe st
 
 ### Phase 5: Resolution and UI scaling
 - **Stage A, quick win:** add an open-source DirectDraw wrapper (cnc-ddraw, MIT). The game renders at a lower internal resolution and the wrapper scales it up to the native display (borderless window, integer/bilinear/shader scaling, configurable). Everything gets bigger, the world view included. **Started:** `build.py` installs cnc-ddraw (global `[ddraw]` section: windowed + fullscreen = borderless, maintas, adjmouse, renderer=auto; Game.ini `gfx_fullscreen 1`).
+- **Stage A+, tried and rejected:** rendering at screen size / UI scale (e.g. 1064x800, 1280x720) and letting cnc-ddraw upscale. The menus look fine, but the user found in game that panels overlap and pictures are clipped, and non-standard sizes stop at start with the game's own "display mode not available" (it only accepts modes DirectDraw lists). The GUI is laid out for 800x600, so the build pins `gfx_screen_*` to 800x600 again; `build.py --game-res WxH` is kept as an experiment switch. Widescreen and a larger UI therefore need Stage B (GUI layout/scaling hooks).
 - **Stage B, true UI scaling:** the world renders at native resolution and only the GUI is magnified. This needs reverse engineering of the X2D GUI blit path: the loader would draw the GUI into its own surface, scale it up, and remap the mouse.
+  - **Findings so far:** the engine runs at any size given by `gfx_screen_width/height/depth` in `Saves\opt_glob.ini` (default 800x600; read at startup, written back by `FUN_004e3929`). At 1600x1200 it really renders at 1600x1200 (confirmed in memory: `[[[0x557f5c]+0x4c]+8]+4/+8`). The menus and the in-game GUI are drawn 1:1, so at high resolution they're tiny (the in-game bar is ~40 px wide). So Stage B = keep the engine at native resolution and magnify only the GUI.
+  - Test harness: `start_map data\maps\<folder>` in `Game.ini` loads a map directly; the game window can be captured with `PrintWindow`, and the engine state read with `ReadProcessMemory`. Background captures show the in-game GUI but not the world view (black); the "Game paused" text is the game-speed check at `0x4bb341` (`[0x513a30] < 0.01`), not focus: the app active flag (`[[0x557f5c]+0x4c]+5`, set on WM_ACTIVATE at `0x47c596`) reads 1. Not pursued further, since the GUI is what matters here.
+  - **Display modes (done):** cnc-ddraw `resolutions=2` (full mode list) removes the "display mode not available" error; 1280x720 now starts.
+  - **Layout at 1280x720:** in game coordinates the frame stays pinned top-left (side bar, mail bar) and the minimap bottom-left; window rects are identical at 800x600 and 1280x720 (GUI manager `[0x557f44]`, top-level list at +0x14, widget rect x/y/w/h at +4). (An earlier "120 px lower" reading was cnc-ddraw letterboxing in the capture.) Background captures never show the world or pop-up windows: game speed `[0x513a30]` stays 0 (map start waits for input), so overlaps must be checked with the game in the foreground.
+  - **Foreground play-test at 1280x720 (2026-11-13):** main/single-player/map-selection/difficulty menus, mission briefing, house and settler windows, build window and statistics window are all placed correctly (side bar and minimap pinned left, info windows pinned right, dialogs centred). The engine already lays out the in-game GUI for any size; the only effect is that the GUI is drawn 1:1, i.e. smaller relative to the world. So with the full mode list, true UI scaling = pick a standard game mode below the window size and let cnc-ddraw upscale (e.g. 1280x720 in a 1920x1080 window = 1.5x GUI, more world than 800x600). Non-standard sizes (e.g. 1064x800) are still refused. Unrelated bug seen at both sizes: the Free Play button shows "To the Tutorial screen." over its label. (A doubled "Dwelling 1" label is the building name plus the hover tooltip, not a bug.)
+  - **Auto game resolution (done):** `build.py` now picks the game resolution itself: the largest standard mode (`GAME_MODES`, cnc-ddraw full list) that fits the window, or the screen in borderless fullscreen, divided by `--ui-scale` (default 1.5), preferring the same aspect ratio; falls back to 800x600. Examples: 1600x1200 window -> 1024x768, 1920x1080 -> 1280x720, 2560x1440 -> 1600x900, 2560x1600 -> 1680x1050, 3840x2160 -> 1920x1080. `--game-res WxH` overrides. Verified 1024x768 and 1680x1050 start. Without cnc-ddraw the game stays at 800x600.
+  - **Options > Video (in progress):** picking a mode in the menu used to set the internal resolution directly (2560x1600 = tiny GUI). Now `opt_glob.ini` holds the display size and cx.dll scales it by `ui_scale` from `cx.ini`: hooks on app init `0x479f9f` (settings block, w +0x14 / h +0x18) and `CApplication::SetDisplayMode` `0x479ad4` (re-applying the mode cx.dll produced is passed through, to avoid double scaling). Startup verified (1600x1200 -> 1024x768); changing the mode in the menu while running is not yet tested.
+  - **User verdict (2026-11-13):** upscaling the whole frame is not enough. Labels are tiny and blurry when zoomed out (fonts are upscaled bitmaps), and the world still looks too small. Continued as Phase 9, which rebuilds the renderer so text and world are drawn at native resolution.
+  - Found on the way: a German copyright notice picture is shown while a map loads; it needs an English replacement (Phase 2 leftovers).
+- **Windowed cursor lock (fixed):** cnc-ddraw's cursor lock (`devmode=false`) clipped the pointer to the window, and while locked, Alt+Tab and Win+D did nothing. Windowed builds now set `devmode=true` (`build.py --lock-cursor` restores the lock; Ctrl+Tab unlocks it). Borderless fullscreen keeps the lock. Confirmed by a scripted repro (SendInput click, Alt+Tab, Win+D) and by the user in game.
 
 ### Phase 6: Variable minimap size
 Reverse engineer the in-game minimap widget (its rectangle, render routine, click mapping) and hook it to a configurable size or a scale factor, with an optional hotkey to cycle sizes.
+
+### Phase 9: Rebuilding the engine (decompilation)
+**Goal:** our own source code for the game, built from the decompiled Saga exe, so that rendering, fonts, GUI and the world view are no longer limited by the 2003 engine. The end state is a standalone exe built from our source that loads the players' original data.
+
+**Approach: incremental reimplementation inside the running game** (the way OpenRCT2 was made). Our code lives in `cx.dll`, which is already loaded into Game.exe. One function or module at a time is rewritten in C, hooked over the original and checked in game against the original behaviour. The game stays playable after every step, and what's done is useful at once. Once nothing calls into Game.exe any more, the code is linked into its own exe.
+- **Rejected for now:** a clean-room engine written from scratch against the data formats. Nothing would be playable until the whole simulation (jobs, AI, scripts, trading, combat) matched the original; that's years of work with no milestones in between.
+- **Rejected:** a matching decompilation (byte-identical rebuild of the exe). It's a lot of effort for exactness the goals don't need.
+
+**Scale:** 4,903 functions (Ghidra export in `re/export/saga`, queried with `re/q.py`). There's no RTTI and only 64 qualified names in strings, so names come from analysis. Source paths left in asserts (`BaseLibs\XSystem\X2DApp\X2DDDDisplay.cpp` ~0x47b-0x47d, `ToolLibs\DPlayBase\*` ~0x4dd-0x4e1, `ToolLibs\DPlayLogic\*` ~0x4e0-0x4e3) anchor the module map: MSVC lays out functions in source-file order.
+
+**Order, driven by what the player sees:**
+1. **Module map:** split the exe into modules (address ranges) with names: app/window, X2D display, sprite blitter ("bobs", `.bmd`), fonts (`.fnt`), landscape/world view, GUI widgets, game logic, scripts, network, CRT. Output: `re/MODULES.md` plus a symbols file the tools and Ghidra share.
+2. **Renderer at native resolution** (milestone 1, fixes this phase's complaints):
+   - Our display layer replaces X2DDDDisplay: the engine keeps a *logical* screen (e.g. 1280x800 for 2x on 2560x1600), and we draw into a *physical* native-size buffer.
+   - Sprite, tile and GUI blits are drawn scaled (nearest neighbour, which looks like the original pixel art).
+   - Text is drawn at physical resolution from a scalable font, so labels and windows are sharp at any size.
+   - Separate scales for world and GUI, so the map can be made larger without the GUI growing with it (and the reverse).
+   - cnc-ddraw is no longer needed for scaling.
+3. **GUI system:** widgets, windows, layout; resolution-independent layout, larger minimap (Phase 6).
+4. **Everything else, as needed for independence:** map and data loading, simulation, AI, scripts, sound, video, network. Each piece is rewritten when it blocks a feature or when we go for the standalone exe.
+
+**Progress:**
+- **Module map, first draft:** `re/MODULES.md` (address ranges, renderer entry points, bitmap fields). There's no symbols file yet.
+- **Renderer findings:**
+  - Frames are drawn in software into 16-bit memory bitmaps, then one call per frame copies one of them to DirectDraw (0x479f24). That call is the place to scale to native resolution.
+  - All text goes through one function (`CFont::DrawChar` 0x43a639). That's where crisp text can be drawn instead.
+  - Text is drawn straight into the presented frame, through view bitmaps onto the same pixels. There's no separate text or GUI layer.
+  - **Plan for sharp text:** the DrawChar hook records each glyph (string, font, colour, position in the frame) instead of drawing it at low resolution. Present scales the frame to native size, then draws the recorded text over it at native size.
+  - **Open question:** text that a later-drawn window covers (for example a building name under an open menu) would then show through. Check whether the GUI draws windows over map labels; if it does, clip each glyph against the windows drawn after it.
+  - `cx.ini [cx] trace=1` logs frames and glyphs per second to `cx_trace.log`.
+- **Native renderer prototype (`loader/render.c`, `cx.ini render=native scale=2`, now the build.py default):**
+  - The engine runs at display size / scale (1280x800 on a 2560x1600 screen). Its size getters and the cursor calls (GetCursorPos, SetCursorPos, ClipCursor) are patched to that logical size; the display itself stays at native size.
+  - Present scales each frame up (nearest neighbour). Menus and FMV that are smaller than the logical size are scaled too and centred.
+  - DrawChar records glyphs on the screen bitmap instead of drawing them. They are redrawn at native size in a TrueType font (Georgia bold by default, `font=`, `font_weight=`), a word at a time, centred in the bitmap font's box. Colours come from drawing one test glyph with the original font: fill plus dark edge.
+  - cx.dll makes the process DPI-aware. With Windows scaling at 125%, the game used to be stretched again by Windows.
+  - Checked in game: menus, Free Play map, mission text, building labels and mouse all correct at 2560x1600.
+  - Known issues: tooltips draw over button labels on some menus (as before). Text covered by a later-drawn window would still show (not seen yet). World and GUI use the same scale. `ui_scale` (`--render scaled`) stays as the fallback.
+- **Bug fixed on the way:** the game writes `opt_glob.ini` at every start, and it wrote the scaled mode (1680x1050). The next start scaled that again (to 800x600). cx.dll now gives the options writer the display size. Checked: after a run the file still says 2560x1600.
+
+**Rules:** each rewritten function has its original address, a short note on what it does, and an in-game check. Every hook keeps checking the original bytes, as cx.dll does now. Game assets never go into the repo.
 
 ### Phase 7: Packaging
 `build.py`, one command from the source folders to a playable `build\`. Plus a play-test checklist, a README, and a toggle to switch each loader feature on or off.

@@ -314,18 +314,21 @@ def install_cx(out):
     log('cx.dll installed and imported by Game.exe')
 
 
-def set_option(out, key, value):
-    """Set one key in Saves\\opt_game.ini (the in-game options file, FUN_004e3abd), keeping the player's others."""
-    p = os.path.join(out, 'Saves', 'opt_game.ini')
+def set_option(out, key, value, name='opt_game.ini'):
+    """Set one key in Saves\\<name>, keeping the player's others. opt_game.ini = in-game options (FUN_004e3abd),
+    opt_glob.ini = screen mode (gfx_screen_*, written back by FUN_004e3929)."""
+    p = os.path.join(out, 'Saves', name)
     os.makedirs(os.path.dirname(p), exist_ok=True)
     lines = open(p, encoding='cp1252').read().splitlines() if os.path.exists(p) else []
     lines = [l for l in lines if l.split(' ', 1)[0].lower() != key] + [f'{key} {value}']
     open(p, 'w', encoding='cp1252', newline='\r\n').write('\n'.join(lines) + '\n')
 
 
-def install_ddraw(src, out, window):
+def install_ddraw(src, out, window, lock_cursor=False):
     """cnc-ddraw (DirectDraw re-implementation): fixes windowed-mode artifacts and upscales the 800x600 game.
-    window: None -> borderless fullscreen (aspect kept), 'WxH' -> scaled window of that size."""
+    window: None -> borderless fullscreen (aspect kept), 'WxH' -> scaled window of that size.
+    In a window the cursor is left free (devmode): cnc-ddraw's cursor lock clips the pointer to the window, and
+    while it is locked Alt+Tab / Win+D do nothing, so the only way out was closing the game."""
     for f in ('ddraw.dll',):
         shutil.copy2(os.path.join(src, f), os.path.join(out, f))
     if not os.path.isdir(os.path.join(out, 'Shaders')):
@@ -336,13 +339,39 @@ def install_ddraw(src, out, window):
     sect, tail = ini[:first_game], ini[first_game:]
     w, h = (window.split('x') if window else ('0', '0'))
     opts = {'windowed': 'true', 'fullscreen': 'false' if window else 'true', 'width': w, 'height': h,
-            'maintas': 'true', 'adjmouse': 'true', 'renderer': 'auto', 'savesettings': '0'}
+            'maintas': 'true', 'adjmouse': 'true', 'renderer': 'auto', 'savesettings': '0',
+            'resolutions': '2',  # full mode list: the game errors on modes ddraw doesn't enumerate (e.g. 1280x720)
+            'devmode': 'true' if window and not lock_cursor else 'false'}
     for k, v in opts.items():
         sect, n = re.subn(rf'(?m)^{k}=.*$', lambda m: f'{k}={v}', sect, count=1)
         if not n:
             raise SystemExit(f'ddraw.ini: option {k} not found')
     open(os.path.join(out, 'ddraw.ini'), 'w', encoding='utf-8', newline='\r\n').write(sect + tail)
     log(f"cnc-ddraw installed ({'window ' + window if window else 'borderless fullscreen'})")
+
+
+# standard modes from cnc-ddraw's full list (resolutions=2); the game refuses sizes DirectDraw doesn't enumerate
+GAME_MODES = ((800, 600), (1024, 768), (1152, 864), (1280, 720), (1280, 768), (1280, 800), (1280, 960),
+              (1280, 1024), (1360, 768), (1366, 768), (1440, 900), (1600, 900), (1600, 1200), (1680, 1050),
+              (1920, 1080), (1920, 1200))
+
+
+def screen_size():
+    import ctypes
+    u = ctypes.windll.user32
+    u.SetProcessDPIAware()
+    return u.GetSystemMetrics(0), u.GetSystemMetrics(1)
+
+
+def pick_game_res(tw, th, scale):
+    """Largest standard mode that fits (tw, th) / scale, preferring the target's aspect ratio.
+    The game draws its GUI 1:1 and cnc-ddraw upscales the frame to the window, so the GUI ends up ~scale times larger."""
+    mw, mh = tw / scale, th / scale
+    fit = [m for m in GAME_MODES if m[0] <= mw + 1 and m[1] <= mh + 1]
+    if not fit:
+        return GAME_MODES[0]
+    same = [m for m in fit if abs(m[0] / m[1] - tw / th) < 0.03]
+    return max(same or fit, key=lambda m: m[0] * m[1])
 
 
 def main():
@@ -355,6 +384,20 @@ def main():
     ap.add_argument('--no-ddraw', action='store_true', help='use the system DirectDraw (original behaviour)')
     ap.add_argument('--window', metavar='WxH', help='with cnc-ddraw: scaled window instead of borderless fullscreen')
     ap.add_argument('--fullscreen', action='store_true', help='without cnc-ddraw: exclusive fullscreen')
+    ap.add_argument('--game-res', metavar='WxH',
+                    help='fixed internal game resolution, no UI scaling (must be a standard mode, e.g. 1280x720). Default: '
+                         'the window or screen size, scaled down by --ui-scale at run time')
+    ap.add_argument('--ui-scale', type=float, default=1.5,
+                    help='with cnc-ddraw and no --game-res: how much larger than 1:1 the GUI appears (default 1.5; written to cx.ini, '
+                         'applied by cx.dll to whatever resolution Options > Video picks)')
+    ap.add_argument('--render', choices=('native', 'scaled'), default='native',
+                    help='with cnc-ddraw and no --game-res: "native" (default) runs the engine at display size / --scale and '
+                         'cx.dll scales each frame up itself, redrawing text with a TrueType font; "scaled" is the older '
+                         '--ui-scale path, where cnc-ddraw stretches the whole frame')
+    ap.add_argument('--scale', type=int, default=2,
+                    help='with --render native: how many screen pixels per game pixel (default 2)')
+    ap.add_argument('--lock-cursor', action='store_true',
+                    help='with --window: keep the cursor inside the window (Ctrl+Tab unlocks it)')
     ap.add_argument('--hw-cursor', action='store_true',
                     help='use the hardware cursor (leaves artifacts around the pointer on modern Windows)')
     a = ap.parse_args()
@@ -374,11 +417,34 @@ def main():
         f.write(f'gfx_fullscreen {1 if (use_ddraw or a.fullscreen) else 0}\n')
     set_option(a.out, 'gui_mouse_software', 0 if a.hw_cursor else 1)
     if use_ddraw:
-        install_ddraw(a.ddraw, a.out, a.window)
+        install_ddraw(a.ddraw, a.out, a.window, a.lock_cursor)
     else:
         for f in ('ddraw.dll', 'ddraw.ini'):
             if os.path.exists(os.path.join(a.out, f)):
                 os.remove(os.path.join(a.out, f))
+    # opt_glob holds the *display* size (what Options > Video shows and saves); with ui_scale > 1, cx.dll hands the
+    # engine a smaller standard mode (pick_game_res) and cnc-ddraw upscales it, so the GUI is ~ui_scale larger.
+    native = use_ddraw and not a.game_res and a.render == 'native'
+    scale = a.ui_scale if use_ddraw and not a.game_res and not native else 1.0
+    if a.game_res:
+        gw, gh = map(int, a.game_res.split('x'))
+    elif use_ddraw:
+        gw, gh = map(int, a.window.split('x')) if a.window else screen_size()
+    else:
+        gw, gh = 800, 600
+    with open(os.path.join(a.out, 'cx.ini'), 'w', newline='\r\n') as f:
+        f.write('[cx]\n; GUI size relative to 1:1; the engine runs at a standard mode near display size / ui_scale\n'
+                f'ui_scale={scale:g}\n')
+        if native:
+            f.write('; native: the engine runs at display size / scale, cx.dll scales frames and redraws text sharply\n'
+                    f'render=native\nscale={a.scale}\n')
+    game = pick_game_res(gw, gh, scale) if scale > 1 else (gw, gh)
+    if native:
+        game = (gw // a.scale, gh // a.scale)
+    log(f'display {gw}x{gh}, ' + (f'native render x{a.scale}' if native else f'ui_scale {scale:g}') +
+        f' -> game {game[0]}x{game[1]}')
+    for k, v in (('gfx_screen_width', gw), ('gfx_screen_height', gh), ('gfx_screen_depth', 16)):
+        set_option(a.out, k, v, 'opt_glob.ini')
     manifest = json.load(open(os.path.join(ROOT, 'work', 'manifest.json'), encoding='utf-8'))
     build_overlay(os.path.join(a.saga, 'DataX', 'Libs', 'data0001.lib'), eng_libs,
                   os.path.join(ROOT, 'translations', 'eng'), manifest,

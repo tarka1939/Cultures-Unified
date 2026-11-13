@@ -14,6 +14,7 @@
 #include <windows.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
 #define VA(x) ((void *)(x))
 
@@ -232,9 +233,181 @@ static void fmv_install(void)
     dbg("fmv hook installed");
 }
 
+/* ------------------------------------------------------------------ UI scale
+ * The game draws its GUI 1:1 and cnc-ddraw upscales the frame to the window/screen. The resolution the player picks
+ * (Options > Video, saved in Saves\opt_glob.ini) is taken as the display size; NXSys2DApp::CApplication::SetDisplayMode
+ * (0x479ad4) is given the largest standard mode that fits it divided by ui_scale (cx.ini), so the GUI comes out
+ * ~ui_scale times larger. The options file keeps the display size: the options writer (0x4e3929) is given it in place
+ * of the engine's mode, or the next start would scale the scaled mode again. ui_scale=1 turns this off. */
+typedef int (__fastcall *setmode_t)(void *app, void *edx, int w, int h, int depth, int flag);
+static setmode_t setmode_orig;
+static double ui_scale = 1.0;
+static int last_w, last_h;   /* the mode we last handed to the engine: re-applying it is not scaled again */
+static int disp_w, disp_h;   /* the display size that mode was picked for */
+static const short modes[][2] = {
+    {800, 600}, {1024, 768}, {1152, 864}, {1280, 720}, {1280, 768}, {1280, 800}, {1280, 960}, {1280, 1024},
+    {1360, 768}, {1366, 768}, {1440, 900}, {1600, 900}, {1600, 1200}, {1680, 1050}, {1920, 1080}, {1920, 1200}};
+
+static void pick_mode(int tw, int th, int *w, int *h)   /* same rule as build.py pick_game_res */
+{
+    double mw = (disp_w = tw) / ui_scale + 1, mh = th / ui_scale + 1, ta = (double)tw / th;
+    int i, best = -1, best_same = -1;
+    for (i = 0; i < sizeof modes / sizeof modes[0]; i++) {
+        double a = (double)modes[i][0] / modes[i][1];
+        if (modes[i][0] > mw || modes[i][1] > mh) continue;
+        if (best < 0 || modes[i][0] * modes[i][1] > modes[best][0] * modes[best][1]) best = i;
+        if ((a - ta < 0.03 && ta - a < 0.03) &&
+            (best_same < 0 || modes[i][0] * modes[i][1] > modes[best_same][0] * modes[best_same][1])) best_same = i;
+    }
+    if (best_same >= 0) best = best_same;
+    if (best < 0) best = 0;
+    disp_h = th;
+    *w = last_w = modes[best][0]; *h = last_h = modes[best][1];
+}
+
+static int __fastcall setmode_hook(void *app, void *edx, int w, int h, int depth, int flag)
+{
+    int sw = w, sh = h;
+    char b[96];
+    if ((w > 800 || h > 600) && !(w == last_w && h == last_h)) pick_mode(w, h, &sw, &sh);
+    _snprintf(b, sizeof b, "ui scale: display %dx%d -> game %dx%d", w, h, sw, sh); b[sizeof b - 1] = 0; dbg(b);
+    return setmode_orig(app, edx, sw, sh, depth, flag);
+}
+
+/* startup: the app init (0x479f9f, thiscall) copies a settings block filled from opt_glob (width +0x14, height +0x18) */
+typedef void *(__fastcall *appinit_t)(void *app, void *edx, int *cfg);
+static appinit_t appinit_orig;
+static void *__fastcall appinit_hook(void *app, void *edx, int *cfg)
+{
+    int w = cfg[0x14 / 4], h = cfg[0x18 / 4];
+    if (w > 800 || h > 600) {
+        char b[96];
+        pick_mode(w, h, &cfg[0x14 / 4], &cfg[0x18 / 4]);
+        _snprintf(b, sizeof b, "ui scale: startup %dx%d -> %dx%d", w, h, cfg[0x14 / 4], cfg[0x18 / 4]);
+        b[sizeof b - 1] = 0; dbg(b);
+    }
+    return appinit_orig(app, edx, cfg);
+}
+
+/* ---- Renderer trace (Phase 9 research; cx.ini [cx] trace=1) ----
+ * The engine draws every frame in software into one bitmap, the GUI manager's screen ([[0x557f44]+0x10]),
+ * and converts it to the display in one call (present 0x479f24 -> BitmapToScreen 0x47c893).
+ * All text goes through CFont::DrawChar 0x43a639. This logs, per second: frames, glyphs, and how many glyphs
+ * went to the screen bitmap, with the screen's size and depth. Output: cx_trace.log next to Game.exe. */
+typedef void (__fastcall *drawchar_t)(void *font, void *edx, unsigned *color, int bmp, int ch, int x, int y);
+typedef void (__fastcall *present_t)(void *app, void *edx, int bmp, void *rect, int flags);
+static drawchar_t drawchar_orig; static present_t present_orig;
+static FILE *trace_f; static DWORD trace_t0; static int tr_frames, tr_glyphs, tr_screen, tr_other, tr_ow, tr_oh;
+static int screen_bmp(void) { int m = *(int *)VA(0x557f44); return m ? *(int *)(m + 0x10) : 0; }
+/* where is the bitmap `bmp` referenced from? scans the GUI manager, the display object and the top-level windows */
+static int readable(int p, int n) { return p > 0x10000 && !IsBadReadPtr((void *)p, n); }
+static void trace_where(int bmp)
+{
+    int gm = *(int *)VA(0x557f44), app = *(int *)VA(0x557f5c), objs[64][2], n = 0, i, o;
+    if (readable(gm, 0x200)) { objs[n][0] = gm; objs[n++][1] = 0; }
+    if (readable(app, 0x50) && readable(*(int *)(app + 0x4c), 12)) { objs[n][0] = *(int *)(*(int *)(app + 0x4c) + 8); objs[n++][1] = 1; }
+    if (readable(gm, 0x18) && readable(*(int *)(gm + 0x14), 12)) {
+        int node = *(int *)(*(int *)(gm + 0x14) + 8), c = 0;
+        while (readable(node, 8) && c++ < 60 && n < 64) { objs[n][0] = *(int *)(node + 4); objs[n++][1] = 2; node = *(int *)node; }
+    }
+    { int sc = screen_bmp(), k;
+      fprintf(trace_f, "glyph bitmap %08x (%dx%d), screen %08x:\n", bmp, *(int *)(bmp + 0x10), *(int *)(bmp + 0x14), sc);
+      for (k = 0; k < 0x60; k += 4) fprintf(trace_f, "  +%02x  glyph %08x  screen %08x\n", k, *(int *)(bmp + k), sc ? *(int *)(sc + k) : 0); }
+    for (i = 0; i < n; i++)
+        for (o = 0; o < 0x400; o += 4)
+            if (readable(objs[i][0] + o, 4) && *(int *)(objs[i][0] + o) == bmp)
+                fprintf(trace_f, "  found in %s %08x (vtable %08x) at +0x%x\n",
+                        objs[i][1] == 0 ? "gui manager" : objs[i][1] == 1 ? "display" : "window", objs[i][0],
+                        readable(objs[i][0], 4) ? *(int *)objs[i][0] : 0, o);
+    fflush(trace_f);
+}
+static int tr_where_done, tr_total;
+static void __fastcall drawchar_hook(void *font, void *edx, unsigned *color, int bmp, int ch, int x, int y)
+{
+    tr_glyphs++;
+    if (bmp && bmp == screen_bmp()) tr_screen++;
+    else { tr_other++; if (bmp && !tr_where_done && ++tr_total > 2000) { tr_where_done = 1; trace_where(bmp); } if (bmp) { tr_ow = *(int *)(bmp + 0x10); tr_oh = *(int *)(bmp + 0x14); } }
+    drawchar_orig(font, edx, color, bmp, ch, x, y);
+}
+static void __fastcall present_hook(void *app, void *edx, int bmp, void *rect, int flags)
+{
+    DWORD now = GetTickCount();
+    tr_frames++;
+    if (now - trace_t0 >= 1000) {
+        fprintf(trace_f, "%6lu ms: %d frames, %d glyphs (%d on screen, %d elsewhere, last %dx%d); present bmp %dx%d %d B/px pitch %d%s\n",
+                now - trace_t0, tr_frames, tr_glyphs, tr_screen, tr_other, tr_ow, tr_oh, *(int *)(bmp + 0x10), *(int *)(bmp + 0x14),
+                *(int *)(bmp + 0x34), *(int *)(bmp + 0x30), bmp == screen_bmp() ? " (gui screen)" : "");
+        fflush(trace_f);
+        trace_t0 = now; tr_frames = tr_glyphs = tr_screen = tr_other = 0;
+    }
+    present_orig(app, edx, bmp, rect, flags);
+}
+static void trace_install(const char *ini)
+{
+    char path[MAX_PATH], *s;
+    if (!GetPrivateProfileIntA("cx", "trace", 0, ini)) return;
+    strcpy(path, ini);
+    if ((s = strrchr(path, '\\')) != 0) strcpy(s + 1, "cx_trace.log");
+    if (!(trace_f = fopen(path, "w"))) return;
+    trace_t0 = GetTickCount();
+    drawchar_orig = (drawchar_t)detour(VA(0x43a639), drawchar_hook, 6, "558becff7508");
+    present_orig = (present_t)detour(VA(0x479f24), present_hook, 5, "8b414c85c0");
+    fprintf(trace_f, "trace hooks %s\n", drawchar_orig && present_orig ? "installed" : "FAILED"); fflush(trace_f);
+}
+
+/* options writer: the engine's width/height getters (thiscall, app in ecx) report the display size instead */
+typedef int (__fastcall *getsize_t)(void *app);
+static int __fastcall opt_width(void *app)
+{
+    int w = ((getsize_t)VA(0x479be8))(app);
+    return w == last_w && disp_w ? disp_w : w;
+}
+static int __fastcall opt_height(void *app)
+{
+    int h = ((getsize_t)VA(0x479bf9))(app);
+    return h == last_h && disp_h ? disp_h : h;
+}
+static void patch_call(unsigned at, unsigned from, void *to)
+{
+    unsigned char c[5] = {0xe8};
+    int rel = (int)from - (int)(at + 5);
+    if (*(unsigned char *)VA(at) != 0xe8 || *(int *)VA(at + 1) != rel) { dbg("ui scale: options writer call site mismatch"); return; }
+    rel = (int)(unsigned)to - (int)(at + 5);
+    memcpy(c + 1, &rel, 4);
+    put(VA(at), c, 5);
+}
+
+#include "render.c"
+
+static void scale_install(void)
+{
+    char path[MAX_PATH], v[16], *s;
+    GetModuleFileNameA(0, path, MAX_PATH);
+    if ((s = strrchr(path, '\\')) != 0) strcpy(s + 1, "cx.ini");
+    GetPrivateProfileStringA("cx", "ui_scale", "1", v, sizeof v, path);
+    ui_scale = atof(v);
+    render_install(path);
+    if (r_on) return;   /* the native renderer replaces ui_scale and the trace */
+    trace_install(path);
+    if (ui_scale <= 1.0) return;
+    setmode_orig = (setmode_t)detour(VA(0x479ad4), setmode_hook, 7, "558bec53568bf1");
+    appinit_orig = (appinit_t)detour(VA(0x479f9f), appinit_hook, 5, "5356578bd9");
+    patch_call(0x4e3987, 0x479be8, opt_width);
+    patch_call(0x4e39bb, 0x479bf9, opt_height);
+    dbg(setmode_orig && appinit_orig ? "ui scale hooks installed" : "ui scale: hook failed");
+}
+
 static void install(void)
 {
     unsigned slot = 0x4d8b02 + 6 * 4, def = 0x4d8af9, stub = (unsigned)cmd_c2_stub;
+    /* DPI-aware before cnc-ddraw makes its window: otherwise, with Windows display scaling above 100%, Windows
+     * shows the game a smaller desktop (2048x1280 at 125% on 2560x1600) and stretches the result, blurring it */
+    {
+        typedef BOOL (WINAPI *ctx_t)(void *);
+        ctx_t f = (ctx_t)GetProcAddress(GetModuleHandleA("user32.dll"), "SetProcessDpiAwarenessContext");
+        if (!f || !f((void *)-4)) SetProcessDPIAware();
+    }
+    scale_install();
     fmv_install();
     c2_init();
     if (!c2_ok) return;
