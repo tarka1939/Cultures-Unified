@@ -59,6 +59,28 @@ Run the same command again after changing anything. It rebuilds `build\` in plac
 | `--no-ddraw`, `--fullscreen` | the system DirectDraw instead of cnc-ddraw (800x600; `--fullscreen` for exclusive mode) |
 | `--hw-cursor` | the hardware cursor (leaves trails on modern Windows) |
 
+## Setup exe (for players)
+
+```bash
+python installer/make_setup.py
+```
+
+This builds `work\installer\CulturesUnifiedSetup.exe`, about 13 MB. It's a wizard for players who don't have Python
+or Visual Studio. It carries the build script, a prebuilt `cx.dll`, the translations, the text index (file names
+only) and cnc-ddraw. It holds no game files.
+
+- **Pages:** welcome and license, the three game folders (found automatically and checked), the install folder,
+  options (display, cursor, Cultures 2 videos, shortcuts), progress, finish.
+- **Install:** it registers an uninstall entry (Windows Settings > Apps) and copies itself into the install as
+  `Cultures Unified Setup.exe`. Run it again to change options or rebuild.
+- **Uninstall:** `--uninstall` removes the install folder and shortcuts. It asks whether to keep `Saves`.
+- **Scripted installs:** `--unattended <folder>` installs with the folders it finds and the default options.
+- **Cultures 2 videos:** ffmpeg isn't bundled. Setup looks on PATH, next to itself, in winget's folders and
+  `C:\ffmpeg\bin`. If ffmpeg isn't found, the options page says in red that the Gates of Asgard intro and ending
+  won't play, with a "Get ffmpeg" button and Browse.
+- **Log:** every run writes `%TEMP%\CulturesUnifiedSetup.log` and copies it to `<install>\setup.log`. It records
+  the folder checks, the build arguments and output, and any error, including errors inside the window.
+
 ## Loader features (`build\cx.ini`)
 
 `cx.dll` reads `build\cx.ini` at start. `build.py` writes every key with a comment. You can edit it without
@@ -99,6 +121,7 @@ Every hook first checks the bytes it replaces. If they differ, it stays off and 
 | Path | Contents |
 |---|---|
 | `build.py` | the build |
+| `installer/` | the setup wizard (`setup.py`), its build script (`make_setup.py`), the cnc-ddraw license |
 | `loader/` | `cx.c` (campaign, video and scaling hooks), `render.c` (native renderer), `make.py` |
 | `translations/` | the English text, glossary and progress notes |
 | `tools/` | archive (`.lib`, `.c2m`, `.cif`, `.bmd`) tools, text extraction, translation and map checks, PE import patcher |

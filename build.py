@@ -16,10 +16,14 @@ Prerequisites and options: README.md. Output (build/):
 import argparse, json, os, re, shutil, struct, subprocess, sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.join(ROOT, 'tools'))
-import libtool, bmd, peimport  # noqa: E402
-sys.path.insert(0, os.path.join(ROOT, 'loader'))
+# frozen into the setup exe (installer/setup.py): tools, loader, translations etc. are unpacked to sys._MEIPASS
+FROZEN = hasattr(sys, '_MEIPASS')
+RES = getattr(sys, '_MEIPASS', ROOT)
+for _d in ('tools', 'loader', 're'):
+    sys.path.insert(0, os.path.join(RES, _d))
+import libtool, bmd, peimport, pe  # noqa: E402
 import make as cx_make  # noqa: E402
+NO_WINDOW = 0x08000000  # CREATE_NO_WINDOW: no console flashing up from the setup wizard
 
 BS = '\\'
 LANG = re.compile(r'\\ger\\', re.I)
@@ -35,7 +39,10 @@ PATCHES = {
 
 
 def log(*a):
-    print(*a, flush=True)
+    LOG(' '.join(str(x) for x in a))
+
+
+LOG = lambda s: print(s, flush=True)  # noqa: E731  the setup wizard replaces it
 
 
 # ------------------------------------------------------------------ install copy
@@ -62,7 +69,6 @@ def copy_install(src, dst):
 
 def patch_exe(path, patches):
     b = bytearray(open(path, 'rb').read())
-    sys.path.insert(0, os.path.join(ROOT, 're')); import pe
     p = pe.PE(path)
     for va, orig, new in patches:
         o = p.off(va)
@@ -263,7 +269,7 @@ FMV_ENG = {'intro01.mpg': ('Northland', 'intro.mpg'), 'Seq_0001.mpg': ('Northlan
            'Seq_0002.mpg': ('8th Wonder of the World', 'Seq_0000.mpg')}
 
 
-def install_fmv(nw, c2_dir, out):
+def install_fmv(nw, c2_dir, out, ff):
     d = os.path.join(out, 'DataX', 'FMV', 'Eng')
     os.makedirs(d, exist_ok=True)
     for dst, (game, src) in FMV_ENG.items():
@@ -271,7 +277,7 @@ def install_fmv(nw, c2_dir, out):
         if not (os.path.exists(t) and os.path.getsize(t) == os.path.getsize(s)):
             shutil.copy2(s, t); os.chmod(t, 0o666)
     log(f'videos: {len(FMV_ENG)} English campaign films')
-    install_c2_fmv(c2_dir, d)
+    install_c2_fmv(c2_dir, d, ff)
 
 
 # Cultures 2 ships Bink videos, which the Saga can't play: convert them to the Saga's MPEG-1 format (640x480 25 fps,
@@ -285,11 +291,10 @@ def find_ffmpeg():
     return local if os.path.exists(local) else shutil.which('ffmpeg')
 
 
-def install_c2_fmv(c2_dir, d):
-    ff = find_ffmpeg()
+def install_c2_fmv(c2_dir, d, ff):
     src_dir = os.path.join(c2_dir, 'DataX', 'FMV', 'Eng')
     if not ff:
-        log('videos: no ffmpeg (.tools/ffmpeg or PATH): Cultures 2 videos skipped')
+        log('videos: no ffmpeg: Cultures 2 videos skipped')
         return
     n = 0
     for dst, src in C2_FMV.items():
@@ -298,16 +303,17 @@ def install_c2_fmv(c2_dir, d):
             continue
         r = subprocess.run([ff, '-v', 'error', '-y', '-i', s, '-r', '25', '-c:v', 'mpeg1video', '-b:v', '3000k',
                             '-maxrate', '3000k', '-bufsize', '640k', '-c:a', 'mp2', '-ar', '48000', '-ac', '2',
-                            '-b:a', '192k', '-f', 'mpeg', t + '.tmp'], capture_output=True, text=True)
+                            '-b:a', '192k', '-f', 'mpeg', t + '.tmp'], capture_output=True, text=True,
+                           creationflags=NO_WINDOW)
         if r.returncode:
             raise SystemExit(f'ffmpeg failed on {src}:\n{r.stderr}')
         os.replace(t + '.tmp', t); n += 1
     log(f'videos: Cultures 2 films converted ({n} new)')
 
 
-def install_cx(out):
-    """cx.dll (loader/cx.c: C2 campaign screen hooks) next to Game.exe, imported by it."""
-    shutil.copy2(cx_make.build(), os.path.join(out, 'cx.dll'))
+def install_cx(out, prebuilt=None):
+    """cx.dll (loader/cx.c) next to Game.exe, imported by it. prebuilt: a cx.dll to use instead of building one."""
+    shutil.copy2(prebuilt or cx_make.build(), os.path.join(out, 'cx.dll'))
     exe = os.path.join(out, 'Game.exe')
     b = open(exe, 'rb').read()
     nb = peimport.add_import(b, 'cx.dll', 'cx_version')
@@ -335,6 +341,7 @@ def install_ddraw(src, out, window, lock_cursor=False):
         raise SystemExit(f'cnc-ddraw not found in {src}: extract a release there (see README.md) or pass --no-ddraw')
     for f in ('ddraw.dll',):
         shutil.copy2(os.path.join(src, f), os.path.join(out, f))
+    shutil.copy2(os.path.join(RES, 'installer', 'LICENSE-cnc-ddraw.txt'), out)
     if not os.path.isdir(os.path.join(out, 'Shaders')):
         shutil.copytree(os.path.join(src, 'Shaders'), os.path.join(out, 'Shaders'))
     ini = open(os.path.join(src, 'ddraw.ini'), encoding='utf-8', errors='replace').read()
@@ -409,12 +416,19 @@ def cx_ini(scale, native, a):
     return '\n'.join(t) + '\n'
 
 
-def main():
+def parse_args(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument('--saga', default='D:/Cultures_Saga')
-    ap.add_argument('--gog', default='D:/GOG Games')
+    ap.add_argument('--gog', default='D:/GOG Games',
+                    help='folder holding the GOG "Cultures and Cultures 2" and "Northland and 8th Wonder of the World"')
+    ap.add_argument('--c2', help='the GOG Cultures 2 folder (default: <gog>/Cultures and Cultures 2/Cultures 2)')
+    ap.add_argument('--nw', help='the GOG Northland and 8th Wonder folder (default: <gog>/Northland and 8th Wonder of the World)')
     ap.add_argument('--out', default=os.path.join(ROOT, 'build'))
-    ap.add_argument('--ddraw', default=os.path.join(ROOT, '.tools', 'cnc-ddraw'),
+    ap.add_argument('--cx-dll', help='use this prebuilt cx.dll instead of building loader/ with MSVC')
+    ap.add_argument('--manifest', help='text manifest (default work/manifest.json, made by tools/extract_text.py)')
+    ap.add_argument('--ffmpeg', help='ffmpeg.exe for the Cultures 2 videos (default: .tools/ffmpeg or PATH)')
+    ap.add_argument('--no-c2-videos', action='store_true', help='skip converting the Cultures 2 videos')
+    ap.add_argument('--ddraw', default=os.path.join(RES, '.tools', 'cnc-ddraw'),
                     help='extracted cnc-ddraw release (ddraw.dll, ddraw.ini, Shaders)')
     ap.add_argument('--no-ddraw', action='store_true', help='use the system DirectDraw (original behaviour)')
     ap.add_argument('--window', metavar='WxH', help='with cnc-ddraw: scaled window instead of borderless fullscreen')
@@ -440,17 +454,23 @@ def main():
     ap.add_argument('--off', action='append', default=[], choices=FEATURES, metavar='FEATURE',
                     help='switch a cx.dll feature off; repeatable. One of: ' + ', '.join(FEATURES) +
                          '. The same keys can be changed later in build/cx.ini')
-    a = ap.parse_args()
+    a = ap.parse_args(argv)
+    a.c2 = a.c2 or os.path.join(a.gog, 'Cultures and Cultures 2', 'Cultures 2')
+    a.nw = a.nw or os.path.join(a.gog, 'Northland and 8th Wonder of the World')
+    return a
+
+
+def run(a):
     use_ddraw = not a.no_ddraw
-    nw = os.path.join(a.gog, 'Northland and 8th Wonder of the World')
+    nw = a.nw
     eng_libs = [('8w', os.path.join(nw, '8th Wonder of the World', 'DataX', 'Libs', 'data0001.lib')),
                 ('nl', os.path.join(nw, 'Northland', 'DataX', 'Libs', 'data0001.lib'))]
 
     copy_install(a.saga, a.out)
     for exe, pl in PATCHES.items():
         patch_exe(os.path.join(a.out, exe), pl)
-    install_cx(a.out)
-    install_fmv(nw, os.path.join(a.gog, 'Cultures and Cultures 2', 'Cultures 2'), a.out)
+    install_cx(a.out, a.cx_dll)
+    install_fmv(nw, a.c2, a.out, None if a.no_c2_videos else (a.ffmpeg or find_ffmpeg()))
     with open(os.path.join(a.out, 'Game.ini'), 'w', newline='\r\n') as f:
         f.write('set_language 1\n')
         # with cnc-ddraw the game must request fullscreen; the wrapper decides window/borderless/scaling
@@ -481,19 +501,20 @@ def main():
         f' -> game {game[0]}x{game[1]}')
     for k, v in (('gfx_screen_width', gw), ('gfx_screen_height', gh), ('gfx_screen_depth', 16)):
         set_option(a.out, k, v, 'opt_glob.ini')
-    mpath = os.path.join(ROOT, 'work', 'manifest.json')
+    mpath = a.manifest or os.path.join(ROOT, 'work', 'manifest.json')
     if not os.path.exists(mpath):  # a fresh checkout: index the German text first (tools/extract_text.py)
         log('work/manifest.json missing: running tools/extract_text.py')
         subprocess.run([sys.executable, os.path.join(ROOT, 'tools', 'extract_text.py'), '--saga', a.saga,
                         '--gog', a.gog, '--out', os.path.join(ROOT, 'work')], check=True)
     manifest = json.load(open(mpath, encoding='utf-8'))
+    tr = os.path.join(RES, 'translations', 'eng')
     build_overlay(os.path.join(a.saga, 'DataX', 'Libs', 'data0001.lib'), eng_libs,
-                  os.path.join(ROOT, 'translations', 'eng'), manifest,
+                  tr, manifest,
                   os.path.join(a.out, 'DataX', 'Libs', 'data0002.lib'),
-                  os.path.join(a.gog, 'Cultures and Cultures 2', 'Cultures 2', 'DataX', 'Libs', 'data0001.lib'))
-    build_usercampaigns(a.saga, a.out, os.path.join(ROOT, 'translations', 'eng'), manifest)
+                  os.path.join(a.c2, 'DataX', 'Libs', 'data0001.lib'))
+    build_usercampaigns(a.saga, a.out, tr, manifest)
     log('done:', a.out)
 
 
 if __name__ == '__main__':
-    main()
+    run(parse_args())

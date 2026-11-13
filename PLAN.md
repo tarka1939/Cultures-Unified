@@ -206,7 +206,27 @@ Reverse engineer the in-game minimap widget (its rectangle, render routine, clic
 - ✅ Loader switches in `cx.ini` (all on by default): `c2_campaign`, `fmv`, `world`, `minimap`, `minimap_hires`, plus the existing `render`, `scale`, `ui_scale`, `font`, `font_weight` and `trace`. `build.py` writes every key with a comment. `--off FEATURE` and `--minimap N` set them at build time. With `trace=1`, the loader's status lines also go to `cx_trace.log`. Each switch was checked from the loader log, not yet in play.
 - ✅ `README.md` (requirements, build, options, cx.ini keys) and `CHECKLIST.md` (the play-test list, with what has been seen working).
 
-### Phase 8: Downloadable installer (final step)
+### Phase 8: Downloadable installer (final step) (in progress)
+**Progress (2026-11-13):**
+- ✅ **Wizard and packaging:** a tkinter wizard (`installer/setup.py`), frozen with PyInstaller (`installer/make_setup.py`) into `work/installer/CulturesUnifiedSetup.exe`, 13.5 MB. No Inno Setup or NSIS needed.
+  - `build.py` runs inside it: `parse_args`/`run`, plus `--c2`/`--nw` folders, a prebuilt `--cx-dll`, `--manifest`, `--ffmpeg` and `--no-c2-videos`.
+  - Pages: welcome and license, game folders, install folder, options, progress, finish.
+- ✅ **Folder checks:** Saga `Game.exe` (size and hash), each `data0001.lib` by size, the FMV files. Picking a parent or child folder is accepted. The install folder can't be inside a source folder or Program Files.
+- ✅ **Install bookkeeping:** desktop and Start-menu shortcuts. An HKCU uninstall entry, with a copy of Setup in the install. `--uninstall` keeps `Saves` unless the player says otherwise. `--unattended <folder>` installs without the window.
+- ✅ **Log:** `%TEMP%\CulturesUnifiedSetup.log`, copied to `<install>\setup.log`.
+- ✅ **Tests:** the frozen exe with `--unattended` gives the same overlay and `cx.dll` as `build\`, and the game starts with all hooks on. A scripted run of the wizard covered every page, the refusals, the install, the shortcuts and the uninstall. The user ran the wizard by hand.
+- **Found in the user's run:** the Gates of Asgard intro didn't play. ffmpeg wasn't on PATH, so the videos were skipped with a single log line. Fixed:
+  - Setup now searches more places (next to Setup, winget, `C:\ffmpeg\bin`, chocolatey).
+  - The options page shows in red when the videos will be skipped, with a "Get ffmpeg" button.
+  - The finish page repeats it.
+- Also fixed: the worker thread read Tk variables, a valid window size never started the build, and the window was too small at 150% display scaling.
+- **Still to do:**
+  - Optional in-app ffmpeg download (after the player agrees).
+  - A clean-account smoke test.
+  - A release on GitHub.
+  - An icon.
+
+
 A single Windows setup `.exe` that turns the player's own installs into the finished product, with no Python, MSVC or repo checkout needed. It contains only our work, never game files.
 
 1. **What the installer ships:** the frozen build pipeline (`build.py` + `tools/` as one exe, e.g. PyInstaller), a prebuilt `cx.dll` (every hook: C2 campaign screen, videos, and later the scenario panel, UI scaling and minimap), all translations (`translations/eng`), the overlay recipe (which maps, history pages and menu frames to take from which game), cnc-ddraw (MIT, with its license), a README and a play-test checklist.
