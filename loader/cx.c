@@ -400,6 +400,166 @@ static void scale_install(const char *path)
     dbg(setmode_orig && appinit_orig ? "ui scale hooks installed" : "ui scale: hook failed");
 }
 
+/* ------------------------------------------------------------------ system cursor
+ * With the software cursor (opt_game.ini gui_mouse_software 1) the game draws its own pointer, but its cursor module
+ * (0x4799ed..0x479ad3) still shows the Windows one at times: before the first click (its "mouse active" flag is still
+ * off), and whenever it changes the cursor shape (0x479a25 calls ShowCursor(1) and SetCursor with its hardware
+ * cursor). That put a second pointer on top of the game's own. With cx.ini syscursor=0 (the build's default) the
+ * game's SetCursor/ShowCursor calls (all seven are in that module) set no cursor and never raise the show count while
+ * the game window is in front, and a subclass on the window does the same for WM_SETCURSOR over the game area. In the
+ * background the game window shows the normal arrow. */
+typedef HCURSOR (WINAPI *setcursor_t)(HCURSOR);
+typedef int (WINAPI *showcursor_t)(BOOL);
+#define REAL_SETCURSOR  (*(setcursor_t *)VA(0x4f61cc))    /* through the IAT: cnc-ddraw may hook these */
+#define REAL_SHOWCURSOR (*(showcursor_t *)VA(0x4f625c))
+static WNDPROC cur_prev;
+static HHOOK cur_hook;
+
+static HWND game_hwnd(void)
+{
+    int app = *(int *)VA(0x557f5c), win;
+    if (!app || !(win = *(int *)(app + 0x4c))) return 0;
+    return *(HWND *)win;
+}
+static int game_front(void) { HWND h = game_hwnd(); return h && GetForegroundWindow() == h; }
+
+static HCURSOR WINAPI my_setcursor(HCURSOR c) { return REAL_SETCURSOR(game_front() ? 0 : c); }
+static int WINAPI my_showcursor(BOOL show) { return show && game_front() ? 0 : REAL_SHOWCURSOR(show); }
+static void *p_setcursor = my_setcursor, *p_showcursor = my_showcursor;
+
+static LRESULT CALLBACK cur_proc(HWND h, UINT m, WPARAM wp, LPARAM lp)
+{
+    if (m == WM_SETCURSOR && LOWORD(lp) == HTCLIENT) {
+        int mouse = *(int *)VA(0x557f60);
+        if (mouse) ((void (__fastcall *)(int))VA(0x47a40f))(mouse);   /* the game's own handler: clip, flags */
+        if (GetForegroundWindow() == h) {
+            while (REAL_SHOWCURSOR(FALSE) >= 0) ;
+            REAL_SETCURSOR(0);
+        } else {
+            while (REAL_SHOWCURSOR(TRUE) < 0) ;
+            REAL_SETCURSOR(LoadCursorA(0, (LPCSTR)IDC_ARROW));
+        }
+        return TRUE;
+    }
+    return CallWindowProcA(cur_prev, h, m, wp, lp);
+}
+
+static LRESULT CALLBACK cur_watch(int code, WPARAM wp, LPARAM lp)
+{
+    const CWPSTRUCT *c = (const CWPSTRUCT *)lp;
+    if (code == HC_ACTION && !cur_prev && c->message == WM_SETCURSOR && c->hwnd && c->hwnd == game_hwnd()) {
+        cur_prev = (WNDPROC)SetWindowLongPtrA(c->hwnd, GWLP_WNDPROC, (LONG_PTR)cur_proc);
+        dbg(cur_prev ? "cursor: window subclassed" : "cursor: subclass failed");
+    }
+    return CallNextHookEx(cur_hook, code, wp, lp);
+}
+
+static void cursor_install(const char *ini)
+{
+    static const unsigned set_at[] = {0x4799fb, 0x479a17, 0x479a3d, 0x479a91}, show_at[] = {0x479a58, 0x479aa9, 0x479ac6};
+    int i, ok = 1;
+    if (GetPrivateProfileIntA("cx", "syscursor", 0, ini)) { dbg("cursor: Windows cursor kept (cx.ini syscursor=1)"); return; }
+    for (i = 0; i < 4; i++) ok &= *(unsigned short *)VA(set_at[i]) == 0x15ff && *(unsigned *)VA(set_at[i] + 2) == 0x4f61cc;
+    for (i = 0; i < 3; i++) ok &= *(unsigned short *)VA(show_at[i]) == 0x15ff && *(unsigned *)VA(show_at[i] + 2) == 0x4f625c;
+    if (!ok || !same(VA(0x47a40f), "568bf1e828000000")) { dbg("cursor: unexpected bytes"); return; }
+    for (i = 0; i < 4; i++) patch_icall(set_at[i], 0x4f61cc, &p_setcursor);
+    for (i = 0; i < 3; i++) patch_icall(show_at[i], 0x4f625c, &p_showcursor);
+    cur_hook = SetWindowsHookExA(WH_CALLWNDPROC, cur_watch, 0, GetCurrentThreadId());
+    dbg(cur_hook ? "cursor: Windows cursor hidden over the game" : "cursor: hook failed");
+}
+
+/* ------------------------------------------------------------------ C2 balance
+ * Weapon types are loaded once at start (FUN_00414202, data\logic\weapontypes) into [0x514038 + tribe*4], each an
+ * array of 22 entries of 0xc4 bytes: +0x2c minimum range, +0x30 maximum range, +0x38 damage against armour class
+ * 0..7. Combat reads them at every hit. The Saga's numbers are 8th Wonder's; Cultures 2 had stronger bows and weaker
+ * swords. build.py writes C2's values, at the Saga's slots, and the C2 map folders to c2balance.txt. Every map load
+ * (FUN_0040b367, thiscall; arg 1 is the map record, whose first field is the map's root folder; saved games come
+ * through it too) puts C2's values in for a C2 map and the Saga's back for any other. */
+struct wvals { int tribe, slot, minr, maxr, dmg[8]; };
+static struct wvals bal_c2[256], bal_saga[256];
+static int nbal, nbal_maps, bal_saved, bal_on;
+static char bal_maps[96][64];
+typedef unsigned (__fastcall *mapload_t)(void *self, void *edx, char *root, void *user, int a, int b, int c);
+static mapload_t mapload_orig;
+
+static int *weapon_slot(int tribe, int slot)
+{
+    int base;
+    if (tribe < 0 || tribe >= 0x2a || slot < 0 || slot >= 0x16) return 0;   /* the loader's own limits */
+    base = ((int *)VA(0x514038))[tribe];
+    return base ? (int *)(base + slot * 0xc4) : 0;
+}
+static void bal_get(struct wvals *v)
+{
+    int *w = weapon_slot(v->tribe, v->slot);
+    if (w) { v->minr = w[0x2c / 4]; v->maxr = w[0x30 / 4]; memcpy(v->dmg, w + 0x38 / 4, sizeof v->dmg); }
+}
+static void bal_put(const struct wvals *v)
+{
+    int *w = weapon_slot(v->tribe, v->slot);
+    if (w) { w[0x2c / 4] = v->minr; w[0x30 / 4] = v->maxr; memcpy(w + 0x38 / 4, v->dmg, sizeof v->dmg); }
+}
+
+static int is_c2_map(const char *root)
+{
+    char name[64];
+    int n, i;
+    const char *p;
+    if (!root) return 0;
+    n = (int)strlen(root);
+    while (n && (root[n - 1] == '\\' || root[n - 1] == '/')) n--;
+    for (p = root + n; p > root && p[-1] != '\\' && p[-1] != '/'; p--) ;
+    if (root + n - p >= (int)sizeof name) return 0;
+    for (i = 0; p + i < root + n; i++) name[i] = (char)(p[i] >= 'A' && p[i] <= 'Z' ? p[i] + 32 : p[i]);
+    name[i] = 0;
+    for (i = 0; i < nbal_maps; i++) if (!strcmp(name, bal_maps[i])) return 1;
+    return 0;
+}
+
+static unsigned __fastcall mapload_hook(void *self, void *edx, char *root, void *user, int a, int b, int c)
+{
+    int i, c2 = is_c2_map(root);
+    if (!bal_saved) {   /* the Saga's own values, before we first change them */
+        for (i = 0; i < nbal; i++) { bal_saga[i] = bal_c2[i]; bal_get(&bal_saga[i]); }
+        bal_saved = 1;
+    }
+    if (c2 != bal_on) {
+        for (i = 0; i < nbal; i++) bal_put(c2 ? &bal_c2[i] : &bal_saga[i]);
+        bal_on = c2;
+    }
+    if (trace_f) { fprintf(trace_f, "cx: map %s -> %s weapon values\n", root ? root : "(user map)", c2 ? "C2" : "Saga"); fflush(trace_f); }
+    return mapload_orig(self, edx, root, user, a, b, c);
+}
+
+static void balance_install(const char *ini)
+{
+    char path[MAX_PATH], line[256], *e;
+    FILE *f;
+    strcpy(path, ini);
+    if ((e = strrchr(path, '\\')) != 0) strcpy(e + 1, "c2balance.txt");
+    if (!(f = fopen(path, "r"))) { dbg("c2 balance: no c2balance.txt"); return; }
+    while (fgets(line, sizeof line, f)) {
+        struct wvals *v = &bal_c2[nbal];
+        if (line[0] == 'w' && nbal < 256 &&
+            sscanf(line + 1, "%d %d %d %d %d %d %d %d %d %d %d %d", &v->tribe, &v->slot, &v->minr, &v->maxr,
+                   &v->dmg[0], &v->dmg[1], &v->dmg[2], &v->dmg[3], &v->dmg[4], &v->dmg[5], &v->dmg[6], &v->dmg[7]) == 12)
+            nbal++;
+        else if (!strncmp(line, "map ", 4) && nbal_maps < 96) {
+            char *s = line + 4, *t = s + strlen(s);
+            while (t > s && (t[-1] == '\n' || t[-1] == '\r' || t[-1] == ' ')) *--t = 0;
+            if (*s && strlen(s) < sizeof bal_maps[0]) strcpy(bal_maps[nbal_maps++], s);
+        }
+    }
+    fclose(f);
+    if (!nbal || !nbal_maps) { dbg("c2 balance: c2balance.txt is empty"); return; }
+    mapload_orig = (mapload_t)detour(VA(0x40b367), mapload_hook, 9, "558bec81ec6c020000");
+    {
+        char b[96];
+        _snprintf(b, sizeof b, "c2 balance: %d weapons for %d maps%s", nbal, nbal_maps, mapload_orig ? "" : ", hook failed");
+        b[sizeof b - 1] = 0; dbg(b);
+    }
+}
+
 static void install(void)
 {
     unsigned slot = 0x4d8b02 + 6 * 4, def = 0x4d8af9, stub = (unsigned)cmd_c2_stub;
@@ -414,8 +574,10 @@ static void install(void)
     GetModuleFileNameA(0, ini, MAX_PATH);
     if ((e = strrchr(ini, '\\')) != 0) strcpy(e + 1, "cx.ini");
     scale_install(ini);
+    cursor_install(ini);
     /* feature toggles (cx.ini [cx]); each defaults to on */
     if (GetPrivateProfileIntA("cx", "fmv", 1, ini)) fmv_install(); else dbg("fmv hook off (cx.ini)");
+    if (GetPrivateProfileIntA("cx", "c2_balance", 1, ini)) balance_install(ini); else dbg("c2 balance off (cx.ini)");
     if (!GetPrivateProfileIntA("cx", "c2_campaign", 1, ini)) { dbg("c2 campaign off (cx.ini)"); return; }
     c2_init();
     if (!c2_ok) return;

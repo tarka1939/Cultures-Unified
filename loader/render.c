@@ -109,7 +109,7 @@ struct glyph { int font, key, ch, x, y, adv; RECT clip; };   /* adv: the bitmap 
 static struct glyph glyphs[8192];
 static int nglyphs;
 
-struct tcol { int font, key; COLORREF fill, edge; int has_edge; };
+struct tcol { int font, key; COLORREF fill, edge; int has_edge, base; };   /* base: baseline below the cell top, -1 unknown */
 static struct tcol tcols[64];
 static int ntcols;
 
@@ -130,7 +130,7 @@ static struct tcol *text_colour(void *font, unsigned *color, int view)
     for (i = 0; i < ntcols; i++)
         if (tcols[i].font == (int)font && tcols[i].key == key) return &tcols[i];
     t = &tcols[ntcols < 64 ? ntcols++ : 63];
-    t->font = (int)font; t->key = key; t->fill = RGB(255, 255, 255); t->edge = 0; t->has_edge = 0;
+    t->font = (int)font; t->key = key; t->fill = RGB(255, 255, 255); t->edge = 0; t->has_edge = 0; t->base = -1;
     for (i = 0; i < 48 * 48; i++) px[i] = 0xf81f;   /* magenta: never a font colour */
     memcpy(fake, (void *)view, 0x60);
     BF(fake, 0x10) = 48; BF(fake, 0x14) = 48; BF(fake, 0x18) = 47; BF(fake, 0x1c) = 47;
@@ -148,6 +148,8 @@ static struct tcol *text_colour(void *font, unsigned *color, int view)
     if (best >= 0) {
         int dark = -1, lum_best = 0, lf;
         t->fill = rgb565(vals[best]);
+        for (i = 48 * 48 - 1; i >= 0; i--)   /* baseline: the row under the lowest fill pixel of the 'H' */
+            if (px[i] == vals[best]) { t->base = i / 48 + 1 - 8; break; }
         lf = GetRValue(t->fill) * 3 + GetGValue(t->fill) * 6 + GetBValue(t->fill);
         for (i = 0; i < n; i++) {      /* edge: the darkest colour used for a fair share of pixels */
             COLORREF c = rgb565(vals[i]);
@@ -230,7 +232,7 @@ static void r_default_zoom(void)
 /* ---- present ---- */
 static HDC r_dc; static HBITMAP r_dib; static unsigned short *r_px; static int r_w, r_h;
 static int *r_xmap; static char r_fake[0x100];
-static HFONT r_fonts[4]; static int r_font_ptr[4], r_font_h[4];
+static HFONT r_fonts[4]; static int r_font_ptr[4], r_font_h[4], r_font_asc[4];
 
 static int r_alloc(int w, int h)
 {
@@ -260,7 +262,20 @@ static HFONT r_font_for(int font)
     r_fonts[i] = CreateFontA(-h, 0, 0, 0, r_weight, 0, 0, 0, ANSI_CHARSET, OUT_TT_PRECIS, CLIP_DEFAULT_PRECIS,
                              ANTIALIASED_QUALITY, DEFAULT_PITCH, r_face);
     r_font_ptr[i] = font; r_font_h[i] = h;
+    {
+        TEXTMETRICA tm;
+        HGDIOBJ old = SelectObject(r_dc, r_fonts[i]);
+        r_font_asc[i] = GetTextMetricsA(r_dc, &tm) ? tm.tmAscent : h;
+        SelectObject(r_dc, old);
+    }
     return r_fonts[i];
+}
+
+static int font_slot(int font)
+{
+    int i;
+    for (i = 0; i < 4; i++) if (r_font_ptr[i] == font) return i;
+    return 0;
 }
 
 /* Text is drawn a word at a time: consecutive glyphs that touch in the bitmap font (x + advance = next x) and share
@@ -299,7 +314,8 @@ static void r_text(int dx, int dy, double s)
             nat = box;
         }
         X = dx + (int)(g->x * s) + (box - nat) / 2;
-        Y = dy + (int)(g->y * s);
+        /* the TrueType baseline goes where the bitmap font's is, so text sits in its box as the game placed it */
+        Y = t->base >= 0 ? dy + (int)((g->y + t->base) * s + 0.5) - r_font_asc[font_slot(g->font)] : dy + (int)(g->y * s);
         c.left = dx + (int)(g->clip.left * s); c.top = dy + (int)(g->clip.top * s);
         c.right = dx + (int)(g->clip.right * s); c.bottom = dy + (int)(g->clip.bottom * s);
         if (t->has_edge) {

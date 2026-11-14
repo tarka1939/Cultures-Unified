@@ -30,6 +30,10 @@ LANG = re.compile(r'\\ger\\', re.I)
 # Saga's own versions must win over the 8W/NL English ones: the menu bank holds the campaign 2/4 map frames
 # (8W's lacks them), the pictures carry the Saga branding.
 SAGA_ONLY = ('bobs\\ls_menu_logos.bmd', 'pictures\\titlescreen.bmp', 'pictures\\loadscreen.bmp')
+# The built game runs as EXE, not Game.exe: Windows' compatibility database matches the Saga Game.exe and applies
+# compatibility shims to it (AcGenral.dll is loaded). With them, Alt+Tab and Win+D never reach Windows, so the game
+# couldn't be left without quitting. Under another name no shim matches.
+EXE = 'CulturesUnified.exe'
 SKIP_INSTALL ={'autorun.exe', 'register.exe', 'unregister.exe', 'uninst.isu', 'uninstall.dll', 'funatics website.url'}
 
 # Game.exe CD check: FUN_004d43bd (CD present && extro.dat ok) -> return true. See re/NOTES.md.
@@ -312,7 +316,7 @@ def install_c2_fmv(c2_dir, d, ff):
 
 
 def install_cx(out, prebuilt=None):
-    """cx.dll (loader/cx.c) next to Game.exe, imported by it. prebuilt: a cx.dll to use instead of building one."""
+    """cx.dll (loader/cx.c) next to Game.exe, imported by it (the exe is renamed to EXE afterwards). prebuilt: a cx.dll to use instead of building one."""
     shutil.copy2(prebuilt or cx_make.build(), os.path.join(out, 'cx.dll'))
     exe = os.path.join(out, 'Game.exe')
     b = open(exe, 'rb').read()
@@ -386,7 +390,61 @@ def pick_game_res(tw, th, scale):
 
 
 # cx.dll features that cx.ini can switch off (all on by default); see README.md
-FEATURES = ('c2_campaign', 'fmv', 'world', 'minimap_hires')
+def cif_blocks(arc, name, tag):
+    """[tag] blocks of a data cif as lists of (key, value) pairs."""
+    out = []
+    for b in libtool.cif_decode(arc.read(name)).split('[' + tag + ']')[1:]:
+        out.append([tuple(l.strip().split(None, 1)) for l in b.splitlines() if len(l.strip().split(None, 1)) == 2])
+    return out
+
+
+def write_c2_balance(saga_lib, c2_lib, out):
+    """c2balance.txt for cx.dll: Cultures 2's weapon values (ranges, damage per armour class), placed at the Saga's
+    weapon slots, and the C2 map folders they apply to. The Saga's own table (the same as 8th Wonder's) has weaker
+    bows and stronger swords than C2's, so C2 maps play with C2's numbers. Weapons are matched by tribe name (the Saga
+    added tribe 7, Egypt, which moved every animal up one) and weapon name."""
+    sg, c2 = libtool.Archive.open(saga_lib), libtool.Archive.open(c2_lib)
+    tribes = BS.join(['data', 'logic', 'tribetypes', 'tribetypes.cif'])
+    weapons = BS.join(['data', 'logic', 'weapontypes.cif'])
+
+    def tribe_names(arc):
+        return {dict(b)['type']: dict(b)['name'].strip('"').lower() for b in cif_blocks(arc, tribes, 'tribetype')}
+
+    def table(arc):
+        names, r = tribe_names(arc), {}
+        for b in cif_blocks(arc, weapons, 'weapontype'):
+            d = dict(b)
+            dmg = [0] * 8
+            for k, v in b:
+                if k.lower() == 'damagevalue':
+                    i, x = map(int, v.split())
+                    if 0 <= i < 8:
+                        dmg[i] = x
+            r[(names[d['tribetype']], d['name'].strip('"').lower())] = (
+                int(d['tribetype']), int(d['type']), int(d.get('minimumrange', 0)), int(d.get('maximumrange', 0)), dmg)
+        return r
+
+    st, ct = table(sg), table(c2)
+    lines = ['; Cultures 2 weapon values for C2 maps (cx.dll, cx.ini c2_balance). Written by build.py from the games.',
+             '; w <saga tribe> <saga weapon slot> <min range> <max range> <damage vs armour class 0..7>']
+    changed = 0
+    for key in sorted(ct, key=lambda k: (st.get(k, (99, 99))[:2])):
+        if key not in st:
+            continue
+        s, c = st[key], ct[key]
+        if s[2:] != c[2:]:
+            changed += 1
+        lines.append(' '.join(map(str, ['w', s[0], s[1], c[2], c[3]] + c[4])))
+    folders = sorted({n.split(BS)[2].lower() for n in c2.names()
+                      if n.lower().startswith(BS.join(['data', 'maps', ''])) and n.count(BS) > 2
+                      and n.split(BS)[2].lower().startswith(C2_MAPS)})
+    lines += ['; maps they apply to'] + ['map ' + f for f in folders]
+    with open(out, 'w', newline='\r\n', encoding=libtool.ENC) as f:   # folder names as the archive spells them
+        f.write('\n'.join(lines) + '\n')
+    log(f'c2 balance: {len(lines) - 3 - len(folders)} weapons ({changed} differ from the Saga) for {len(folders)} C2 maps')
+
+
+FEATURES = ('c2_campaign', 'c2_balance', 'fmv', 'world', 'minimap_hires')
 
 
 def cx_ini(scale, native, a):
@@ -396,6 +454,8 @@ def cx_ini(scale, native, a):
          '; Loader features: 1 = on, 0 = off',
          '; Gates of Asgard (Cultures 2) campaign: its button in the campaign menu and its campaign screen',
          f'c2_campaign={on("c2_campaign")}',
+         '; Cultures 2 maps play with Cultures 2 weapon damage and ranges (c2balance.txt) instead of the Saga\'s',
+         f'c2_balance={on("c2_balance")}',
          '; the Cultures 2 intro film before Gates of Asgard mission 10 (the other films are plain files)',
          f'fmv={on("fmv")}',
          '',
@@ -412,7 +472,9 @@ def cx_ini(scale, native, a):
               f'minimap_hires={on("minimap_hires")}',
               '; text: TrueType face and weight (400 normal, 700 bold)',
               'font=Georgia', 'font_weight=700']
-    t += ['', '; 1 = write cx_trace.log next to Game.exe (debugging)', 'trace=0']
+    t += ['', '; 0 = hide the Windows cursor over the game, which draws its own (1 with --hw-cursor)',
+          f'syscursor={1 if a.hw_cursor else 0}']
+    t += ['', '; 1 = write cx_trace.log next to the game exe (debugging)', 'trace=0']
     return '\n'.join(t) + '\n'
 
 
@@ -470,6 +532,8 @@ def run(a):
     for exe, pl in PATCHES.items():
         patch_exe(os.path.join(a.out, exe), pl)
     install_cx(a.out, a.cx_dll)
+    os.replace(os.path.join(a.out, 'Game.exe'), os.path.join(a.out, EXE))
+    log(f'Game.exe renamed to {EXE}')
     install_fmv(nw, a.c2, a.out, None if a.no_c2_videos else (a.ffmpeg or find_ffmpeg()))
     with open(os.path.join(a.out, 'Game.ini'), 'w', newline='\r\n') as f:
         f.write('set_language 1\n')
@@ -512,6 +576,8 @@ def run(a):
                   tr, manifest,
                   os.path.join(a.out, 'DataX', 'Libs', 'data0002.lib'),
                   os.path.join(a.c2, 'DataX', 'Libs', 'data0001.lib'))
+    write_c2_balance(os.path.join(a.saga, 'DataX', 'Libs', 'data0001.lib'),
+                     os.path.join(a.c2, 'DataX', 'Libs', 'data0001.lib'), os.path.join(a.out, 'c2balance.txt'))
     build_usercampaigns(a.saga, a.out, tr, manifest)
     log('done:', a.out)
 

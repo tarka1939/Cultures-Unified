@@ -39,7 +39,7 @@ python build.py
 ```
 
 The first run also indexes the game text into `work/` (`tools/extract_text.py`). The result is `build\`. Start
-`build\Game.exe`. It opens borderless fullscreen at your desktop resolution.
+`build\CulturesUnified.exe`. It opens borderless fullscreen at your desktop resolution.
 
 Run the same command again after changing anything. It rebuilds `build\` in place and keeps `build\Saves`.
 
@@ -89,6 +89,7 @@ rebuilding. Every feature is on unless it says 0.
 | Key | Effect |
 |---|---|
 | `c2_campaign` | the Gates of Asgard button and its campaign screen. `0`: the Saga's own single-player screen |
+| `c2_balance` | Cultures 2 maps fight with Cultures 2's weapon damage and ranges (stronger bows, weaker swords, one-tile spears), read from `c2balance.txt`, which the build writes from both games. Other maps keep the Saga's. `0`: the Saga's values everywhere |
 | `fmv` | the Cultures 2 intro film before campaign 1 mission 10 |
 | `render=native`, `scale` | the native renderer (missing or another value: off, the `ui_scale` path is used) |
 | `world` | `native`: landscape and units at full display resolution; `scaled`: drawn at GUI size and scaled up |
@@ -96,9 +97,10 @@ rebuilding. Every feature is on unless it says 0.
 | `minimap_hires` | the minimap picture at display resolution |
 | `font`, `font_weight` | the TrueType face and weight used for text |
 | `ui_scale` | the GUI magnification without `render=native` |
-| `trace` | `1` writes `cx_trace.log` next to `Game.exe` |
+| `syscursor` | `0` (default): the Windows cursor is hidden over the game, which draws its own. `1` with `--hw-cursor` |
+| `trace` | `1` writes `cx_trace.log` next to the game exe |
 
-`--off c2_campaign`, `--off fmv`, `--off world` and `--off minimap_hires` set the same keys at build time.
+`--off c2_campaign`, `--off c2_balance`, `--off fmv`, `--off world` and `--off minimap_hires` set the same keys at build time.
 Every hook first checks the bytes it replaces. If they differ, it stays off and writes a line to `cx_trace.log`
 (with `trace=1`).
 
@@ -106,6 +108,8 @@ Every hook first checks the bytes it replaces. If they differ, it stays off and 
 
 - copies the Saga install to `build\` and patches the CD check in `Game.exe` (3 bytes),
 - builds `cx.dll` (`loader/`) and adds it to `Game.exe`'s imports,
+- renames `Game.exe` to `CulturesUnified.exe`. Windows' compatibility database knows the Saga `Game.exe` and
+  applies compatibility shims to it. With them, Alt+Tab and the Windows key do nothing in the game,
 - writes `DataX\Libs\data0002.lib`, an overlay with only English (`eng`) files:
   - the GOG English text and graphics,
   - the translations in `translations/eng`,

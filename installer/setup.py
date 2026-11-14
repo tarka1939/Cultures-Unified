@@ -178,7 +178,7 @@ def register(target):
     size = sum(os.path.getsize(os.path.join(d, f)) for d, _, fs in os.walk(target) for f in fs) // 1024
     with winreg.CreateKey(winreg.HKEY_CURRENT_USER, KEY) as k:
         for name, v in (('DisplayName', APP), ('InstallLocation', target),
-                        ('DisplayIcon', os.path.join(target, 'Game.exe')),
+                        ('DisplayIcon', os.path.join(target, build.EXE)),
                         ('UninstallString', f'"{exe}" --uninstall'), ('ModifyPath', f'"{exe}"'),
                         ('Publisher', 'Cultures Unified')):
             winreg.SetValueEx(k, name, 0, winreg.REG_SZ, v)
@@ -199,9 +199,9 @@ def shortcut_paths():
 
 def make_shortcut(lnk, target):
     ps = ("$s = (New-Object -ComObject WScript.Shell).CreateShortcut($env:CU_LNK); "
-          "$s.TargetPath = Join-Path $env:CU_DIR 'Game.exe'; $s.WorkingDirectory = $env:CU_DIR; $s.Save()")
+          "$s.TargetPath = Join-Path $env:CU_DIR $env:CU_EXE; $s.WorkingDirectory = $env:CU_DIR; $s.Save()")
     subprocess.run(['powershell', '-NoProfile', '-Command', ps], check=True, creationflags=NO_WINDOW,
-                   env=dict(os.environ, CU_LNK=lnk, CU_DIR=target))
+                   env=dict(os.environ, CU_LNK=lnk, CU_DIR=target, CU_EXE=build.EXE))
 
 
 def is_inside(a, b):
@@ -537,7 +537,7 @@ class Wizard(tk.Tk):
     def finish(self):
         if self.play.get():
             t = self.v['target'].get()
-            subprocess.Popen([os.path.join(t, 'Game.exe')], cwd=t)
+            subprocess.Popen([os.path.join(t, build.EXE)], cwd=t)
         self.destroy()
 
 

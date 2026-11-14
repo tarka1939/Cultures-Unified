@@ -1,6 +1,6 @@
 # Play-test checklist
 
-Run after a build that changes the loader, the overlay or the translations. Start `build\Game.exe` by hand.
+Run after a build that changes the loader, the overlay or the translations. Start `build\CulturesUnified.exe` by hand.
 Write what fails, with the map and a screenshot, into PLAN.md under the phase it belongs to.
 Marks: ✅ seen working, ⬜ not checked yet.
 
